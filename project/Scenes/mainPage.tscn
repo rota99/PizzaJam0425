@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkgtcr3bqmyb4"]
+
+[ext_resource type="Texture2D" uid="uid://48ju82qcb7b2" path="res://Assets/UI/Button.png" id="1_h1kuq"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Start"
+icon = ExtResource("1_h1kuq")
+flat = true
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 341.0
+offset_top = 61.0
+offset_right = 381.0
+offset_bottom = 101.0
+tooltip_text = "start"
+texture_normal = ExtResource("1_h1kuq")
