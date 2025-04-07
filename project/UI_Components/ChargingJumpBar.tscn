@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfy1attrroaj"]
+
+[ext_resource type="Texture2D" uid="uid://48ju82qcb7b2" path="res://Assets/UI/defaultButton.png" id="1_kwpbl"]
+[ext_resource type="Texture2D" uid="uid://dqdivwkydumns" path="res://Test/testblue.jpg" id="2_kwpbl"]
+
+[node name="TextureProgressBar" type="TextureProgressBar"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 1224.0
+offset_bottom = 1476.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.031)
+value = 12.0
+texture_under = ExtResource("1_kwpbl")
+texture_progress = ExtResource("2_kwpbl")
+tint_under = Color(0.262333, 0.547225, 0.506137, 1)
+tint_over = Color(0.713726, 0.72549, 0.698039, 1)
+tint_progress = Color(1, 1, 0.258824, 1)

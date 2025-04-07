@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn7vbi5bj56ux"]
+[gd_scene load_steps=4 format=3 uid="uid://bn7vbi5bj56ux"]
 
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="1_r6w77"]
+[ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="2_vid4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6w77"]
 size = Vector2(313, 27)
@@ -12,10 +13,11 @@ offset_left = 543.0
 offset_top = 55.0
 offset_right = 597.0
 offset_bottom = 78.0
-text = "Level 1"
+text = "Test Level"
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_r6w77")]
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("1_r6w77")]
 position = Vector2(76.3985, 163.952)
+_jump_charging_bar = NodePath("../HealthBar")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(105, 326)
@@ -73,3 +75,9 @@ grow_vertical = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(0.5, -13.5)
 shape = SubResource("RectangleShape2D_r6w77")
+
+[node name="HealthBar" parent="." instance=ExtResource("2_vid4w")]
+offset_left = 546.0
+offset_top = 496.0
+offset_right = 646.0
+offset_bottom = 506.0
