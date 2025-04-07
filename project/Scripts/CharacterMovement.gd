@@ -7,7 +7,7 @@ extends CharacterBody2D
 ## JUMP PARAMETERS =============================================================
 @export var MIN_JUMP_FORCE := -300.0
 @export var MAX_JUMP_FORCE := -600.0
-@export var MAX_JUMP_CHARGE_TIME := 1.0
+@export var MAX_JUMP_CHARGE_TIME := 2.0
 @export var JUMP_CHARGE_RATE := 2.0
 @export var FALL_GRAVITY_MULTIPLIER := 1.5
 
@@ -68,10 +68,14 @@ func _handle_jump_charging(delta: float) -> void:
 		  
 		  # Continue charging
 		if _is_charging_jump and Input.is_action_pressed(jump_action):
-			_jump_charge_time = min(_jump_charge_time + delta * JUMP_CHARGE_RATE, MAX_JUMP_CHARGE_TIME)
+			# When moving can't charge jump
+			if velocity == Vector2.ZERO:
+				_jump_charging_bar.show()
+				_jump_charge_time = min(_jump_charge_time + delta * JUMP_CHARGE_RATE, MAX_JUMP_CHARGE_TIME)
 		  
 		  # Release jump
 		if Input.is_action_just_released(jump_action):
+			_jump_charging_bar.hide()
 			_execute_jump()
 			
 		_update_charging_jump_bar()
