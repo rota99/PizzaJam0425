@@ -135,7 +135,7 @@ func _handle_toungue_shooting():
 func _shoot_tongue():
 	
 	_tongue_state = TongueState.EXTENDING
-	$RayCast2D.look_at(get_global_mouse_position())
+	$RayCast2D.target_position = to_local(get_global_mouse_position())
 	$RayCast2D.force_raycast_update()
 	
 	#TODO fixa in caso di obj movimento 
