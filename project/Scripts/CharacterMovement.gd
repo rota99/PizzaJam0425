@@ -12,15 +12,33 @@ extends CharacterBody2D
 @export var FALL_GRAVITY_MULTIPLIER := 1.5
 @export var STOPPED_THRESHOLD := 3.0  # Soglia per considerare "quasi fermo"
 
+## TONGUE PARAMETERS =============================================================
+@export var TONGUE_EXTEND_SPEED := 200.0  # Velocità di estensione
+@export var TONGUE_RETRACT_SPEED := 50.0 # Velocità di ritiro
+@export var TONGUE_WIDTH := 14.0           # Spessore visuale
+## TONGUE FISICA PARAMETERS =============================================================
+@export var SWING_FORCE := 800.0          # Forza di oscillazione
+@export var MAX_TONGUE_LENGTH := 1000.0    # Lunghezza massima
+@export var SWING_GRAVITY_MULT := 2.0  # Gravità extra durante lo swing
+@export var SWING_PULL_FORCE := 15.0    # Forza di richiamo elastico
+@export var SWING_TANGENT_FORCE := 8.0  # Forza perpendicolare per oscillazione
+
 ## ACTION BINDINGS =============================================================
 @export var jump_action := "jump"
 @export var move_left_action := "move_left"
 @export var move_right_action := "move_right"
+@export var tongue_action := "tongue"
 
 ## STATE VARIABLES =============================================================
 var _is_charging_jump := false
 var _jump_charge_time := 0.0
 var _has_control := true #In caso ci serva
+
+var _tongue_hit_point := Vector2.ZERO
+enum TongueState {RETRACTED, EXTENDING, ATTACHED, RETRACTING}
+var _tongue_state := TongueState.RETRACTED
+var _current_tongue_length := 0.0
+var _tongue_hit_target: Node2D = null  # Per agganciarsi a oggetti dinamici
 
 # Node references
 @export var _jump_charging_bar : ProgressBar
@@ -29,9 +47,11 @@ var _has_control := true #In caso ci serva
 
 func _ready() -> void:
 	#Debug per development
-	assert(_jump_charging_bar != null, "Errore: my_variable non dovrebbe essere null.")
+	assert(_jump_charging_bar != null, "Errore: _jump_charging_bar non dovrebbe essere null.")
 		
 	_jump_charging_bar.max_value = MAX_JUMP_CHARGE_TIME
+	$Tongue.add_point(Vector2.ZERO, 0)
+	$Tongue.add_point(Vector2.ZERO, 1)
 
 
 func _physics_process(delta: float) -> void:
@@ -42,7 +62,11 @@ func _physics_process(delta: float) -> void:
 	_handle_jump_charging(delta)
 	_handle_movement_input()
 	_update_sprite_direction()
-	 
+	
+	_handle_toungue_shooting()
+	_handle_tongue_physics(delta)
+	
+	
 	move_and_slide()
 
 
@@ -59,7 +83,6 @@ func _apply_gravity(delta: float) -> void:
 		gravity *= FALL_GRAVITY_MULTIPLIER if velocity.y > 0 else 1.0
 		velocity += gravity * delta
 
-
 func _handle_jump_charging(delta: float) -> void:
 	if is_on_floor():
 		  # Start charging
@@ -69,8 +92,8 @@ func _handle_jump_charging(delta: float) -> void:
 			
 		  # Continue charging
 		if _is_charging_jump and Input.is_action_pressed(jump_action):
-			# When moving can't charge jump
-			if velocity.length() < STOPPED_THRESHOLD:
+			# When moving (whitin threshhold) can't charge jump
+			if abs(velocity.x) < STOPPED_THRESHOLD:
 				_jump_charging_bar.show()
 				_jump_charge_time = min(_jump_charge_time + delta * JUMP_CHARGE_RATE, MAX_JUMP_CHARGE_TIME)
 		  
@@ -83,22 +106,113 @@ func _handle_jump_charging(delta: float) -> void:
 	else:
 		_is_charging_jump = false
 
-
 func _execute_jump() -> void:
 	var charge_ratio = _jump_charge_time / MAX_JUMP_CHARGE_TIME
 	velocity.y = lerp(MIN_JUMP_FORCE, MAX_JUMP_FORCE, charge_ratio)
 	_reset_jump_state()
 
-
 func _reset_jump_state() -> void:
 	_is_charging_jump = false
 	_jump_charge_time = 0.0
-
 
 func _handle_movement_input() -> void:
 	var direction = Input.get_axis(move_left_action, move_right_action)
 	velocity.x = direction * SPEED if direction else lerp(velocity.x, 0.0, FRICTION)
 
+## TONGUE MANAGEMENT ===========================================================
+
+func _handle_toungue_shooting():
+	if Input.is_action_just_pressed(tongue_action):
+		_shoot_tongue()
+		_show_tongue()
+	
+	if Input.is_action_just_released(tongue_action):
+		_tongue_state = TongueState.RETRACTING
+
+func _shoot_tongue():
+	if _tongue_state != TongueState.RETRACTED: return
+	
+	_tongue_state = TongueState.EXTENDING
+	$RayCast2D.look_at(get_global_mouse_position())
+	$RayCast2D.force_raycast_update()
+	
+	#TODO fixa in caso di obj movimento o mancata collisione in screen border
+	if $RayCast2D.is_colliding():
+		if global_position.distance_to($RayCast2D.get_collision_point()) > MAX_TONGUE_LENGTH:
+			pass #TODO Fail meccanic
+		_tongue_hit_target = $RayCast2D.get_collider()
+		_tongue_hit_point = $RayCast2D.get_collision_point()
+	else:
+		_tongue_hit_point = get_global_mouse_position()
+	
+	# Animazione iniziale
+	$TongueTip.position = Vector2.ZERO
+	$Tongue.width = TONGUE_WIDTH
+
+func _handle_tongue_physics(delta):
+	match _tongue_state:
+		TongueState.EXTENDING:
+			
+			if _current_tongue_length >= MAX_TONGUE_LENGTH:
+				_tongue_state = TongueState.RETRACTING
+			else:
+				_current_tongue_length += TONGUE_EXTEND_SPEED * delta
+				
+			if _current_tongue_length >= global_position.distance_to(_tongue_hit_point):
+				_tongue_state = TongueState.ATTACHED
+				_setup_swing_joint()
+		
+		TongueState.ATTACHED:
+			_apply_swing_physics(delta)
+			_current_tongue_length = global_position.distance_to(_tongue_hit_point)
+		
+		TongueState.RETRACTING:
+			_current_tongue_length -= TONGUE_RETRACT_SPEED * delta
+			if _current_tongue_length <= 0:
+				_tongue_state = TongueState.RETRACTED
+				_cleanup_tongue()
+	
+	_update_tongue_visual()
+	
+func _setup_swing_joint():
+	var joint = PinJoint2D.new()
+	joint.name = "TongueJoint"
+	joint.node_a = get_path()
+	joint.node_b = _tongue_hit_target.get_path() if _tongue_hit_target else ""
+	joint.position = _tongue_hit_point
+	add_child(joint)
+
+func _apply_swing_physics(delta: float) -> void:
+	if _tongue_state != TongueState.ATTACHED: return
+	
+	var to_target := _tongue_hit_point - global_position
+	var distance := to_target.length()
+	var direction := to_target.normalized()
+	
+	# 1. Forza elastica verso il punto di aggancio
+	var elastic_force = direction * SWING_PULL_FORCE * max(0, distance - _current_tongue_length)
+	velocity += elastic_force * delta
+	
+	# 2. Forza tangenziale per oscillazione (perpendicolare alla direzione)
+	var tangent := Vector2(-direction.y, direction.x)
+	velocity += tangent * SWING_TANGENT_FORCE * delta * sign(velocity.dot(tangent))
+	
+	# 3. Gravità potenziata durante lo swing
+	velocity.y += get_gravity().y * SWING_GRAVITY_MULT * delta
+
+func _cleanup_tongue():
+	if has_node("TongueJoint"):
+		get_node("TongueJoint").queue_free()
+	
+	_tongue_state = TongueState.RETRACTED
+	_current_tongue_length = 0.0
+	_tongue_hit_target = null
+	_tongue_hit_point = Vector2.ZERO
+	
+	# Resetta la visualizzazione
+	$Tongue.set_point_position(1, Vector2.ZERO)
+	$Tongue.hide()
+	$TongueTip.position = Vector2.ZERO
 
 ## VISUAL MANAGEMENT ===========================================================
 func _update_sprite_direction() -> void:
@@ -114,6 +228,34 @@ func _update_charging_jump_bar() -> void:
 		return
 		
 	_jump_charging_bar.update_bar(_jump_charge_time)
+
+func _show_tongue():
+	$Tongue.show()
+
+#TODO bug visivo щ(ಠ益ಠщ)
+func _update_tongue_visual():
+	if _tongue_state == TongueState.RETRACTED:
+		return
+	
+	match _tongue_state:
+		TongueState.EXTENDING:
+			#TODO in modod che end_pos sia = a len lingua in dir target
+			var end_pos = global_position.direction_to(_tongue_hit_point) * _current_tongue_length
+			$Tongue.set_point_position(0, Vector2.ZERO)
+			$Tongue.set_point_position(1, end_pos)
+			$TongueTip.position = $TongueTip.position.lerp(end_pos, 0.2)
+			$Tongue.width = lerp($Tongue.width, TONGUE_WIDTH, 0.1)
+			#$Tongue.width = lerp(TONGUE_WIDTH, 2.0, _current_tongue_length/MAX_TONGUE_LENGTH)
+		
+		TongueState.RETRACTING:
+			$Tongue.set_point_position(0, Vector2.ZERO)
+			
+			var retract_pos = _tongue_hit_point.direction_to(global_position) * _current_tongue_length
+			$Tongue.set_point_position(1, to_local(retract_pos))
+			$Tongue.width = lerp($Tongue.width, TONGUE_WIDTH, 0.1)
+			$TongueTip.position = $TongueTip.position.lerp(retract_pos, 0.2)
+			#$Tongue.width = lerp(TONGUE_WIDTH, 2.0, _current_tongue_length/MAX_TONGUE_LENGTH)
+			$TongueTip.position = retract_pos
 
 ## PUBLIC API ==================================================================
 func set_character_control(enabled: bool) -> void:

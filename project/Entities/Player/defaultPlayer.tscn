@@ -25,3 +25,13 @@ animation = &"new_animation"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-97, -112, -39, -110, -23, -93, 74, -64, 96, -46, 135, -7, 143, 13, 150, 42, 65, 108, 20, 100, -44, 112, -77, 106, -131, 74, -143, 59, -92, 44, -79, 12, -104, -26, -132, -36, -147, -54, -149, -62, -141, -79, -113, -95)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Tongue" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(3812, 1476)
+width = 40.0
+default_color = Color(0.922933, 0.267786, 0, 1)
+
+[node name="TongueTip" type="Marker2D" parent="."]
