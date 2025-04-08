@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var MAX_JUMP_CHARGE_TIME := 2.0
 @export var JUMP_CHARGE_RATE := 2.0
 @export var FALL_GRAVITY_MULTIPLIER := 1.5
+@export var STOPPED_THRESHOLD := 3.0  # Soglia per considerare "quasi fermo"
 
 ## ACTION BINDINGS =============================================================
 @export var jump_action := "jump"
@@ -65,11 +66,11 @@ func _handle_jump_charging(delta: float) -> void:
 		if Input.is_action_just_pressed(jump_action):
 			_is_charging_jump = true
 			_jump_charge_time = 0.0
-		  
+			
 		  # Continue charging
 		if _is_charging_jump and Input.is_action_pressed(jump_action):
 			# When moving can't charge jump
-			if velocity == Vector2.ZERO:
+			if velocity.length() < STOPPED_THRESHOLD:
 				_jump_charging_bar.show()
 				_jump_charge_time = min(_jump_charge_time + delta * JUMP_CHARGE_RATE, MAX_JUMP_CHARGE_TIME)
 		  
