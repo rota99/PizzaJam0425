@@ -15,8 +15,10 @@ extends CharacterBody2D
 ## TONGUE PARAMETERS =============================================================
 @export var TONGUE_EXTEND_SPEED := 300.0  # Velocità di estensione
 @export var TONGUE_RETRACT_SPEED := 300.0 # Velocità di ritiro
-@export var TONGUE_WIDTH := 14.0           # Spessore visuale
-@export var MAX_TONGUE_LENGTH := 1000.0    # Lunghezza massima
+@export var TONGUE_WIDTH := 60.0           # Spessore visuale
+@export var MIN_TONGUE_WIDTH := 15.0           # Spessore visuale
+@export var MAX_TONGUE_LENGTH := 800.0    # Lunghezza massima
+@export var TAG_TONGUABLE_TARGETS := "linguabili"  # Oggetti con questo tag possono essere agganciati dalla lingua
 
 ## TONGUE FISICA PARAMETERS =============================================================
 @export var SWING_FORCE := 800.0          # Forza di oscillazione
@@ -143,7 +145,7 @@ func _shoot_tongue():
 		var collision_point = $RayCast2D.get_collision_point()
 		if global_position.distance_to(collision_point) <= MAX_TONGUE_LENGTH:
 			_tongue_hit_target = $RayCast2D.get_collider()
-			var test =_tongue_hit_target.name
+			var test =_tongue_hit_target.name #TODO DEBUG
 			_tongue_hit_point = collision_point
 		else:
 			_tongue_hit_point = global_position + global_position.direction_to(collision_point) * MAX_TONGUE_LENGTH
@@ -152,6 +154,7 @@ func _shoot_tongue():
 		_tongue_hit_point = get_global_mouse_position()
 	
 	_tongue_hit_distance_target = global_position.distance_to(_tongue_hit_point)
+	var test = global_position
 	# Animazione iniziale
 	$TongueTip.position = Vector2.ZERO
 	$Tongue.width = TONGUE_WIDTH
@@ -164,9 +167,13 @@ func _handle_tongue_physics(delta):
 			else:
 				_current_tongue_length += TONGUE_EXTEND_SPEED * delta
 				
-			if _current_tongue_length >= global_position.distance_to(_tongue_hit_point) and _tongue_hit_target != null:
-				_tongue_state = TongueState.ATTACHED
-				_setup_swing_joint()
+			if _current_tongue_length >= _tongue_hit_distance_target and _tongue_hit_target != null:
+				#Se oggetto non è afferrabile dalla lingua, essa torna indietro
+				if _tongue_hit_target.is_in_group(TAG_TONGUABLE_TARGETS):
+					_tongue_state = TongueState.ATTACHED
+					_setup_swing_joint()
+				else:
+					_tongue_state = TongueState.RETRACTING
 		
 		TongueState.ATTACHED:
 			_apply_swing_physics(delta)
@@ -250,14 +257,14 @@ func _update_tongue_visual():
 			$Tongue.set_point_position(0, Vector2.ZERO)
 			$Tongue.set_point_position(1, end_pos)
 			$TongueTip.position = $TongueTip.position.lerp(end_pos, 0.2)
-			$Tongue.width = lerp(TONGUE_WIDTH, 2.0, _current_tongue_length/MAX_TONGUE_LENGTH)
+			$Tongue.width = lerp(TONGUE_WIDTH, MIN_TONGUE_WIDTH, _current_tongue_length/MAX_TONGUE_LENGTH)
 		
 		TongueState.RETRACTING:
 			$Tongue.set_point_position(0, Vector2.ZERO)
 			var retract_pos = global_position.direction_to(_tongue_hit_point) * _current_tongue_length
 			$Tongue.set_point_position(1, retract_pos)
 			$TongueTip.position = $TongueTip.position.lerp(retract_pos, 0.2)
-			$Tongue.width = lerp(TONGUE_WIDTH, 2.0, _current_tongue_length/MAX_TONGUE_LENGTH)
+			$Tongue.width = lerp(TONGUE_WIDTH, MIN_TONGUE_WIDTH, _current_tongue_length/MAX_TONGUE_LENGTH)
 			$TongueTip.position = retract_pos
 
 ## PUBLIC API ==================================================================
