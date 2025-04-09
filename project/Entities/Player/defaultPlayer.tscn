@@ -29,7 +29,6 @@ animation = &"new_animation"
 polygon = PackedVector2Array(-97, -112, -39, -110, -23, -93, 74, -64, 96, -46, 135, -7, 143, 13, 150, 42, 65, 108, 20, 100, -44, 112, -77, 106, -131, 74, -143, 59, -92, 44, -79, 12, -104, -26, -132, -36, -147, -54, -149, -62, -141, -79, -113, -95)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-exclude_parent = false
 target_position = Vector2(0, 200)
 collide_with_areas = true
 
