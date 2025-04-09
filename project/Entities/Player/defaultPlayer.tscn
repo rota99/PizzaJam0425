@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://mmnjki8ajgjp"]
+[gd_scene load_steps=5 format=3 uid="uid://mmnjki8ajgjp"]
 
 [ext_resource type="Texture2D" uid="uid://c2tm836batany" path="res://Test/test_toad.png" id="1_3ikt3"]
 [ext_resource type="Script" uid="uid://c8sjjsm24kvmx" path="res://Scripts/CharacterMovement.gd" id="1_vom0u"]
+[ext_resource type="Texture2D" uid="uid://d2ugkqhimkd8m" path="res://icon.svg" id="3_k67vw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5w4xs"]
 animations = [{
@@ -38,3 +39,7 @@ width = 40.0
 default_color = Color(0.922933, 0.267786, 0, 1)
 
 [node name="TongueTip" type="Marker2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="TongueTip"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_k67vw")
