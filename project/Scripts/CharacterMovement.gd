@@ -22,13 +22,7 @@ extends CharacterBody2D
 
 ## TONGUE FISICA PARAMETERS =============================================================
 @export var SWING_FORCE := 800.0          # Forza di oscillazione
-@export var SWING_PULL_FORCE := 46.0    # Forza di richiamo elastico
-@export var SWING_TANGENT_FORCE := 48.0  # Forza perpendicolare per oscillazione
-
-#TEST
-@export var JOINT_SOFTNESS := 0.1
-@export var JOINT_BIAS := 0.5
-@export var MAX_SWING_VELOCITY := 450.0
+@export var SWING_PULL_FORCE := 26.0    # Forza di richiamo elastico
 
 ## ACTION BINDINGS =============================================================
 @export var jump_action := "jump"
@@ -46,6 +40,7 @@ enum TongueState {RETRACTED, EXTENDING, ATTACHED, RETRACTING}
 var _tongue_state := TongueState.RETRACTED
 var _current_tongue_length := 0.0
 var _tongue_hit_target: Node2D = null  # Per agganciarsi a oggetti dinamici
+var _tongue_initial_distance_target := 0.0
 
 # Node references
 @export var _jump_charging_bar : ProgressBar
@@ -152,8 +147,9 @@ func _shoot_tongue():
 			_tongue_hit_target = $RayCast2D.get_collider()
 			#var test =_tongue_hit_target.name #TODO togli - DEBUG
 			_tongue_hit_point = collision_point
+			_tongue_initial_distance_target = global_position.distance_to(collision_point) 
 		else:
-			_tongue_hit_point = global_position + global_position.direction_to(collision_point) * MAX_TONGUE_LENGTH
+			_tongue_hit_point = global_position + global_position.direction_to(collision_point) * MAX_TONGUE_LENGTH ###??? meglio fuori?
 		
 	else:
 		_tongue_hit_point = get_global_mouse_position()
@@ -179,8 +175,8 @@ func _handle_tongue_physics(delta):
 				_current_tongue_length += TONGUE_EXTEND_SPEED * delta
 		
 		TongueState.ATTACHED:
-			_apply_swing_physics(delta)
 			#_current_tongue_length = (_tongue_hit_point - global_position).length()
+			_apply_swing_physics(delta)
 		
 		TongueState.RETRACTING:
 			_current_tongue_length -= TONGUE_RETRACT_SPEED * delta
@@ -189,28 +185,11 @@ func _handle_tongue_physics(delta):
 				_cleanup_tongue()
 	
 	_update_tongue_visual()
-	
-#Test TODO DEBUG
-func _setup_swing_joint():
-	if has_node("TongueJoint"):
-		get_node("TongueJoint").queue_free()
-	 
-	var joint = PinJoint2D.new()
-	joint.name = "TongueJoint"
-	joint.position = to_local(_tongue_hit_point)
-	 
-	 # Configura la rigidità del joint
-	joint.softness = 0.1
-	joint.bias = 0.5
-	 
-	add_child(joint)
-	 
-	 # Se l'oggetto è dinamico, connetti il joint
-	if _tongue_hit_target is RigidBody2D:
-		joint.node_b = _tongue_hit_target.get_path()
 
 func _apply_swing_physics(delta: float) -> void:
 	if _tongue_state != TongueState.ATTACHED: return
+	
+	assert(_tongue_hit_target != null, "_tongue_hit_target è null! Impossibile calcolare fisica swing!")
 
 	# Aggiorna il punto di aggancio se il target è dinamico
 	if _tongue_hit_target is Node2D:
@@ -221,8 +200,8 @@ func _apply_swing_physics(delta: float) -> void:
 	var direction = to_target.normalized()
 
 	# Foza elastica per mantenere la lunghezza
-	if distance > _current_tongue_length:
-		var pull_force = direction * (distance - _current_tongue_length) * SWING_PULL_FORCE
+	if distance > _tongue_initial_distance_target:
+		var pull_force = direction  * SWING_PULL_FORCE * abs(distance - _tongue_initial_distance_target)
 		velocity += pull_force * delta
 
 
