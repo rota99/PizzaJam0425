@@ -22,9 +22,13 @@ extends CharacterBody2D
 
 ## TONGUE FISICA PARAMETERS =============================================================
 @export var SWING_FORCE := 800.0          # Forza di oscillazione
-@export var SWING_GRAVITY_MULT := 2.0  # Gravità extra durante lo swing
-@export var SWING_PULL_FORCE := 15.0    # Forza di richiamo elastico
-@export var SWING_TANGENT_FORCE := 8.0  # Forza perpendicolare per oscillazione
+@export var SWING_PULL_FORCE := 46.0    # Forza di richiamo elastico
+@export var SWING_TANGENT_FORCE := 48.0  # Forza perpendicolare per oscillazione
+
+#TEST
+@export var JOINT_SOFTNESS := 0.1
+@export var JOINT_BIAS := 0.5
+@export var MAX_SWING_VELOCITY := 450.0
 
 ## ACTION BINDINGS =============================================================
 @export var jump_action := "jump"
@@ -38,7 +42,6 @@ var _jump_charge_time := 0.0
 var _has_control := true #In caso ci serva
 
 var _tongue_hit_point := Vector2.ZERO
-var _tongue_hit_distance_target := 0.0
 enum TongueState {RETRACTED, EXTENDING, ATTACHED, RETRACTING}
 var _tongue_state := TongueState.RETRACTED
 var _current_tongue_length := 0.0
@@ -120,6 +123,8 @@ func _reset_jump_state() -> void:
 	_jump_charge_time = 0.0
 
 func _handle_movement_input() -> void:
+	#if _tongue_state == TongueState.ATTACHED:  return # Disabilita movimento normale quando penzola
+		
 	var direction = Input.get_axis(move_left_action, move_right_action)
 	velocity.x = direction * SPEED if direction else lerp(velocity.x, 0.0, FRICTION)
 
@@ -138,14 +143,14 @@ func _shoot_tongue():
 	
 	_tongue_state = TongueState.EXTENDING
 	$RayCast2D.target_position = global_position.direction_to(get_global_mouse_position()) * (MAX_TONGUE_LENGTH + 1.0)
-	print($RayCast2D.target_position)
+	#print($RayCast2D.target_position) #TODO togli - DEBUG
 	$RayCast2D.force_raycast_update()
 	
 	if $RayCast2D.is_colliding():
 		var collision_point = $RayCast2D.get_collision_point()
 		if global_position.distance_to(collision_point) <= MAX_TONGUE_LENGTH:
 			_tongue_hit_target = $RayCast2D.get_collider()
-			var test =_tongue_hit_target.name #TODO DEBUG
+			#var test =_tongue_hit_target.name #TODO togli - DEBUG
 			_tongue_hit_point = collision_point
 		else:
 			_tongue_hit_point = global_position + global_position.direction_to(collision_point) * MAX_TONGUE_LENGTH
@@ -153,8 +158,6 @@ func _shoot_tongue():
 	else:
 		_tongue_hit_point = get_global_mouse_position()
 	
-	_tongue_hit_distance_target = global_position.distance_to(_tongue_hit_point)
-	var test = global_position
 	# Animazione iniziale
 	$TongueTip.position = Vector2.ZERO
 	$Tongue.width = TONGUE_WIDTH
@@ -167,7 +170,6 @@ func _handle_tongue_physics(delta):
 				#Se oggetto non è afferrabile dalla lingua, essa torna indietro
 				if _tongue_hit_target.is_in_group(TAG_TONGUABLE_TARGETS):
 					_tongue_state = TongueState.ATTACHED
-					_setup_swing_joint()
 				else:
 					_tongue_state = TongueState.RETRACTING
 			
@@ -178,7 +180,7 @@ func _handle_tongue_physics(delta):
 		
 		TongueState.ATTACHED:
 			_apply_swing_physics(delta)
-			_current_tongue_length = global_position.distance_to(_tongue_hit_point)
+			#_current_tongue_length = (_tongue_hit_point - global_position).length()
 		
 		TongueState.RETRACTING:
 			_current_tongue_length -= TONGUE_RETRACT_SPEED * delta
@@ -188,32 +190,41 @@ func _handle_tongue_physics(delta):
 	
 	_update_tongue_visual()
 	
+#Test TODO DEBUG
 func _setup_swing_joint():
-	assert(_tongue_hit_point != null, "Hit target in _setup_swing_joint è null!!!")
+	if has_node("TongueJoint"):
+		get_node("TongueJoint").queue_free()
+	 
 	var joint = PinJoint2D.new()
 	joint.name = "TongueJoint"
-	joint.node_a = get_path()
-	joint.node_b = _tongue_hit_target.get_path()
-	joint.position = _tongue_hit_point
+	joint.position = to_local(_tongue_hit_point)
+	 
+	 # Configura la rigidità del joint
+	joint.softness = 0.1
+	joint.bias = 0.5
+	 
 	add_child(joint)
+	 
+	 # Se l'oggetto è dinamico, connetti il joint
+	if _tongue_hit_target is RigidBody2D:
+		joint.node_b = _tongue_hit_target.get_path()
 
 func _apply_swing_physics(delta: float) -> void:
 	if _tongue_state != TongueState.ATTACHED: return
-	
-	var to_target := to_local(_tongue_hit_point)
-	var distance := to_target.length()
-	var direction := to_target.normalized()
-	
-	# Forza elastica verso il punto di aggancio
-	var elastic_force = direction * SWING_PULL_FORCE * max(0, distance - _current_tongue_length)
-	velocity += elastic_force * delta
-	
-	# Forza tangenziale per oscillazione (perpendicolare alla direzione)
-	var tangent := Vector2(-direction.y, direction.x)
-	velocity += tangent * SWING_TANGENT_FORCE * delta * sign(velocity.dot(tangent))
-	
-	# Gravità potenziata durante lo swing
-	velocity.y += get_gravity().y * SWING_GRAVITY_MULT * delta
+
+	# Aggiorna il punto di aggancio se il target è dinamico
+	if _tongue_hit_target is Node2D:
+		_tongue_hit_point = _tongue_hit_target.global_position + (_tongue_hit_point - _tongue_hit_target.global_position)
+
+	var to_target = _tongue_hit_point - global_position
+	var distance = to_target.length()
+	var direction = to_target.normalized()
+
+	# Foza elastica per mantenere la lunghezza
+	if distance > _current_tongue_length:
+		var pull_force = direction * (distance - _current_tongue_length) * SWING_PULL_FORCE
+		velocity += pull_force * delta
+
 
 func _cleanup_tongue():
 	if has_node("TongueJoint"):
@@ -223,7 +234,6 @@ func _cleanup_tongue():
 	_current_tongue_length = 0.0
 	_tongue_hit_target = null
 	_tongue_hit_point = Vector2.ZERO
-	_tongue_hit_distance_target = 0.0
 	
 	# Resetta la visualizzazione
 	$Tongue.set_point_position(1, Vector2.ZERO)
@@ -258,15 +268,19 @@ func _update_tongue_visual():
 			$Tongue.set_point_position(0, Vector2.ZERO)
 			$Tongue.set_point_position(1, end_pos)
 			$TongueTip.position = end_pos
-			$Tongue.width = lerp(TONGUE_WIDTH, MIN_TONGUE_WIDTH, _current_tongue_length/MAX_TONGUE_LENGTH)
 		
 		TongueState.RETRACTING:
 			$Tongue.set_point_position(0, Vector2.ZERO)
 			var retract_pos = global_position.direction_to(_tongue_hit_point) * _current_tongue_length
 			$Tongue.set_point_position(1, retract_pos)
 			$TongueTip.position = $TongueTip.position.lerp(retract_pos, 0.2)
-			$Tongue.width = lerp(TONGUE_WIDTH, MIN_TONGUE_WIDTH, _current_tongue_length/MAX_TONGUE_LENGTH)
 			$TongueTip.position = retract_pos
+		
+		TongueState.ATTACHED:
+			$Tongue.set_point_position(1, to_local(_tongue_hit_point))
+			$TongueTip.position = to_local(_tongue_hit_point)
+	
+	$Tongue.width = lerp(TONGUE_WIDTH, MIN_TONGUE_WIDTH, _current_tongue_length/MAX_TONGUE_LENGTH)
 
 ## PUBLIC API ==================================================================
 func set_character_control(enabled: bool) -> void:

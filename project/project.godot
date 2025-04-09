@@ -15,6 +15,10 @@ run/main_scene="uid://bn7vbi5bj56ux"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[global_group]
+
+linguabili="Oggetti con possibilità di collisione a cui la lingua si può attaccare"
+
 [input]
 
 move_left={
