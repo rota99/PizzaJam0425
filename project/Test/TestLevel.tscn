@@ -16,7 +16,7 @@ offset_bottom = 78.0
 text = "Test Level"
 
 [node name="CharacterBody2D" parent="." node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("1_r6w77")]
-position = Vector2(76.3985, 163.952)
+position = Vector2(1, 0)
 _jump_charging_bar = NodePath("../HealthBar")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

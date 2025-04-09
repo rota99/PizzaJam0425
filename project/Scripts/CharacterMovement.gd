@@ -137,10 +137,10 @@ func _handle_toungue_shooting():
 func _shoot_tongue():
 	
 	_tongue_state = TongueState.EXTENDING
-	$RayCast2D.target_position = to_local(get_global_mouse_position())
+	$RayCast2D.target_position = global_position.direction_to(get_global_mouse_position()) * (MAX_TONGUE_LENGTH + 1.0)
+	print($RayCast2D.target_position)
 	$RayCast2D.force_raycast_update()
 	
-	#TODO fixa in caso di obj movimento 
 	if $RayCast2D.is_colliding():
 		var collision_point = $RayCast2D.get_collision_point()
 		if global_position.distance_to(collision_point) <= MAX_TONGUE_LENGTH:
