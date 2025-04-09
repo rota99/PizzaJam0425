@@ -147,7 +147,7 @@ func _shoot_tongue():
 			_tongue_hit_target = $RayCast2D.get_collider()
 			#var test =_tongue_hit_target.name #TODO togli - DEBUG
 			_tongue_hit_point = collision_point
-			_tongue_initial_distance_target = global_position.distance_to(collision_point) 
+			_tongue_initial_distance_target = global_position.distance_to(collision_point)
 		else:
 			_tongue_hit_point = global_position + global_position.direction_to(collision_point) * MAX_TONGUE_LENGTH ###??? meglio fuori?
 		
@@ -188,22 +188,36 @@ func _handle_tongue_physics(delta):
 
 func _apply_swing_physics(delta: float) -> void:
 	if _tongue_state != TongueState.ATTACHED: return
-	
+	 
 	assert(_tongue_hit_target != null, "_tongue_hit_target è null! Impossibile calcolare fisica swing!")
-
+	
 	# Aggiorna il punto di aggancio se il target è dinamico
 	if _tongue_hit_target is Node2D:
 		_tongue_hit_point = _tongue_hit_target.global_position + (_tongue_hit_point - _tongue_hit_target.global_position)
-
+		
 	var to_target = _tongue_hit_point - global_position
-	var distance = to_target.length()
+	var current_distance = to_target.length()
 	var direction = to_target.normalized()
-
-	# Foza elastica per mantenere la lunghezza
-	if distance > _tongue_initial_distance_target:
-		var pull_force = direction  * SWING_PULL_FORCE * abs(distance - _tongue_initial_distance_target)
-		velocity += pull_force * delta
-
+	
+	# Proietta la velocità lungo la direzione tangenziale (perpendicolare alla lingua)
+	if current_distance > _tongue_initial_distance_target:
+		var radial_velocity = velocity.dot(direction)
+		var tangential_velocity = velocity - radial_velocity * direction
+		  
+		velocity = tangential_velocity
+		  
+		# Move il personaggio per rispettare lunghezza della lingua
+		var excess_distance = current_distance - _tongue_initial_distance_target
+		global_position += direction * excess_distance
+	
+	# Applica una forza di oscillazione
+	var input_direction = Input.get_axis(move_left_action, move_right_action)
+	if input_direction != 0:
+		# Calcola la direzione perp lingua 
+		var tangent = Vector2(-direction.y, direction.x)
+		if input_direction < 0:
+			tangent = -tangent
+		velocity += tangent * SWING_FORCE * delta
 
 func _cleanup_tongue():
 	if has_node("TongueJoint"):
