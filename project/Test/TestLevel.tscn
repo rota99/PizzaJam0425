@@ -77,7 +77,8 @@ position = Vector2(0.5, -13.5)
 shape = SubResource("RectangleShape2D_r6w77")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(473, 522)
+position = Vector2(479, 490)
+metadata/_edit_lock_ = true
 
 [node name="ColorRect4" type="ColorRect" parent="StaticBody2D2"]
 anchors_preset = 8

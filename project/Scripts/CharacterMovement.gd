@@ -118,7 +118,7 @@ func _reset_jump_state() -> void:
 	_jump_charge_time = 0.0
 
 func _handle_movement_input() -> void:
-	#if _tongue_state == TongueState.ATTACHED:  return # Disabilita movimento normale quando penzola
+	if _tongue_state == TongueState.ATTACHED:  return # Disabilita movimento normale quando penzola
 		
 	var direction = Input.get_axis(move_left_action, move_right_action)
 	velocity.x = direction * SPEED if direction else lerp(velocity.x, 0.0, FRICTION)
@@ -199,25 +199,25 @@ func _apply_swing_physics(delta: float) -> void:
 	var current_distance = to_target.length()
 	var direction = to_target.normalized()
 	
-	# Proietta la velocità lungo la direzione tangenziale (perpendicolare alla lingua)
+	var tangential_velocity = velocity - velocity.dot(direction) * direction
+	
+	# Proietta la velocità perpendicolare alla lingua
 	if current_distance > _tongue_initial_distance_target:
-		var radial_velocity = velocity.dot(direction)
-		var tangential_velocity = velocity - radial_velocity * direction
-		  
-		velocity = tangential_velocity
-		  
-		# Move il personaggio per rispettare lunghezza della lingua
 		var excess_distance = current_distance - _tongue_initial_distance_target
 		global_position += direction * excess_distance
+		  
+	var gravity = get_gravity()
+	var tangent_dir = Vector2(-direction.y, direction.x)  # Direzione tangente
+	var gravity_component = gravity.dot(tangent_dir) * tangent_dir
+	tangential_velocity += gravity_component * delta
 	
-	# Applica una forza di oscillazione
+	# Input giocatore per aggiungere forza
 	var input_direction = Input.get_axis(move_left_action, move_right_action)
 	if input_direction != 0:
-		# Calcola la direzione perp lingua 
-		var tangent = Vector2(-direction.y, direction.x)
-		if input_direction < 0:
-			tangent = -tangent
-		velocity += tangent * SWING_FORCE * delta
+		var swing_dir = tangent_dir * input_direction
+		tangential_velocity += swing_dir * SWING_FORCE * delta
+	
+	velocity = tangential_velocity
 
 func _cleanup_tongue():
 	if has_node("TongueJoint"):
