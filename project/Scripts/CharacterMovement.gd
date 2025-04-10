@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	_handle_jump_charging(delta)
 	_handle_movement_input()
-	_update_sprite_direction()
+	_update_character_direction()
 	
 	_handle_toungue_shooting()
 	_handle_tongue_physics(delta)
@@ -138,7 +138,6 @@ func _shoot_tongue():
 	
 	_tongue_state = TongueState.EXTENDING
 	$RayCast2D.target_position = global_position.direction_to(get_global_mouse_position()) * (MAX_TONGUE_LENGTH + 1.0)
-	#print($RayCast2D.target_position) #TODO togli - DEBUG
 	$RayCast2D.force_raycast_update()
 	
 	if $RayCast2D.is_colliding():
@@ -175,7 +174,7 @@ func _handle_tongue_physics(delta):
 				_current_tongue_length += TONGUE_EXTEND_SPEED * delta
 		
 		TongueState.ATTACHED:
-			#_current_tongue_length = (_tongue_hit_point - global_position).length()
+			#_current_tongue_length = (_tongue_hit_point - global_position).length() BOH
 			_apply_swing_physics(delta)
 		
 		TongueState.RETRACTING:
@@ -192,6 +191,7 @@ func _apply_swing_physics(delta: float) -> void:
 	assert(_tongue_hit_target != null, "_tongue_hit_target è null! Impossibile calcolare fisica swing!")
 	
 	# Aggiorna il punto di aggancio se il target è dinamico
+	# Potrebbe non funzionare benissimo... >:(
 	if _tongue_hit_target is Node2D:
 		_tongue_hit_point = _tongue_hit_target.global_position + (_tongue_hit_point - _tongue_hit_target.global_position)
 		
@@ -234,13 +234,15 @@ func _cleanup_tongue():
 	$TongueTip.position = Vector2.ZERO
 
 ## VISUAL MANAGEMENT ===========================================================
-func _update_sprite_direction() -> void:
+func _update_character_direction() -> void:
 	if not _animated_sprite:
 		return
 	 
 	var direction = Input.get_axis(move_left_action, move_right_action)
 	if direction != 0:
-		_animated_sprite.flip_h = direction > 0
+			# La scala del collison shape del personaggio DEVE essere sempre (1,1)
+			$CollisionPolygon2D.scale.x = sign(direction) * -1
+			_animated_sprite.flip_h = direction > 0
 
 func _update_charging_jump_bar() -> void:
 	if not _has_control:
@@ -250,8 +252,7 @@ func _update_charging_jump_bar() -> void:
 
 func _show_tongue():
 	$Tongue.show()
-
-#TODO bug visivo щ(ಠ益ಠщ)
+	
 func _update_tongue_visual():
 	if _tongue_state == TongueState.RETRACTED: return
 	
