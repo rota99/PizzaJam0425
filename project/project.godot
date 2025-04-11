@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1280
 window/size/viewport_height=650
+mouse_cursor/custom_image="uid://cfmildh65hl4t"
 
 [global_group]
 
