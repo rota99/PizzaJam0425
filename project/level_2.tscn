@@ -994,7 +994,7 @@ size = Vector2(520.5, 69)
 [node name="Background" parent="." instance=ExtResource("1_1y8me")]
 
 [node name="CharacterBody2D" parent="." node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("2_n7ypv")]
-position = Vector2(2143, 407)
+position = Vector2(60.0002, 544)
 scale = Vector2(0.2, 0.2)
 TONGUE_EXTEND_SPEED = 3000.0
 TONGUE_RETRACT_SPEED = 3500.0
@@ -1027,7 +1027,7 @@ tile_set = SubResource("TileSet_n7ypv")
 [node name="FallZone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FallZone"]
-position = Vector2(1544.75, 761)
+position = Vector2(1552, 754)
 shape = SubResource("RectangleShape2D_1y8me")
 
 [node name="Area_Linguabile" type="Area2D" parent="." groups=["linguabili"]]
