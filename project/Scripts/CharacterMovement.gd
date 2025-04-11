@@ -147,7 +147,7 @@ func _shoot_tongue():
 		var collision_point = $RayCast2D.get_collision_point()
 		if global_position.distance_to(collision_point) <= MAX_TONGUE_LENGTH:
 			_tongue_hit_target = $RayCast2D.get_collider()
-			#var test =_tongue_hit_target.name #TODO togli - DEBUG
+			var test =_tongue_hit_target.name #TODO togli - DEBUG
 			_tongue_hit_point = collision_point
 			_tongue_initial_distance_target = global_position.distance_to(collision_point)
 		else:
@@ -163,9 +163,10 @@ func _shoot_tongue():
 func _handle_tongue_physics(delta):
 	match _tongue_state:
 		TongueState.EXTENDING:
-			# 2.0 è treshold per distanza di contatto tra lingua e oggetto (non puoi metterla a 0.0)
-			if  abs($TongueTip.position.distance_to(to_local(_tongue_hit_point))) < 2.0 and _tongue_hit_target != null:
+			# TONGUE_EXTEND_SPEED/100.0 è treshold proporzionale per distanza di contatto tra lingua e oggetto (non puoi metterla a 0.0)
+			if  abs($TongueTip.position.distance_to(to_local(_tongue_hit_point))) <= TONGUE_EXTEND_SPEED/100.0 and _tongue_hit_target != null:
 				#Se oggetto non è afferrabile dalla lingua, essa torna indietro
+				print(_tongue_hit_target.name)
 				if _tongue_hit_target.is_in_group(TAG_TONGUABLE_TARGETS):
 					_tongue_state = TongueState.ATTACHED
 				else:

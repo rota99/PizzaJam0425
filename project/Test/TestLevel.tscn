@@ -17,8 +17,8 @@ text = "Test Level"
 
 [node name="CharacterBody2D" parent="." node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("1_r6w77")]
 position = Vector2(86, 81)
-TONGUE_EXTEND_SPEED = 600.0
-TONGUE_RETRACT_SPEED = 600.0
+TONGUE_EXTEND_SPEED = 2200.0
+TONGUE_RETRACT_SPEED = 3000.0
 _jump_charging_bar = NodePath("../HealthBar")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -41,7 +41,8 @@ position = Vector2(0.5, -13.5)
 shape = SubResource("RectangleShape2D_r6w77")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="." groups=["linguabili"]]
-position = Vector2(529, 93)
+position = Vector2(523, 134)
+scale = Vector2(1, 2.6)
 
 [node name="ColorRect4" type="ColorRect" parent="StaticBody2D4"]
 anchors_preset = 8
@@ -56,11 +57,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(0.5, -13.5)
+position = Vector2(-2, -10)
 shape = SubResource("RectangleShape2D_r6w77")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(933, 390)
+position = Vector2(1014, 435)
+scale = Vector2(1.30625, 1.08048)
 
 [node name="ColorRect4" type="ColorRect" parent="StaticBody2D3"]
 anchors_preset = 8
