@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://f6j5wp2qnlo7"]
+[gd_scene load_steps=13 format=4 uid="uid://yi3ak1v034pm"]
 
 [ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_1y8me"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="2_n7ypv"]
@@ -989,7 +989,7 @@ size = Vector2(393, 66)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7j8ne"]
 size = Vector2(520.5, 69)
 
-[node name="Level_1" type="Node2D"]
+[node name="Level_2" type="Node2D"]
 
 [node name="Background" parent="." instance=ExtResource("1_1y8me")]
 
