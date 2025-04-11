@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=4 uid="uid://d3uan27n6apy7"]
 
-[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_nr5vj"]
-[ext_resource type="Texture2D" uid="uid://cqp8yaohr0563" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_o1770"]
-[ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="3_q17kt"]
-[ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="4_q17kt"]
+[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_nw7js"]
+[ext_resource type="Texture2D" uid="uid://cqp8yaohr0563" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_nh7xm"]
+[ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="3_j0k67"]
+[ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="4_5r5j8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cn1le"]
-texture = ExtResource("2_o1770")
+texture = ExtResource("2_nh7xm")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -80,20 +80,20 @@ size = Vector2(1631, 95)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cn1le"]
 size = Vector2(326, 68)
 
-[node name="Level_Tutorial" instance=ExtResource("1_nr5vj")]
+[node name="Level_1" instance=ExtResource("1_nw7js")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." index="1"]
 tile_map_data = PackedByteArray("AAAAAAkABAAAAAAAAAABAAkABAABAAAAAAACAAkABAACAAAAAAADAAkABAAAAAAAAAAEAAkABAABAAAAAAAFAAkABAACAAAAAAAGAAkABAAAAAAAAAAHAAkABAAAAAAAAAAKAAkABAAAAAAAAAALAAkABAAAAAAAAAAMAAkABAAAAAAAAAANAAkABAAAAAAAAAAOAAkABAAAAAAAAAAPAAUABAAAAAAAAAAQAAUABAAAAAAAAAARAAUABAAAAAAAAAASAAUABAAAAAAAAAATAAUABAAAAAAAAAAUAAkABAAAAAAAAAAVAAkABAAAAAAAAAAWAAkABAAAAAAAAAAXAAkABAAAAAAAAAAYAAkABAAAAAAAAAAZAAkABAAAAAAAAAAaAAkABAAAAAAAAAAbAAkABAAAAAAAAAAcAAkABAAAAAAAAAAdAAkABAAAAAAAAAAeAAkABAAAAAAAAAAfAAkABAAAAAAAAAAgAAkABAAAAAAAAAAhAAkABAAAAAAAAAD//wkABAAAAAAAAAD//wgABAAAAAAAAAD//wcABAAAAAAAAAD//wYABAAAAAAAAAD//wUABAAAAAAAAAD//wQABAAAAAAAAAD//wMABAAAAAAAAAD//wIABAAAAAAAAAD//wEABAAAAAAAAAAiAAkABAAAAAAAAAAiAAgABAAAAAAAAAAiAAcABAAAAAAAAAAiAAYABAAAAAAAAAAiAAUABAAAAAAAAAAiAAQABAAAAAAAAAAiAAMABAAAAAAAAAAiAAIABAAAAAAAAAAiAAEABAAAAAAAAAAiAAAABAAAAAAAAAA=")
 tile_set = SubResource("TileSet_xmx8b")
 
-[node name="CharacterBody2D" parent="." index="2" node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("3_q17kt")]
+[node name="CharacterBody2D" parent="." index="2" node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("3_j0k67")]
 position = Vector2(63, 538)
 scale = Vector2(0.3, 0.3)
 TONGUE_EXTEND_SPEED = 3000.0
 TONGUE_RETRACT_SPEED = 3500.0
 _jump_charging_bar = NodePath("HealthBar")
 
-[node name="HealthBar" parent="CharacterBody2D" index="5" instance=ExtResource("4_q17kt")]
+[node name="HealthBar" parent="CharacterBody2D" index="5" instance=ExtResource("4_5r5j8")]
 visible = false
 offset_left = -106.667
 offset_top = -240.0
