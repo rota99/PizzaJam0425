@@ -41,7 +41,7 @@ func _process(delta):
 			var height = -4 * jump_height * t * (t - 1)
 			position.y = start_position.y - height
 
-
+#Funzione di collisione e riavvio livello
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Mainchar":
 		get_tree().reload_current_scene()
