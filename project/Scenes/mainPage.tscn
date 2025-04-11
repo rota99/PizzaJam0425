@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkgtcr3bqmyb4"]
 
-[ext_resource type="Script" path="res://Scripts/SceneChanger.gd" id="1_86gft"]
+[ext_resource type="Script" uid="uid://7ms5ajj2p268" path="res://Scripts/SceneChanger.gd" id="1_86gft"]
 [ext_resource type="Theme" uid="uid://dn2l0jekt5sq8" path="res://Themes/Button.tres" id="1_h1kuq"]
 [ext_resource type="PackedScene" uid="uid://bn7vbi5bj56ux" path="res://Test/TestLevel.tscn" id="2_0gkkh"]
 
