@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://d3uan27n6apy7"]
+[gd_scene load_steps=9 format=4 uid="uid://bbuhob442c4w5"]
 
 [ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_nw7js"]
 [ext_resource type="Texture2D" uid="uid://cqp8yaohr0563" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_nh7xm"]
