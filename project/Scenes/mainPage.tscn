@@ -1,19 +1,74 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkgtcr3bqmyb4"]
+[gd_scene load_steps=7 format=3 uid="uid://bkgtcr3bqmyb4"]
 
 [ext_resource type="Script" uid="uid://7ms5ajj2p268" path="res://Scripts/SceneChanger.gd" id="1_86gft"]
 [ext_resource type="Theme" uid="uid://dn2l0jekt5sq8" path="res://Themes/Button.tres" id="1_h1kuq"]
-[ext_resource type="PackedScene" uid="uid://bc6rmvuq1ec5c" path="res://Scenes/Level_test.tscn" id="2_0gkkh"]
+[ext_resource type="PackedScene" uid="uid://bn7vbi5bj56ux" path="res://Test/TestLevel.tscn" id="2_0gkkh"]
+[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="3_rk7d6"]
+[ext_resource type="FontFile" uid="uid://ycdwyforo1hq" path="res://Assets/Fonts/GrapeSoda.ttf" id="4_rk7d6"]
+
+[sub_resource type="Theme" id="Theme_br3h6"]
+Label/font_sizes/font_size = 64
+Label/fonts/font = ExtResource("4_rk7d6")
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_86gft")
 cinematicScene = ExtResource("2_0gkkh")
 
-[node name="StartButton" type="Button" parent="."]
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 85.0
-offset_bottom = 54.0
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" parent="Control" instance=ExtResource("3_rk7d6")]
+
+[node name="Control" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -68.0
+offset_right = 208.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="paddingT" type="Control" parent="Control/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Control/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_br3h6")
+theme_override_colors/font_color = Color(0.184314, 0.0980392, 0.054902, 1)
+text = "Cool Game Name"
+
+[node name="StartButton" type="Button" parent="Control/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("1_h1kuq")
 text = "Start"
 
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[node name="paddingB" type="Control" parent="Control/Control/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Control/Control/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

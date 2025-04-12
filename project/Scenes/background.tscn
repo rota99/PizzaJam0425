@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2vlwp7cag57p"]
+
+[ext_resource type="Texture2D" uid="uid://bnfeyf5spa6v2" path="res://Assets/Art/tileset.background.png" id="1_4aqey"]
+[ext_resource type="Texture2D" uid="uid://b0j4h5jwkw2gd" path="res://Assets/Art/tileset.middle.ground.png" id="2_xgxeb"]
+[ext_resource type="Texture2D" uid="uid://dun5u6nfg0uya" path="res://Assets/Art/tileset.front.ground .png" id="3_ltlj5"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 650.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Control"]
+
+[node name="bgBack" type="ParallaxLayer" parent="Control/ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/ParallaxBackground/bgBack"]
+position = Vector2(0, -66)
+scale = Vector2(0.265556, 0.265556)
+texture = ExtResource("1_4aqey")
+centered = false
+
+[node name="bgMiddle" type="ParallaxLayer" parent="Control/ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/ParallaxBackground/bgMiddle"]
+position = Vector2(0, -66)
+scale = Vector2(0.266, 0.266)
+texture = ExtResource("2_xgxeb")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Control/ParallaxBackground/bgMiddle"]
+position = Vector2(1275, -66)
+scale = Vector2(0.266, 0.266)
+texture = ExtResource("2_xgxeb")
+centered = false
+flip_h = true
+
+[node name="bgFront" type="ParallaxLayer" parent="Control/ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/ParallaxBackground/bgFront"]
+position = Vector2(0, -66)
+scale = Vector2(0.266, 0.266)
+texture = ExtResource("3_ltlj5")
+centered = false
