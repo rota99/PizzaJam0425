@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://tcoogsn40trt" path="res://Assets/Art/Mosca1.png" id="2_08blv"]
 [ext_resource type="Theme" uid="uid://bak802w384h00" path="res://Themes/LabelFlies.tres" id="3_oqj77"]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("gatheredLabel", "totLabel")]
+[node name="FliesCounter" type="Node2D" node_paths=PackedStringArray("gatheredLabel", "totLabel")]
 script = ExtResource("1_08blv")
 gatheredFlies = "0"
 totFlies = "0"
