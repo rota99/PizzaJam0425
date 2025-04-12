@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://b2qum2vuk8qb6"]
+[gd_scene load_steps=17 format=4 uid="uid://b2qum2vuk8qb6"]
 
 [ext_resource type="PackedScene" uid="uid://b8gm3667d4eoy" path="res://Scenes/background.tscn" id="1_ihmlp"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="2_ip5ew"]
@@ -978,6 +978,9 @@ func _physics_process(delta):
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfwg7"]
 size = Vector2(192, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26dk1"]
+size = Vector2(4506, 57)
+
 [node name="Level_5" type="Node2D"]
 
 [node name="Node2D" parent="." instance=ExtResource("1_ihmlp")]
@@ -985,7 +988,7 @@ position = Vector2(3, 0)
 scale = Vector2(0.5, 0.5)
 
 [node name="Player" parent="." node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("2_ip5ew")]
-position = Vector2(1182, 483)
+position = Vector2(272, 546)
 scale = Vector2(0.2, 0.2)
 TONGUE_EXTEND_SPEED = 3500.0
 TONGUE_RETRACT_SPEED = 3500.0
@@ -999,11 +1002,12 @@ offset_bottom = 185.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = 0
+limit_right = 5120
 limit_bottom = 640
 editor_draw_limits = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAkAAAAAAAAAAAABAAkAAAABAAAAAAACAAkAAAABAAAAAAADAAkAAAABAAAAAAAEAAkAAAACAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAABAAAAAAAIAAgAAAACAAAAAAALAAYAAAAAAAAAAAAMAAYAAAABAAAAAAANAAYAAAACAAAAAAAQAAgAAAAAAAAAAAARAAgAAAABAAAAAAASAAgAAAACAAAAAAATAAQAAAAAAAAAAAAUAAQAAAABAAAAAAAVAAQAAAABAAAAAAAWAAQAAAABAAAAAAAZAAQAAAABAAAAAAAaAAQAAAABAAAAAAAcAAQAAAABAAAAAAAbAAQAAAABAAAAAAAfAAQAAAABAAAAAAAgAAQAAAABAAAAAAAiAAQAAAABAAAAAAAhAAQAAAABAAAAAAD//wkAAAAAAAAAAAD//wgAAAAAAAAAAAD//wcAAAAAAAAAAAD//wYAAAAAAAAAAAD//wUAAAAAAAAAAAD//wQAAAAAAAAAAAD//wMAAAAAAAAAAAD//wIAAAAAAAAAAAD//wEAAAAAAAAAAAD//wAAAAAAAAAAAAApAAkAAAABAAAAAAAqAAkAAAACAAAAAAAnAAkAAAAAAAAAAAAoAAkAAAABAAAAAAAsAAkAAAAAAAAAAAAtAAkAAAABAAAAAAAuAAkAAAABAAAAAAAvAAkAAAABAAAAAAAyAAcAAAAAAAAAAAAzAAcAAAABAAAAAAA0AAcAAAACAAAAAABIAAkAAAAAAAAAAABJAAkAAAABAAAAAABKAAkAAAABAAAAAABLAAkAAAABAAAAAABMAAkAAAABAAAAAABNAAkAAAABAAAAAABOAAkAAAABAAAAAABPAAkAAAABAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAkAAAAAAAAAAAABAAkAAAABAAAAAAACAAkAAAABAAAAAAADAAkAAAABAAAAAAAEAAkAAAACAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAABAAAAAAAIAAgAAAACAAAAAAALAAYAAAAAAAAAAAAMAAYAAAABAAAAAAANAAYAAAACAAAAAAAQAAgAAAAAAAAAAAARAAgAAAABAAAAAAASAAgAAAACAAAAAAATAAQAAAAAAAAAAAAUAAQAAAABAAAAAAAVAAQAAAABAAAAAAAWAAQAAAABAAAAAAAZAAQAAAABAAAAAAAaAAQAAAABAAAAAAAcAAQAAAABAAAAAAAbAAQAAAABAAAAAAAfAAQAAAABAAAAAAAgAAQAAAABAAAAAAAiAAQAAAABAAAAAAAhAAQAAAABAAAAAAD//wkAAAAAAAAAAAD//wgAAAAAAAAAAAD//wcAAAAAAAAAAAD//wYAAAAAAAAAAAD//wUAAAAAAAAAAAD//wQAAAAAAAAAAAD//wMAAAAAAAAAAAD//wIAAAAAAAAAAAD//wEAAAAAAAAAAAD//wAAAAAAAAAAAAApAAkAAAABAAAAAAAqAAkAAAACAAAAAAAnAAkAAAAAAAAAAAAoAAkAAAABAAAAAAAsAAkAAAAAAAAAAAAtAAkAAAABAAAAAAAuAAkAAAABAAAAAAAvAAkAAAABAAAAAAAyAAcAAAAAAAAAAAAzAAcAAAABAAAAAAA0AAcAAAACAAAAAABIAAkAAAAAAAAAAABJAAkAAAABAAAAAABKAAkAAAABAAAAAABLAAkAAAABAAAAAABMAAkAAAABAAAAAABNAAkAAAABAAAAAABOAAkAAAABAAAAAABPAAkAAAABAAAAAABQAAkAAAAAAAAAAABQAAgAAAAAAAAAAABQAAcAAAAAAAAAAABQAAYAAAAAAAAAAABQAAUAAAAAAAAAAABQAAQAAAAAAAAAAABQAAMAAAAAAAAAAABQAAIAAAAAAAAAAABQAAEAAAAAAAAAAABQAAAAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_26dk1")
 
 [node name="Fish" type="Area2D" parent="."]
@@ -1185,6 +1189,12 @@ position = Vector2(-1, 2)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_mb3x2")
 
+[node name="Fall_zone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fall_zone"]
+position = Vector2(2439, 703.5)
+shape = SubResource("RectangleShape2D_26dk1")
+
 [connection signal="body_entered" from="Fish" to="Player" method="_on_fish_body_entered"]
 [connection signal="body_entered" from="Fish2" to="Player" method="_on_fish_body_entered"]
 [connection signal="body_entered" from="Fish3" to="Player" method="_on_fish_body_entered"]
@@ -1193,3 +1203,4 @@ shape = SubResource("RectangleShape2D_mb3x2")
 [connection signal="body_entered" from="Fish6" to="Player" method="_on_fish_body_entered"]
 [connection signal="body_entered" from="Fish7" to="Player" method="_on_fish_body_entered"]
 [connection signal="body_entered" from="Fish8" to="Player" method="_on_fish_body_entered"]
+[connection signal="body_entered" from="Fall_zone" to="Player" method="_on_fall_zone_body_entered"]
