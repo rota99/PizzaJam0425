@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6w77"]
 size = Vector2(313, 27)
 
-[node name="Level1" type="Node2D"]
+[node name="Level_1" type="Node2D"]
 
 [node name="Label" type="Label" parent="."]
 offset_left = 489.0
