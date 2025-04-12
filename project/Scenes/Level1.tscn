@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bkvw1d0kv53b6"]
 
 [ext_resource type="Texture2D" uid="uid://d2ugkqhimkd8m" path="res://icon.svg" id="1_2llne"]
-[ext_resource type="Script" path="res://Scripts/CharacterMovement.gd" id="1_q12u6"]
+[ext_resource type="Script" uid="uid://c8sjjsm24kvmx" path="res://Scripts/CharacterMovement.gd" id="1_q12u6"]
 [ext_resource type="PackedScene" uid="uid://bebqpm036wicg" path="res://Enemy/fish.tscn" id="3_5pbgr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q12u6"]

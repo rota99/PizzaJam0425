@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bebqpm036wicg"]
 
-[ext_resource type="Script" path="res://Enemy/fish.gd" id="1_xjw66"]
+[ext_resource type="Script" uid="uid://dxayshrw8tbc5" path="res://Enemy/fish.gd" id="1_xjw66"]
 [ext_resource type="Texture2D" uid="uid://d2ugkqhimkd8m" path="res://icon.svg" id="2_1vtvv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3tlqx"]
