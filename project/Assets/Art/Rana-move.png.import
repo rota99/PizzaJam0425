@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcwiamt8tocjv"
-path="res://.godot/imported/[64x64] Dungeon Bricks Plain.png-b2fc7983ca4bc4801da0f0edb19030b1.ctex"
+uid="uid://dnryvinrdnwbk"
+path="res://.godot/imported/Rana-move.png-0665af6a20e8f722ee847f83c51e853a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/[64x64] Dungeon Bricks Plain.png"
-dest_files=["res://.godot/imported/[64x64] Dungeon Bricks Plain.png-b2fc7983ca4bc4801da0f0edb19030b1.ctex"]
+source_file="res://Assets/Art/Rana-move.png"
+dest_files=["res://.godot/imported/Rana-move.png-0665af6a20e8f722ee847f83c51e853a.ctex"]
 
 [params]
 

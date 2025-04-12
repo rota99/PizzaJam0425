@@ -40,7 +40,7 @@ enum TongueState {RETRACTED, EXTENDING, ATTACHED, RETRACTING}
 var _tongue_state := TongueState.RETRACTED
 var _current_tongue_length := 0.0
 var _tongue_hit_target: Node2D = null  # Per agganciarsi a oggetti dinamici
-var _tongue_initial_distance_target := 0.0
+var _tongue_initial_distance_target := 0.0 #Dallo stato di ATTACHED
 
 # Node references
 @export var _jump_charging_bar : ProgressBar
@@ -149,7 +149,6 @@ func _shoot_tongue():
 			_tongue_hit_target = $RayCast2D.get_collider()
 			var test =_tongue_hit_target.name #TODO togli - DEBUG
 			_tongue_hit_point = collision_point
-			_tongue_initial_distance_target = global_position.distance_to(collision_point)
 		else:
 			_tongue_hit_point = global_position + global_position.direction_to(collision_point) * MAX_TONGUE_LENGTH ###??? meglio fuori?
 		
@@ -166,8 +165,9 @@ func _handle_tongue_physics(delta):
 			# TONGUE_EXTEND_SPEED/100.0 è treshold proporzionale per distanza di contatto tra lingua e oggetto (non puoi metterla a 0.0)
 			if  abs($TongueTip.position.distance_to(to_local(_tongue_hit_point))) <= TONGUE_EXTEND_SPEED/100.0 and _tongue_hit_target != null:
 				#Se oggetto non è afferrabile dalla lingua, essa torna indietro
-				print(_tongue_hit_target.name)
 				if _tongue_hit_target.is_in_group(TAG_TONGUABLE_TARGETS):
+					_update_tongue_hit_point()
+					_tongue_initial_distance_target = global_position.distance_to(_tongue_hit_point)
 					_tongue_state = TongueState.ATTACHED
 				else:
 					_tongue_state = TongueState.RETRACTING
@@ -189,31 +189,35 @@ func _handle_tongue_physics(delta):
 	
 	_update_tongue_visual()
 
+func _update_tongue_hit_point():
+	# Aggiorna il punto di aggancio se il target è dinamico
+	# Potrebbe non funzionare benissimo... >:(
+	if _tongue_hit_target == null: return
+	if _tongue_hit_target is Node2D:
+		_tongue_hit_point = _tongue_hit_target.global_position + (_tongue_hit_point - _tongue_hit_target.global_position)
+
 func _apply_swing_physics(delta: float) -> void:
 	if _tongue_state != TongueState.ATTACHED: return
 	 
 	assert(_tongue_hit_target != null, "_tongue_hit_target è null! Impossibile calcolare fisica swing!")
 	
-	# Aggiorna il punto di aggancio se il target è dinamico
-	# Potrebbe non funzionare benissimo... >:(
-	if _tongue_hit_target is Node2D:
-		_tongue_hit_point = _tongue_hit_target.global_position + (_tongue_hit_point - _tongue_hit_target.global_position)
-		
+	_update_tongue_hit_point()
+	
 	var to_target = _tongue_hit_point - global_position
 	var current_distance = to_target.length()
 	var direction = to_target.normalized()
 	
 	var tangential_velocity = velocity - velocity.dot(direction) * direction
-	
-	# Proietta la velocità perpendicolare alla lingua
+	 
 	if current_distance > _tongue_initial_distance_target:
 		var excess_distance = current_distance - _tongue_initial_distance_target
-		global_position += direction * excess_distance
+		global_position.y += direction.y * excess_distance
 		  
 	var gravity = get_gravity()
 	var tangent_dir = Vector2(-direction.y, direction.x)  # Direzione tangente
 	var gravity_component = gravity.dot(tangent_dir) * tangent_dir
 	tangential_velocity += gravity_component * delta
+	
 	
 	# Input giocatore per aggiungere forza
 	var input_direction = Input.get_axis(move_left_action, move_right_action)
@@ -221,7 +225,7 @@ func _apply_swing_physics(delta: float) -> void:
 		var swing_dir = tangent_dir * input_direction
 		tangential_velocity += swing_dir * SWING_FORCE * delta
 	
-	velocity = tangential_velocity
+	velocity = tangential_velocity * 0.98 # attrito pendolo
 
 func _cleanup_tongue():
 	if has_node("TongueJoint"):
@@ -245,8 +249,8 @@ func _update_character_direction() -> void:
 	var direction = Input.get_axis(move_left_action, move_right_action)
 	if direction != 0:
 			# La scala del collison shape del personaggio DEVE essere sempre (1,1)
-			$CollisionPolygon2D.scale.x = sign(direction) * -1
-			_animated_sprite.flip_h = direction > 0
+		$CollisionPolygon2D.scale.x = sign(direction) * -1
+		_animated_sprite.flip_h = direction > 0
 
 func _update_charging_jump_bar() -> void:
 	if not _has_control:

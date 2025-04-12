@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcwiamt8tocjv"
-path="res://.godot/imported/[64x64] Dungeon Bricks Plain.png-b2fc7983ca4bc4801da0f0edb19030b1.ctex"
+uid="uid://c0g5dnhluahy8"
+path="res://.godot/imported/Lingua3.png-3773fe08c0733f57804a6bd5ac5b000e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/[64x64] Dungeon Bricks Plain.png"
-dest_files=["res://.godot/imported/[64x64] Dungeon Bricks Plain.png-b2fc7983ca4bc4801da0f0edb19030b1.ctex"]
+source_file="res://Assets/Art/Lingua3.png"
+dest_files=["res://.godot/imported/Lingua3.png-3773fe08c0733f57804a6bd5ac5b000e.ctex"]
 
 [params]
 

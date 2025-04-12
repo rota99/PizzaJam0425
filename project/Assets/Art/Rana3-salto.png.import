@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcwiamt8tocjv"
-path="res://.godot/imported/[64x64] Dungeon Bricks Plain.png-b2fc7983ca4bc4801da0f0edb19030b1.ctex"
+uid="uid://bvqxsdlak6at7"
+path="res://.godot/imported/Rana3-salto.png-8acd9971fee4b2ca44e29a15a4d2965c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/[64x64] Dungeon Bricks Plain.png"
-dest_files=["res://.godot/imported/[64x64] Dungeon Bricks Plain.png-b2fc7983ca4bc4801da0f0edb19030b1.ctex"]
+source_file="res://Assets/Art/Rana3-salto.png"
+dest_files=["res://.godot/imported/Rana3-salto.png-8acd9971fee4b2ca44e29a15a4d2965c.ctex"]
 
 [params]
 
