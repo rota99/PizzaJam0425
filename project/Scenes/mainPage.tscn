@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://7ms5ajj2p268" path="res://Scripts/SceneChanger.gd" id="1_86gft"]
 [ext_resource type="Theme" uid="uid://dn2l0jekt5sq8" path="res://Themes/Button.tres" id="1_h1kuq"]
 [ext_resource type="PackedScene" uid="uid://bn7vbi5bj56ux" path="res://Test/TestLevel.tscn" id="2_0gkkh"]
-[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="3_rk7d6"]
+[ext_resource type="PackedScene" path="res://Scenes/background.tscn" id="3_rk7d6"]
 [ext_resource type="FontFile" uid="uid://ycdwyforo1hq" path="res://Assets/Fonts/GrapeSoda.ttf" id="4_rk7d6"]
 
 [sub_resource type="Theme" id="Theme_br3h6"]
