@@ -26,8 +26,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	
-	if (VITA <= 0):
+	if (VITA <= 0) and ! condammed:
 		_die()
+		condammed = true
+		
 		
 	#Sezione path posiziont update
 	if ! has_path: return
@@ -36,7 +38,6 @@ func _process(delta: float) -> void:
 func _die() -> void:
 	emit_signal("enemy_died")
 	animated_sprite.play("fly_dies")
-	condammed = true
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if condammed:
