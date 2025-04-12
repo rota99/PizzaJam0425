@@ -42,6 +42,12 @@ var _current_tongue_length := 0.0
 var _tongue_hit_target: Node2D = null  # Per agganciarsi a oggetti dinamici
 var _tongue_initial_distance_target := 0.0 #Dallo stato di ATTACHED
 
+var _original_bindings := {} # Salva i comandi originali
+var confused_levels = ["Level_3", "Level_4", "Level_5"]
+var _confused := false       # Se è attiva randomizza i comandi
+
+
+
 # Node references
 @export var _jump_charging_bar : ProgressBar
 @onready var _animated_sprite := $AnimatedSprite2D as AnimatedSprite2D
@@ -54,7 +60,8 @@ func _ready() -> void:
 	_jump_charging_bar.max_value = MAX_JUMP_CHARGE_TIME
 	$Tongue.add_point(Vector2.ZERO, 0)
 	$Tongue.add_point(Vector2.ZERO, 1)
-
+	if get_tree().current_scene.name in confused_levels:
+		_confuse_controls()
 
 func _physics_process(delta: float) -> void:
 	if not _has_control:
@@ -71,6 +78,26 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+func _confuse_controls(): #funzione per mescolare i comandi
+	if _confused:
+		return # Non rimescolare due volte
+	
+	_confused = true
+	_original_bindings = {  #salvo i vecchi comandi per sicurezza
+		"jump": jump_action,
+		"left": move_left_action,
+		"right": move_right_action,
+		"tongue": tongue_action
+	}
+
+	var actions = [_original_bindings["jump"], _original_bindings["left"], _original_bindings["right"], _original_bindings["tongue"]]
+	actions.shuffle() #mescola i comandi nell'array
+
+#Assegna i commandi randomizzati alle normali azioni
+	jump_action = actions[0]
+	move_left_action = actions[1]
+	move_right_action = actions[2]
+	tongue_action = actions[3]
 
 func _on_fall_zone_body_entered(body: Node2D) -> void:
 	get_tree().change_scene_to_file("res://Scenes/Level1.tscn")
