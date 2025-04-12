@@ -1,11 +1,11 @@
-[gd_scene load_steps=19 format=4 uid="uid://b2qum2vuk8qb6"]
+[gd_scene load_steps=19 format=4 uid="uid://bc1krpffdfq16"]
 
-[ext_resource type="PackedScene" uid="uid://b8gm3667d4eoy" path="res://Scenes/background.tscn" id="1_ihmlp"]
+[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_ihmlp"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="2_ip5ew"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="3_hproo"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="4_ip5ew"]
 [ext_resource type="Texture2D" uid="uid://c76u0kblhv1oq" path="res://Assets/Art/pixilart-sprite.png" id="5_mb3x2"]
-[ext_resource type="Script" uid="uid://dxayshrw8tbc5" path="res://Scripts/fish.gd" id="6_mb3x2"]
+[ext_resource type="Script" path="res://Scripts/fish.gd" id="6_mb3x2"]
 [ext_resource type="Texture2D" uid="uid://djo36123bt0yg" path="res://Enemy/Pesce.png" id="7_02esc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hproo"]
@@ -911,7 +911,7 @@ texture_region_size = Vector2i(64, 64)
 30:27/0 = 0
 31:27/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_02esc"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mb3x2"]
 texture = ExtResource("5_mb3x2")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
@@ -920,12 +920,32 @@ texture_region_size = Vector2i(64, 64)
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 2:0/0 = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+10:0/0 = 0
+10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+11:0/0 = 0
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+12:0/0 = 0
+12:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSet" id="TileSet_26dk1"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_hproo")
-sources/1 = SubResource("TileSetAtlasSource_02esc")
+sources/2 = SubResource("TileSetAtlasSource_mb3x2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mb3x2"]
 size = Vector2(20, 48)
@@ -1019,7 +1039,7 @@ limit_bottom = 640
 editor_draw_limits = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAkAAQAAAAAAAAABAAkAAQABAAAAAAACAAkAAQACAAAAAAADAAkAAQAAAAAAAAAEAAkAAQAAAAAAAAD//wkAAQAAAAAAAAD//wgAAQAAAAAAAAD//wcAAQAAAAAAAAD//wYAAQAAAAAAAAD//wUAAQAAAAAAAAD//wQAAQAAAAAAAAD//wMAAQAAAAAAAAD//wIAAQAAAAAAAAD//wEAAQAAAAAAAAD//wAAAQAAAAAAAABLAAkAAQACAAAAAABMAAkAAQACAAAAAABNAAkAAQAAAAAAAABOAAkAAQABAAAAAABPAAkAAQACAAAAAABQAAkAAQAAAAAAAABQAAgAAQAAAAAAAABQAAcAAQAAAAAAAABQAAYAAQAAAAAAAABQAAUAAQAAAAAAAABQAAQAAQAAAAAAAABQAAMAAQAAAAAAAABQAAIAAQAAAAAAAABQAAEAAQAAAAAAAABQAAAAAQAAAAAAAAAGAAgAAQAAAAAAAAAHAAgAAQABAAAAAAAIAAgAAQACAAAAAAALAAYAAQAAAAAAAAAMAAYAAQABAAAAAAANAAYAAQACAAAAAAAQAAgAAQAAAAAAAAARAAgAAQABAAAAAAASAAgAAQACAAAAAAATAAQAAQAAAAAAAAAUAAQAAQABAAAAAAAVAAQAAQACAAAAAAAZAAQAAQAAAAAAAAAaAAQAAQABAAAAAAAbAAQAAQACAAAAAAAfAAQAAQAAAAAAAAAgAAQAAQABAAAAAAAhAAQAAQACAAAAAAAWAAQAAQAAAAAAAAAcAAQAAQAAAAAAAAAiAAQAAQAAAAAAAAAvAAkAAQAAAAAAAAAqAAkAAQAAAAAAAAAnAAkAAQAAAAAAAAAoAAkAAQABAAAAAAApAAkAAQACAAAAAAAsAAkAAQAAAAAAAAAtAAkAAQABAAAAAAAuAAkAAQACAAAAAAAyAAcAAQAAAAAAAAAzAAcAAQABAAAAAAA0AAcAAQACAAAAAABHAAkAAQAAAAAAAABIAAkAAQABAAAAAABJAAkAAQAAAAAAAABKAAkAAQABAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAkAAgABAAAAAAABAAkAAgABAAAAAAACAAkAAgABAAAAAAADAAkAAgABAAAAAAAEAAkAAgAEAAAAAAD//wkAAgAGAAAAAAD//wgAAgAGAAAAAAD//wcAAgAGAAAAAAD//wYAAgAGAAAAAAD//wUAAgAGAAAAAAD//wQAAgAGAAAAAAD//wMAAgAGAAAAAAD//wIAAgAGAAAAAAD//wEAAgAGAAAAAAD//wAAAgAGAAAAAABLAAkAAgABAAAAAABMAAkAAgABAAAAAABNAAkAAgABAAAAAABOAAkAAgABAAAAAABPAAkAAgABAAAAAABQAAkAAgAFAAAAAABQAAgAAgAFAAAAAABQAAcAAgAFAAAAAABQAAYAAgAFAAAAAABQAAUAAgAFAAAAAABQAAQAAgAFAAAAAABQAAMAAgAFAAAAAABQAAIAAgAFAAAAAABQAAEAAgAFAAAAAABQAAAAAgAFAAAAAAAGAAgAAgADAAAAAAAIAAgAAgAEAAAAAAALAAYAAgADAAAAAAAMAAYAAgABAAAAAAANAAYAAgAEAAAAAAAQAAgAAgADAAAAAAARAAgAAgABAAAAAAASAAgAAgAEAAAAAAATAAQAAgAKAAAAAAAUAAQAAgALAAAAAAAVAAQAAgALAAAAAAAZAAQAAgAKAAAAAAAaAAQAAgALAAAAAAAbAAQAAgALAAAAAAAfAAQAAgAKAAAAAAAgAAQAAgALAAAAAAAhAAQAAgALAAAAAAAWAAQAAgAMAAAAAAAcAAQAAgAMAAAAAAAiAAQAAgAMAAAAAAAvAAkAAgAEAAAAAAAqAAkAAgAEAAAAAAAnAAkAAgADAAAAAAAoAAkAAgABAAAAAAApAAkAAgABAAAAAAAsAAkAAgADAAAAAAAtAAkAAgABAAAAAAAuAAkAAgABAAAAAAAyAAcAAgADAAAAAAAzAAcAAgABAAAAAAA0AAcAAgAEAAAAAABHAAkAAgADAAAAAABIAAkAAgABAAAAAABJAAkAAgABAAAAAABKAAkAAgABAAAAAAAHAAgAAgABAAAAAAA=")
 tile_set = SubResource("TileSet_26dk1")
 
 [node name="Fish" type="Area2D" parent="."]
@@ -1058,7 +1078,7 @@ up_limit_y = -400
 position = Vector2(520, 544)
 texture = ExtResource("5_mb3x2")
 region_enabled = true
-region_rect = Rect2(1.2, 1.5, 128, 64)
+region_rect = Rect2(193.597, -0.836693, 124.749, 64.9145)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform1"]
 light_mask = 3
@@ -1115,7 +1135,7 @@ script = SubResource("GDScript_mb3x2")
 position = Vector2(520, 544)
 texture = ExtResource("5_mb3x2")
 region_enabled = true
-region_rect = Rect2(1.2, 1.5, 128, 64)
+region_rect = Rect2(194.162, -0.836693, 124.749, 64.3501)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform2"]
 light_mask = 3
@@ -1129,9 +1149,9 @@ script = SubResource("GDScript_02esc")
 
 [node name="Sprite2D" type="Sprite2D" parent="Moving_Platform3"]
 position = Vector2(520, 544)
-texture = ExtResource("4_ip5ew")
+texture = ExtResource("5_mb3x2")
 region_enabled = true
-region_rect = Rect2(1.2, 1.5, 189.8, 64)
+region_rect = Rect2(4, 1, 185, 63)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform3"]
 light_mask = 3
