@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://1y0mlm1duqu4"]
+
+[ext_resource type="Texture2D" uid="uid://ieeu3dwalw61" path="res://Test/Giant Fly Sprite Sheet.png" id="1_ix2v2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qno0w"]
+atlas = ExtResource("1_ix2v2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wikd"]
+atlas = ExtResource("1_ix2v2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j500f"]
+atlas = ExtResource("1_ix2v2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irymb"]
+atlas = ExtResource("1_ix2v2")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qno0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wikd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j500f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irymb")
+}],
+"loop": true,
+"name": &"fly_normal",
+"speed": 5.0
+}]
