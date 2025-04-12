@@ -24,6 +24,7 @@ mouse_cursor/custom_image="uid://cfmildh65hl4t"
 [global_group]
 
 linguabili="Oggetti con possibilità di collisione a cui la lingua si può attaccare"
+lickable="Per nemici che devono essere leccati"
 
 [input]
 
@@ -47,3 +48,7 @@ tongue={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(381, 6),"global_position":Vector2(390, 54),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

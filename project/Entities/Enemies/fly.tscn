@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5tg8eaxgjbbd"]
+
+[ext_resource type="Script" uid="uid://b5tv3jii43i3p" path="res://Entities/Enemies/fly.gd" id="1_qno0w"]
+[ext_resource type="SpriteFrames" uid="uid://1y0mlm1duqu4" path="res://Entities/Enemies/EnemiesAnimations/fly_animations.tres" id="3_8wikd"]
+
+[sub_resource type="GDScript" id="GDScript_qno0w"]
+script/source = "extends RigidBody2D
+
+# Workarond per chiamare il metodo giusto dato che fly ha come root node un NODE2D e nn rigidbody
+# Per evitare di sporcare logica personaggio
+func get_licked(damage := 1):
+	owner.get_licked(damage)
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iihxi"]
+radius = 6.0
+height = 18.0
+
+[node name="Fly" type="Node2D"]
+script = ExtResource("1_qno0w")
+
+[node name="Path2D" type="Path2D" parent="."]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-1, 0)
+rotates = false
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Path2D/PathFollow2D" groups=["lickable"]]
+gravity_scale = 0.0
+lock_rotation = true
+script = SubResource("GDScript_qno0w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D/RigidBody2D"]
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_8wikd")
+animation = &"fly_dies"
+frame_progress = 0.976909
+speed_scale = 2.7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/RigidBody2D"]
+position = Vector2(1, -1)
+rotation = 1.5708
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_iihxi")
+
+[connection signal="animation_looped" from="Path2D/PathFollow2D/RigidBody2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
