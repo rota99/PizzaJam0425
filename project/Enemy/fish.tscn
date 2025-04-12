@@ -1,21 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://bebqpm036wicg"]
 
-[ext_resource type="Script" uid="uid://dxayshrw8tbc5" path="res://Enemy/fish.gd" id="1_xjw66"]
-[ext_resource type="Texture2D" uid="uid://d2ugkqhimkd8m" path="res://icon.svg" id="2_1vtvv"]
+[ext_resource type="Texture2D" uid="uid://djo36123bt0yg" path="res://Enemy/Pesce.png" id="1_f42qi"]
+[ext_resource type="Script" uid="uid://dxayshrw8tbc5" path="res://Scripts/fish.gd" id="1_xjw66"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tlqx"]
-size = Vector2(20, 60)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pu3yq"]
+size = Vector2(22, 48)
 
-[node name="Fish" type="Area2D"]
+[node name="Fish" type="Node2D"]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
 script = ExtResource("1_xjw66")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.171875, 0.5)
-texture = ExtResource("2_1vtvv")
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_f42qi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_3tlqx")
-
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(-2, 2)
+shape = SubResource("RectangleShape2D_pu3yq")

@@ -1,7 +1,7 @@
 extends Node2D
 
 ##################################################################
-#Variabili
+# Variabili
 ##################################################################
 
 @export var jump_height: float = 200.0
@@ -13,7 +13,7 @@ var time_passed: float = 0.0
 var jumping: bool = false # Indica se il pesce sta saltando in questo momento
 
 ##################################################################
-#FUNZIONI#
+# FUNZIONI
 ##################################################################
 
 func _ready():
@@ -35,13 +35,21 @@ func _process(delta):
 
 		if t > 1.0:
 			position = start_position
+			$Sprite2D.rotation_degrees = 0 # Resetta la rotazione quando tocca l'acqua
 			start_jump_timer()
 		else:
 			# Parabola: simula un salto su e giù
 			var height = -4 * jump_height * t * (t - 1)
 			position.y = start_position.y - height
 
-#Funzione di collisione e riavvio livello
+# Rotazione realistica: da 0° (salita) a 120° (discesa)
+			var angle := 0.0
+			if t >= 0.5:
+				var t_descend = (t - 0.5) * 2 # Normalizza da 0 a 1 la discesa
+				angle = lerp(0.0, -120.0, t_descend)
+			$Sprite2D.rotation_degrees = angle
+			
+# Funzione di collisione e riavvio livello
 func _on_body_entered(body: Node2D) -> void:
-	if body.name == "Mainchar":
+	if body.name == "Player":
 		get_tree().reload_current_scene()
