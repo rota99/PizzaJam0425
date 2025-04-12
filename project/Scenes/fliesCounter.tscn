@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4rls175wq13"]
+
+[ext_resource type="Script" uid="uid://b18b1bbq64pke" path="res://Scripts/flies_counter.gd" id="1_08blv"]
+[ext_resource type="Texture2D" uid="uid://48ju82qcb7b2" path="res://Assets/UI/defaultButton.png" id="1_sgxw0"]
+[ext_resource type="Texture2D" uid="uid://tcoogsn40trt" path="res://Assets/Art/Mosca1.png" id="2_08blv"]
+[ext_resource type="Theme" uid="uid://dtwrhd8ha3cqe" path="res://Themes/LabelFlies.tres" id="3_oqj77"]
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("gatheredLabel", "totLabel")]
+script = ExtResource("1_08blv")
+gatheredFlies = "0"
+totFlies = "0"
+gatheredLabel = NodePath("HBoxContainer/HBoxContainer/Gathered")
+totLabel = NodePath("HBoxContainer/HBoxContainer/Tot")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 150.0
+offset_bottom = 68.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_sgxw0")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 146.0
+offset_bottom = 68.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(38.4, 38.4)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/Control"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_08blv")
+centered = false
+region_enabled = true
+region_rect = Rect2(28, 28, 128, 128)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Gathered" type="Label" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_oqj77")
+text = "00"
+
+[node name="Separator" type="Label" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_oqj77")
+text = "/"
+
+[node name="Tot" type="Label" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_oqj77")
+text = "00"
