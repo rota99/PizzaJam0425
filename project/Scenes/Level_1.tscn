@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://brv6b8vxy8qv3"]
+[gd_scene load_steps=12 format=4 uid="uid://v27i4olipua8"]
 
-[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_nw7js"]
-[ext_resource type="Texture2D" uid="uid://dugrbvlsldqyh" path="res://Assets/Art/pixilart-sprite.png" id="2_nw7js"]
+[ext_resource type="PackedScene" path="res://Scenes/background.tscn" id="1_nw7js"]
+[ext_resource type="PackedScene" uid="uid://b4rls175wq13" path="res://Scenes/fliesCounter.tscn" id="2_j0k67"]
+[ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_nh7xm"]
+[ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="2_nw7js"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="3_j0k67"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="4_5r5j8"]
 
@@ -35,10 +37,75 @@ texture_region_size = Vector2i(64, 64)
 12:0/0 = 0
 12:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cn1le"]
+texture = ExtResource("2_nh7xm")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_xmx8b"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_nh7xm")
+sources/4 = SubResource("TileSetAtlasSource_cn1le")
+sources/2 = SubResource("TileSetAtlasSource_nh7xm")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q17kt"]
 size = Vector2(1631, 95)
@@ -48,11 +115,32 @@ size = Vector2(326, 68)
 
 [node name="Level_1" instance=ExtResource("1_nw7js")]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." index="1"]
-tile_map_data = PackedByteArray("AAALAAkAAQABAAAAAAAMAAkAAQABAAAAAAANAAkAAQABAAAAAAAPAAUAAQAKAAAAAAAQAAUAAQALAAAAAAARAAUAAQALAAAAAAASAAUAAQALAAAAAAATAAUAAQAMAAAAAAAVAAkAAQABAAAAAAAWAAkAAQABAAAAAAAXAAkAAQABAAAAAAAYAAkAAQABAAAAAAAZAAkAAQABAAAAAAAaAAkAAQABAAAAAAAbAAkAAQABAAAAAAAcAAkAAQABAAAAAAAdAAkAAQABAAAAAAAeAAkAAQABAAAAAAAfAAkAAQABAAAAAAAgAAkAAQABAAAAAAAhAAkAAQABAAAAAAD//wEAAQAGAAAAAAD//wIAAQAGAAAAAAD//wMAAQAGAAAAAAD//wQAAQAGAAAAAAD//wUAAQAGAAAAAAD//wYAAQAGAAAAAAD//wcAAQAGAAAAAAD//wgAAQAGAAAAAAD//wkAAQAGAAAAAAAHAAkAAQAEAAAAAAAOAAkAAQAEAAAAAAAiAAkAAQAFAAAAAAAiAAgAAQAFAAAAAAAiAAcAAQAFAAAAAAAiAAYAAQAFAAAAAAAiAAUAAQAFAAAAAAAiAAQAAQAFAAAAAAAiAAMAAQAFAAAAAAAiAAIAAQAFAAAAAAAiAAEAAQAFAAAAAAAiAAAAAQAFAAAAAAAUAAkAAQADAAAAAAAKAAkAAQADAAAAAAAAAAkAAQABAAAAAAABAAkAAQABAAAAAAACAAkAAQABAAAAAAADAAkAAQABAAAAAAAEAAkAAQABAAAAAAAFAAkAAQABAAAAAAAGAAkAAQABAAAAAAA=")
+[node name="TopBar" type="HBoxContainer" parent="." index="1"]
+custom_minimum_size = Vector2(1280, 68)
+offset_right = 1280.0
+offset_bottom = 68.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="spacer" type="Control" parent="TopBar" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="fliesCounter Container" type="Control" parent="TopBar" index="1"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="FliesCounter" parent="TopBar/fliesCounter Container" index="0" instance=ExtResource("2_j0k67")]
+
+[node name="spacer2" type="Control" parent="TopBar" index="2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="2"]
+tile_map_data = PackedByteArray("AAALAAkAAgABAAAAAAAMAAkAAgABAAAAAAANAAkAAgABAAAAAAAPAAUAAgAKAAAAAAAQAAUAAgALAAAAAAARAAUAAgALAAAAAAASAAUAAgALAAAAAAATAAUAAgAMAAAAAAAVAAkAAgABAAAAAAAWAAkAAgABAAAAAAAXAAkAAgABAAAAAAAYAAkAAgABAAAAAAAZAAkAAgABAAAAAAAaAAkAAgABAAAAAAAbAAkAAgABAAAAAAAcAAkAAgABAAAAAAAdAAkAAgABAAAAAAAeAAkAAgABAAAAAAAfAAkAAgABAAAAAAAgAAkAAgABAAAAAAAhAAkAAgABAAAAAAD//wEAAgAGAAAAAAD//wIAAgAGAAAAAAD//wMAAgAGAAAAAAD//wQAAgAGAAAAAAD//wUAAgAGAAAAAAD//wYAAgAGAAAAAAD//wcAAgAGAAAAAAD//wgAAgAGAAAAAAD//wkAAgAGAAAAAAAHAAkAAgACAAAAAAAOAAkAAgAEAAAAAAAiAAkAAgAFAAAAAAAiAAgAAgAFAAAAAAAiAAcAAgAFAAAAAAAiAAYAAgAFAAAAAAAiAAUAAgAFAAAAAAAiAAQAAgAFAAAAAAAiAAMAAgAFAAAAAAAiAAIAAgAFAAAAAAAiAAEAAgAFAAAAAAAiAAAAAgAFAAAAAAAUAAkAAgADAAAAAAAKAAkAAgADAAAAAAAAAAkAAgABAAAAAAABAAkAAgABAAAAAAACAAkAAgABAAAAAAADAAkAAgABAAAAAAAEAAkAAgABAAAAAAAFAAkAAgABAAAAAAAGAAkAAgABAAAAAAA=")
 tile_set = SubResource("TileSet_xmx8b")
 
-[node name="Player" parent="." index="2" node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("3_j0k67")]
+[node name="Player" parent="." index="3" node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("3_j0k67")]
 position = Vector2(63, 538)
 scale = Vector2(0.2, 0.2)
 TONGUE_EXTEND_SPEED = 3500.0
@@ -74,13 +162,13 @@ limit_bottom = 640
 limit_smoothed = true
 editor_draw_limits = true
 
-[node name="FallZone" type="Area2D" parent="." index="3"]
+[node name="FallZone" type="Area2D" parent="." index="4"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FallZone" index="0"]
 position = Vector2(817, 748)
 shape = SubResource("RectangleShape2D_q17kt")
 
-[node name="Area_linguabile" type="Area2D" parent="." index="4" groups=["linguabili"]]
+[node name="Area_linguabile" type="Area2D" parent="." index="5" groups=["linguabili"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_linguabile" index="0"]
 position = Vector2(1120, 354)
