@@ -46,8 +46,6 @@ var _original_bindings := {} # Salva i comandi originali
 var confused_levels = ["Level_3", "Level_4", "Level_5"]
 var _confused := false       # Se è attiva randomizza i comandi
 
-
-
 # Node references
 @export var _jump_charging_bar : ProgressBar
 @onready var _animated_sprite := $AnimatedSprite2D as AnimatedSprite2D
@@ -78,7 +76,20 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func _confuse_controls(): #funzione per mescolare i comandi
+
+
+func _on_fall_zone_body_entered(body: Node2D) -> void:
+	get_tree().change_scene_to_file("res://Scenes/Level1.tscn")
+	
+## INPUT HANDLING ==============================================================
+
+func _handle_movement_input() -> void:
+	if _tongue_state == TongueState.ATTACHED:  return # Disabilita movimento normale quando penzola
+		
+	var direction = Input.get_axis(move_left_action, move_right_action)
+	velocity.x = direction * SPEED if direction else lerp(velocity.x, 0.0, FRICTION)
+
+func _confuse_controls() -> void: #funzione per mescolare i comandi
 	if _confused:
 		return # Non rimescolare due volte
 	
@@ -98,14 +109,6 @@ func _confuse_controls(): #funzione per mescolare i comandi
 	move_left_action = actions[1]
 	move_right_action = actions[2]
 	tongue_action = actions[3]
-
-func _on_fall_zone_body_entered(body: Node2D) -> void:
-	get_tree().change_scene_to_file("res://Scenes/Level1.tscn")
-	
-## INPUT HANDLING ==============================================================
-func _update_input_actions() -> void:
-	 # Implement custom input mapping logic here if needed
-	pass
 
 
 ## MOVEMENT LOGIC ==============================================================
@@ -146,12 +149,6 @@ func _execute_jump() -> void:
 func _reset_jump_state() -> void:
 	_is_charging_jump = false
 	_jump_charge_time = 0.0
-
-func _handle_movement_input() -> void:
-	if _tongue_state == TongueState.ATTACHED:  return # Disabilita movimento normale quando penzola
-		
-	var direction = Input.get_axis(move_left_action, move_right_action)
-	velocity.x = direction * SPEED if direction else lerp(velocity.x, 0.0, FRICTION)
 
 ## TONGUE MANAGEMENT ===========================================================
 
@@ -316,3 +313,6 @@ func set_character_control(enabled: bool) -> void:
 	_has_control = enabled
 	if not enabled:
 		_reset_jump_state()
+		
+func confuse_control() -> void:
+	_confuse_controls()
