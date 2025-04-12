@@ -1,10 +1,10 @@
-extends Node2D
+extends Area2D
 
 ##################################################################
 # Variabili
 ##################################################################
 
-@export var jump_height: float = 200.0
+@export var jump_height: float = 450.0
 @export var jump_duration: float = 1.0
 @export var delay_between_jumps: float = 2.0
 
@@ -48,8 +48,3 @@ func _process(delta):
 				var t_descend = (t - 0.5) * 2 # Normalizza da 0 a 1 la discesa
 				angle = lerp(0.0, -120.0, t_descend)
 			$Sprite2D.rotation_degrees = angle
-			
-# Funzione di collisione e riavvio livello
-func _on_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		get_tree().reload_current_scene()

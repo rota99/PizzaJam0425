@@ -73,7 +73,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_fall_zone_body_entered(body: Node2D) -> void:
-	get_tree().change_scene_to_file("res://Scenes/Level1.tscn")
+	if body.name == "Player":
+		get_tree().reload_current_scene()
 	
 ## INPUT HANDLING ==============================================================
 func _update_input_actions() -> void:
@@ -163,7 +164,7 @@ func _handle_tongue_physics(delta):
 	match _tongue_state:
 		TongueState.EXTENDING:
 			# TONGUE_EXTEND_SPEED/100.0 è treshold proporzionale per distanza di contatto tra lingua e oggetto (non puoi metterla a 0.0)
-			if  abs($TongueTip.position.distance_to(to_local(_tongue_hit_point))) <= TONGUE_EXTEND_SPEED/100.0 and _tongue_hit_target != null:
+			if  abs($TongueTip.position.distance_to(to_local(_tongue_hit_point))) <= TONGUE_EXTEND_SPEED/80.0 and _tongue_hit_target != null:
 				#Se oggetto non è afferrabile dalla lingua, essa torna indietro
 				if _tongue_hit_target.is_in_group(TAG_TONGUABLE_TARGETS):
 					_update_tongue_hit_point()
@@ -289,3 +290,8 @@ func set_character_control(enabled: bool) -> void:
 	_has_control = enabled
 	if not enabled:
 		_reset_jump_state()
+
+
+func _on_fish_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		get_tree().reload_current_scene()

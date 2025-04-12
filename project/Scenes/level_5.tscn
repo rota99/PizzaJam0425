@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://nikiibe3jvnq"]
+[gd_scene load_steps=16 format=4 uid="uid://b2qum2vuk8qb6"]
 
-[ext_resource type="PackedScene" path="res://Scenes/background.tscn" id="1_ihmlp"]
+[ext_resource type="PackedScene" uid="uid://b8gm3667d4eoy" path="res://Scenes/background.tscn" id="1_ihmlp"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="2_ip5ew"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="3_hproo"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="4_ip5ew"]
+[ext_resource type="Script" uid="uid://dxayshrw8tbc5" path="res://Scripts/fish.gd" id="6_mb3x2"]
+[ext_resource type="Texture2D" uid="uid://djo36123bt0yg" path="res://Enemy/Pesce.png" id="7_02esc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hproo"]
 texture = ExtResource("4_ip5ew")
@@ -913,24 +915,281 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_hproo")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mb3x2"]
+size = Vector2(20, 48)
+
+[sub_resource type="GDScript" id="GDScript_26dk1"]
+script/source = "extends AnimatableBody2D
+
+var direction = -1
+@export var speed = 100.0
+@export var down_limit_y := 0
+@export var up_limit_y := -200
+
+func _physics_process(delta):
+	position.y += direction * speed * delta
+
+	if position.y >= down_limit_y:
+		direction = -1
+	elif position.y <= up_limit_y:
+		direction = 1
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02esc"]
+size = Vector2(132, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfyxx"]
+size = Vector2(261, 66)
+
+[sub_resource type="GDScript" id="GDScript_mb3x2"]
+script/source = "extends AnimatableBody2D
+
+var direction = 1
+@export var speed = 100.0
+@export var down_limit_y := -100
+@export var up_limit_y := -400
+
+func _physics_process(delta):
+	position.y += direction * speed * delta
+
+	if position.y >= down_limit_y:
+		direction = -1
+	elif position.y <= up_limit_y:
+		direction = 1
+"
+
+[sub_resource type="GDScript" id="GDScript_02esc"]
+script/source = "extends AnimatableBody2D
+
+var direction = -1
+@export var speed = 100.0
+@export var left_limit_x := 3050
+@export var right_limit_x := 3950
+
+func _physics_process(delta):
+	position.x += direction * speed * delta
+
+	if position.x <= left_limit_x:
+		direction = 1
+	elif position.x >= right_limit_x:
+		direction = -1
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfwg7"]
+size = Vector2(192, 64)
+
 [node name="Level_5" type="Node2D"]
 
 [node name="Node2D" parent="." instance=ExtResource("1_ihmlp")]
 position = Vector2(3, 0)
 scale = Vector2(0.5, 0.5)
 
-[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("2_ip5ew")]
-position = Vector2(78, 558)
+[node name="Player" parent="." node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("2_ip5ew")]
+position = Vector2(1182, 483)
 scale = Vector2(0.2, 0.2)
 TONGUE_EXTEND_SPEED = 3500.0
+TONGUE_RETRACT_SPEED = 3500.0
 _jump_charging_bar = NodePath("HealthBar")
 
-[node name="HealthBar" parent="CharacterBody2D" instance=ExtResource("3_hproo")]
+[node name="HealthBar" parent="Player" instance=ExtResource("3_hproo")]
 offset_left = -75.0
 offset_top = 165.0
 offset_right = 65.0
 offset_bottom = 185.0
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_bottom = 640
+editor_draw_limits = true
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 9, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 9, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 0, 9, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0, 9, 0, 0, 0, 2, 0, 0, 0, 0, 0)
+tile_map_data = PackedByteArray("AAAAAAkAAAAAAAAAAAABAAkAAAABAAAAAAACAAkAAAABAAAAAAADAAkAAAABAAAAAAAEAAkAAAACAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAABAAAAAAAIAAgAAAACAAAAAAALAAYAAAAAAAAAAAAMAAYAAAABAAAAAAANAAYAAAACAAAAAAAQAAgAAAAAAAAAAAARAAgAAAABAAAAAAASAAgAAAACAAAAAAATAAQAAAAAAAAAAAAUAAQAAAABAAAAAAAVAAQAAAABAAAAAAAWAAQAAAABAAAAAAAZAAQAAAABAAAAAAAaAAQAAAABAAAAAAAcAAQAAAABAAAAAAAbAAQAAAABAAAAAAAfAAQAAAABAAAAAAAgAAQAAAABAAAAAAAiAAQAAAABAAAAAAAhAAQAAAABAAAAAAD//wkAAAAAAAAAAAD//wgAAAAAAAAAAAD//wcAAAAAAAAAAAD//wYAAAAAAAAAAAD//wUAAAAAAAAAAAD//wQAAAAAAAAAAAD//wMAAAAAAAAAAAD//wIAAAAAAAAAAAD//wEAAAAAAAAAAAD//wAAAAAAAAAAAAApAAkAAAABAAAAAAAqAAkAAAACAAAAAAAnAAkAAAAAAAAAAAAoAAkAAAABAAAAAAAsAAkAAAAAAAAAAAAtAAkAAAABAAAAAAAuAAkAAAABAAAAAAAvAAkAAAABAAAAAAAyAAcAAAAAAAAAAAAzAAcAAAABAAAAAAA0AAcAAAACAAAAAABIAAkAAAAAAAAAAABJAAkAAAABAAAAAABKAAkAAAABAAAAAABLAAkAAAABAAAAAABMAAkAAAABAAAAAABNAAkAAAABAAAAAABOAAkAAAABAAAAAABPAAkAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_26dk1")
+
+[node name="Fish" type="Area2D" parent="."]
+position = Vector2(620, 680)
+script = ExtResource("6_mb3x2")
+jump_duration = 1.5
+
+[node name="Sprite2D" type="Sprite2D" parent="Fish"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_02esc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish"]
+position = Vector2(-1, 2)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mb3x2")
+
+[node name="Fish2" type="Area2D" parent="."]
+position = Vector2(950, 680)
+script = ExtResource("6_mb3x2")
+jump_duration = 1.5
+delay_between_jumps = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Fish2"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_02esc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish2"]
+position = Vector2(-1, 2)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mb3x2")
+
+[node name="Moving_Platform1" type="AnimatableBody2D" parent="."]
+position = Vector2(1850, 0)
+script = SubResource("GDScript_26dk1")
+up_limit_y = -400
+
+[node name="Sprite2D" type="Sprite2D" parent="Moving_Platform1"]
+position = Vector2(520, 544)
+texture = ExtResource("4_ip5ew")
+region_enabled = true
+region_rect = Rect2(1.2, 1.5, 128, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform1"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(520, 544)
+shape = SubResource("RectangleShape2D_02esc")
+
+[node name="Area2D" type="Area2D" parent="." groups=["linguabili"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1343.5, 289)
+shape = SubResource("RectangleShape2D_gfyxx")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1728, 290)
+shape = SubResource("RectangleShape2D_gfyxx")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2111, 290)
+shape = SubResource("RectangleShape2D_gfyxx")
+
+[node name="Fish3" type="Area2D" parent="."]
+position = Vector2(1530, 680)
+script = ExtResource("6_mb3x2")
+jump_duration = 1.5
+delay_between_jumps = 1.5
+
+[node name="Sprite2D" type="Sprite2D" parent="Fish3"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_02esc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish3"]
+position = Vector2(-1, 2)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mb3x2")
+
+[node name="Fish4" type="Area2D" parent="."]
+position = Vector2(1930, 680)
+script = ExtResource("6_mb3x2")
+jump_duration = 1.5
+
+[node name="Sprite2D" type="Sprite2D" parent="Fish4"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_02esc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish4"]
+position = Vector2(-1, 2)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mb3x2")
+
+[node name="Moving_Platform2" type="AnimatableBody2D" parent="."]
+position = Vector2(2130, -100)
+script = SubResource("GDScript_mb3x2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Moving_Platform2"]
+position = Vector2(520, 544)
+texture = ExtResource("4_ip5ew")
+region_enabled = true
+region_rect = Rect2(1.2, 1.5, 128, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform2"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(520, 544)
+shape = SubResource("RectangleShape2D_02esc")
+
+[node name="Moving_Platform3" type="AnimatableBody2D" parent="."]
+position = Vector2(3050, -63)
+script = SubResource("GDScript_02esc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Moving_Platform3"]
+position = Vector2(520, 544)
+texture = ExtResource("4_ip5ew")
+region_enabled = true
+region_rect = Rect2(1.2, 1.5, 189.8, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform3"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(520, 544)
+shape = SubResource("RectangleShape2D_xfwg7")
+
+[node name="Fish5" type="Area2D" parent="."]
+position = Vector2(3800, 680)
+script = ExtResource("6_mb3x2")
+jump_duration = 1.5
+
+[node name="Sprite2D" type="Sprite2D" parent="Fish5"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_02esc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish5"]
+position = Vector2(-1, 2)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mb3x2")
+
+[node name="Fish6" type="Area2D" parent="."]
+position = Vector2(4000, 680)
+script = ExtResource("6_mb3x2")
+jump_duration = 1.5
+delay_between_jumps = 1.5
+
+[node name="Sprite2D" type="Sprite2D" parent="Fish6"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_02esc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish6"]
+position = Vector2(-1, 2)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mb3x2")
+
+[node name="Fish7" type="Area2D" parent="."]
+position = Vector2(4200, 680)
+script = ExtResource("6_mb3x2")
+jump_duration = 1.5
+
+[node name="Sprite2D" type="Sprite2D" parent="Fish7"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_02esc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish7"]
+position = Vector2(-1, 2)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mb3x2")
+
+[node name="Fish8" type="Area2D" parent="."]
+position = Vector2(4500, 680)
+script = ExtResource("6_mb3x2")
+jump_duration = 1.5
+delay_between_jumps = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Fish8"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_02esc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish8"]
+position = Vector2(-1, 2)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mb3x2")
+
+[connection signal="body_entered" from="Fish" to="Player" method="_on_fish_body_entered"]
+[connection signal="body_entered" from="Fish2" to="Player" method="_on_fish_body_entered"]
+[connection signal="body_entered" from="Fish3" to="Player" method="_on_fish_body_entered"]
+[connection signal="body_entered" from="Fish4" to="Player" method="_on_fish_body_entered"]
+[connection signal="body_entered" from="Fish5" to="Player" method="_on_fish_body_entered"]
+[connection signal="body_entered" from="Fish6" to="Player" method="_on_fish_body_entered"]
+[connection signal="body_entered" from="Fish7" to="Player" method="_on_fish_body_entered"]
+[connection signal="body_entered" from="Fish8" to="Player" method="_on_fish_body_entered"]
