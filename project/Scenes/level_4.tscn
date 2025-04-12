@@ -1,15 +1,10 @@
-[gd_scene load_steps=16 format=4 uid="uid://yfd1b8163j5p"]
+[gd_scene load_steps=18 format=4 uid="uid://b4hjxs20jh64m"]
 
 [ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_wi344"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="2_f6i20"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="3_dvrgg"]
 [ext_resource type="Texture2D" uid="uid://c5ltn5s6fexrg" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="4_wk15n"]
-[ext_resource type="Script" uid="uid://ccffymr5vgysf" path="res://Scenes/moving_platform_1.gd" id="5_f6i20"]
-[ext_resource type="Script" uid="uid://btb5kpyia7xuk" path="res://Scenes/moving_platform_2.gd" id="6_dvrgg"]
-[ext_resource type="Script" uid="uid://b81ack3os4ir" path="res://Scenes/moving_platform_3.gd" id="7_wk15n"]
-[ext_resource type="Script" uid="uid://xwd5o4227gbr" path="res://Scenes/moving_platform_4.gd" id="8_5a8oa"]
-[ext_resource type="Script" uid="uid://bcy01l3vym4bu" path="res://Scenes/moving_platform_5.gd" id="9_3ntyy"]
-[ext_resource type="Script" uid="uid://cc2pcirxs2ikn" path="res://Scenes/moving_platform_7.gd" id="10_7huqf"]
+[ext_resource type="Texture2D" uid="uid://cv2hbweytwmlu" path="res://Assets/Art/pixilart-sprite.png" id="5_f6i20"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5a8oa"]
 texture = ExtResource("4_wk15n")
@@ -914,16 +909,149 @@ texture_region_size = Vector2i(64, 64)
 30:27/0 = 0
 31:27/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dvrgg"]
+texture = ExtResource("5_f6i20")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+10:0/0 = 0
+10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+11:0/0 = 0
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+12:0/0 = 0
+12:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
 [sub_resource type="TileSet" id="TileSet_3ntyy"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_5a8oa")
+sources/1 = SubResource("TileSetAtlasSource_dvrgg")
+
+[sub_resource type="GDScript" id="GDScript_wk15n"]
+script/source = "extends AnimatableBody2D
+
+var direction = 1
+@export var speed = 100.0
+@export var left_limit_x := 0
+@export var right_limit_x := 200
+
+func _physics_process(delta):
+	position.x += direction * speed * delta
+
+	if position.x <= left_limit_x:
+		direction = 1
+	elif position.x >= right_limit_x:
+		direction = -1
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7huqf"]
 size = Vector2(132, 64)
 
+[sub_resource type="GDScript" id="GDScript_5a8oa"]
+script/source = "extends AnimatableBody2D
+
+var direction = -1
+@export var speed = 100.0
+@export var left_limit_x := 400
+@export var right_limit_x := 600
+
+func _physics_process(delta):
+	position.x += direction * speed * delta
+
+	if position.x <= left_limit_x:
+		direction = 1
+	elif position.x >= right_limit_x:
+		direction = -1
+"
+
+[sub_resource type="GDScript" id="GDScript_3ntyy"]
+script/source = "extends AnimatableBody2D
+
+var direction = -1
+@export var speed = 100.0
+@export var down_limit_y := 0
+@export var up_limit_y := -200
+
+func _physics_process(delta):
+	position.y += direction * speed * delta
+
+	if position.y >= down_limit_y:
+		direction = -1
+	elif position.y <= up_limit_y:
+		direction = 1
+"
+
+[sub_resource type="GDScript" id="GDScript_7huqf"]
+script/source = "extends AnimatableBody2D
+
+var direction = -1
+@export var speed = 120.0
+@export var down_limit_y := -256
+@export var up_limit_y := -556
+
+func _physics_process(delta):
+	position.y += direction * speed * delta
+
+	if position.y >= down_limit_y:
+		direction = -1
+	elif position.y <= up_limit_y:
+		direction = 1
+"
+
+[sub_resource type="GDScript" id="GDScript_di0d6"]
+script/source = "extends AnimatableBody2D
+
+var direction = -1
+@export var speed = 100.0
+@export var left_limit_x := -300
+@export var right_limit_x := -175
+
+func _physics_process(delta):
+	position.x += direction * speed * delta
+
+	if position.x <= left_limit_x:
+		direction = 1
+	elif position.x >= right_limit_x:
+		direction = -1
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntyy"]
 size = Vector2(390, 69)
+
+[sub_resource type="GDScript" id="GDScript_54c2w"]
+script/source = "extends AnimatableBody2D
+
+var direction = -1
+@export var speed = 100.0
+@export var down_limit_y := 0
+@export var up_limit_y := -200
+
+func _physics_process(delta):
+	position.y += direction * speed * delta
+
+	if position.y >= down_limit_y:
+		direction = -1
+	elif position.y <= up_limit_y:
+		direction = 1
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wk15n"]
 size = Vector2(3526.75, 74)
@@ -955,17 +1083,17 @@ limit_smoothed = true
 editor_draw_limits = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAkAAAAAAAAAAAABAAkAAAABAAAAAAAEAAkAAAABAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAACAAAAAAAFAAkAAAACAAAAAAACAAkAAAABAAAAAAADAAkAAAABAAAAAAAYAAQAAAAAAAAAAAAZAAQAAAABAAAAAAAaAAQAAAACAAAAAAAYAAUAAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAZAAUAAAABAAAAAAAZAAYAAAABAAAAAAAZAAcAAAABAAAAAAAZAAgAAAABAAAAAAAZAAkAAAABAAAAAAAaAAUAAAACAAAAAAAaAAYAAAACAAAAAAAaAAcAAAACAAAAAAAaAAgAAAACAAAAAAAaAAkAAAACAAAAAAAQAAQAAAAAAAAAAAARAAQAAAABAAAAAAASAAQAAAACAAAAAAALAPz/AAAAAAAAAAAKAPz/AAAAAAAAAAAJAPz/AAAAAAAAAAAIAPz/AAAAAAAAAAAHAPz/AAAAAAAAAAAGAPz/AAAAAAAAAAAeAAQAAAAAAAAAAAAfAAQAAAABAAAAAAAgAAQAAAACAAAAAAAoAAQAAAAAAAAAAAApAAQAAAABAAAAAAAqAAQAAAACAAAAAAAtAAIAAAAAAAAAAAAuAAIAAAABAAAAAAAvAAIAAAACAAAAAAAzAAQAAAAAAAAAAAA0AAQAAAABAAAAAAA1AAQAAAACAAAAAAA6AAYAAAAAAAAAAAA7AAYAAAABAAAAAAA8AAYAAAABAAAAAAA9AAYAAAABAAAAAAA+AAYAAAACAAAAAAA+AAcAAAACAAAAAAA+AAgAAAACAAAAAAA+AAkAAAACAAAAAAA7AAcAAAABAAAAAAA7AAgAAAABAAAAAAA8AAcAAAABAAAAAAA8AAgAAAABAAAAAAA9AAcAAAABAAAAAAA9AAgAAAABAAAAAAA7AAkAAAABAAAAAAA8AAkAAAABAAAAAAA9AAkAAAABAAAAAAA6AAcAAAAAAAAAAAA6AAgAAAAAAAAAAAA6AAkAAAAAAAAAAAA/APz/AAAAAAAAAAA/AP3/AAAAAAAAAAA/AP7/AAAAAAAAAAA/AP//AAAAAAAAAAA/AAAAAAAAAAAAAAA/AAEAAAAAAAAAAAA/AAIAAAAAAAAAAAA/AAMAAAAAAAAAAAA/AAQAAAAAAAAAAAA/AAUAAAAAAAAAAAA/AAYAAAAAAAAAAAA/AAcAAAAAAAAAAAA/AAgAAAAAAAAAAAA/AAkAAAAAAAAAAAD///7/AAAAAAAAAAD/////AAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAD//wYAAAAAAAAAAAD//wcAAAAAAAAAAAD//wgAAAAAAAAAAAD//wkAAAAAAAAAAAAnAP//AAAAAAAAAAAoAP//AAABAAAAAAApAP//AAACAAAAAAAnAPv/AAAAAAAAAAAoAPv/AAABAAAAAAApAPv/AAACAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAkAAQABAAAAAAABAAkAAQABAAAAAAAEAAkAAQAIAAAAAAAEAAgAAQADAAAAAAAFAAgAAQAEAAAAAAAFAAkAAQAGAAAAAAACAAkAAQABAAAAAAADAAkAAQABAAAAAAAYAAQAAQADAAAAAAAZAAQAAQABAAAAAAAaAAQAAQAEAAAAAAAYAAUAAQAFAAAAAAAYAAYAAQAFAAAAAAAYAAcAAQAFAAAAAAAYAAgAAQAFAAAAAAAYAAkAAQAFAAAAAAAZAAUAAQAJAAAAAAAZAAYAAQAJAAAAAAAZAAcAAQAJAAAAAAAZAAgAAQAJAAAAAAAZAAkAAQAJAAAAAAAaAAUAAQAGAAAAAAAaAAYAAQAGAAAAAAAaAAcAAQAGAAAAAAAaAAgAAQAGAAAAAAAaAAkAAQAGAAAAAAAQAAQAAQADAAAAAAARAAQAAQABAAAAAAASAAQAAQAEAAAAAAALAPz/AQAMAAAAAAAKAPz/AQALAAAAAAAJAPz/AQALAAAAAAAIAPz/AQALAAAAAAAHAPz/AQALAAAAAAAGAPz/AQAKAAAAAAAeAAQAAQADAAAAAAAfAAQAAQABAAAAAAAgAAQAAQAEAAAAAAAoAAQAAQADAAAAAAApAAQAAQABAAAAAAAqAAQAAQAEAAAAAAAtAAIAAQADAAAAAAAuAAIAAQABAAAAAAAvAAIAAQAEAAAAAAAzAAQAAQADAAAAAAA0AAQAAQABAAAAAAA1AAQAAQAEAAAAAAA6AAYAAQADAAAAAAA7AAYAAQABAAAAAAA8AAYAAQABAAAAAAA9AAYAAQABAAAAAAA+AAYAAQABAAAAAAA+AAcAAQAJAAAAAAA+AAgAAQAJAAAAAAA+AAkAAQAJAAAAAAA7AAcAAQAJAAAAAAA7AAgAAQAJAAAAAAA8AAcAAQAJAAAAAAA8AAgAAQAJAAAAAAA9AAcAAQAJAAAAAAA9AAgAAQAJAAAAAAA7AAkAAQAJAAAAAAA8AAkAAQAJAAAAAAA9AAkAAQAJAAAAAAA6AAcAAQAFAAAAAAA6AAgAAQAFAAAAAAA6AAkAAQAFAAAAAAA/APz/AQAFAAAAAAA/AP3/AQAFAAAAAAA/AP7/AQAFAAAAAAA/AP//AQAFAAAAAAA/AAAAAQAFAAAAAAA/AAEAAQAFAAAAAAA/AAIAAQAFAAAAAAA/AAMAAQAFAAAAAAA/AAQAAQAFAAAAAAA/AAUAAQAFAAAAAAA/AAYAAQAFAAAAAAA/AAcAAQAFAAAAAAA/AAgAAQAFAAAAAAA/AAkAAQAFAAAAAAD///7/AQAGAAAAAAD/////AQAGAAAAAAD//wAAAQAGAAAAAAD//wEAAQAGAAAAAAD//wIAAQAGAAAAAAD//wMAAQAGAAAAAAD//wQAAQAGAAAAAAD//wUAAQAGAAAAAAD//wYAAQAGAAAAAAD//wcAAQAGAAAAAAD//wgAAQAGAAAAAAD//wkAAQAGAAAAAAAnAP//AQADAAAAAAAoAP//AQABAAAAAAApAP//AQAEAAAAAAAnAPv/AQADAAAAAAAoAPv/AQABAAAAAAApAPv/AQAEAAAAAAA=")
 tile_set = SubResource("TileSet_3ntyy")
 
 [node name="Moving_Platform1" type="AnimatableBody2D" parent="."]
-script = ExtResource("5_f6i20")
+script = SubResource("GDScript_wk15n")
 
 [node name="Sprite2D" type="Sprite2D" parent="Moving_Platform1"]
 position = Vector2(520, 544)
-texture = ExtResource("4_wk15n")
+texture = ExtResource("5_f6i20")
 region_enabled = true
-region_rect = Rect2(1.2, 1.5, 128, 64)
+region_rect = Rect2(195, 1.5, 121, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform1"]
 light_mask = 3
@@ -975,13 +1103,13 @@ shape = SubResource("RectangleShape2D_7huqf")
 
 [node name="Moving_Platform2" type="AnimatableBody2D" parent="."]
 position = Vector2(600, 0)
-script = ExtResource("6_dvrgg")
+script = SubResource("GDScript_5a8oa")
 
 [node name="Sprite2D" type="Sprite2D" parent="Moving_Platform2"]
 position = Vector2(520, 544)
-texture = ExtResource("4_wk15n")
+texture = ExtResource("5_f6i20")
 region_enabled = true
-region_rect = Rect2(1.2, 1.5, 128, 64)
+region_rect = Rect2(196.573, 1.5, 119.835, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform2"]
 light_mask = 3
@@ -991,13 +1119,13 @@ shape = SubResource("RectangleShape2D_7huqf")
 
 [node name="Moving_Platform3" type="AnimatableBody2D" parent="."]
 position = Vector2(850, 0)
-script = ExtResource("7_wk15n")
+script = SubResource("GDScript_3ntyy")
 
 [node name="Sprite2D" type="Sprite2D" parent="Moving_Platform3"]
 position = Vector2(520, 544)
-texture = ExtResource("4_wk15n")
+texture = ExtResource("5_f6i20")
 region_enabled = true
-region_rect = Rect2(1.2, 1.5, 128, 64)
+region_rect = Rect2(194.344, 2.2673, 123.62, 60.9632)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform3"]
 light_mask = 3
@@ -1007,13 +1135,13 @@ shape = SubResource("RectangleShape2D_7huqf")
 
 [node name="Moving_Platform4" type="AnimatableBody2D" parent="."]
 position = Vector2(320, -256)
-script = ExtResource("8_5a8oa")
+script = SubResource("GDScript_7huqf")
 
 [node name="Sprite2D" type="Sprite2D" parent="Moving_Platform4"]
 position = Vector2(520, 544)
-texture = ExtResource("4_wk15n")
+texture = ExtResource("5_f6i20")
 region_enabled = true
-region_rect = Rect2(1.2, 1.5, 128, 64)
+region_rect = Rect2(195.291, 1.4212, 122.491, 62.6566)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform4"]
 light_mask = 3
@@ -1023,13 +1151,13 @@ shape = SubResource("RectangleShape2D_7huqf")
 
 [node name="Moving_Platform5" type="AnimatableBody2D" parent="."]
 position = Vector2(-175, -556)
-script = ExtResource("9_3ntyy")
+script = SubResource("GDScript_di0d6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Moving_Platform5"]
 position = Vector2(520, 544)
-texture = ExtResource("4_wk15n")
+texture = ExtResource("5_f6i20")
 region_enabled = true
-region_rect = Rect2(1.2, 1.5, 128, 64)
+region_rect = Rect2(194.726, 1.4212, 121.362, 60.9632)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform5"]
 light_mask = 3
@@ -1045,13 +1173,13 @@ shape = SubResource("RectangleShape2D_3ntyy")
 
 [node name="Moving_Platform6" type="AnimatableBody2D" parent="."]
 position = Vector2(1800, 0)
-script = ExtResource("7_wk15n")
+script = SubResource("GDScript_3ntyy")
 
 [node name="Sprite2D" type="Sprite2D" parent="Moving_Platform6"]
 position = Vector2(520, 544)
-texture = ExtResource("4_wk15n")
+texture = ExtResource("5_f6i20")
 region_enabled = true
-region_rect = Rect2(1.2, 1.5, 128, 64)
+region_rect = Rect2(194.726, 0.292259, 123.055, 63.7856)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform6"]
 light_mask = 3
@@ -1061,15 +1189,15 @@ shape = SubResource("RectangleShape2D_7huqf")
 
 [node name="Moving_Platform7" type="AnimatableBody2D" parent="."]
 position = Vector2(1800, -575)
-script = ExtResource("10_7huqf")
+script = SubResource("GDScript_54c2w")
 down_limit_y = -575
 up_limit_y = -775
 
 [node name="Sprite2D" type="Sprite2D" parent="Moving_Platform7"]
 position = Vector2(520, 544)
-texture = ExtResource("4_wk15n")
+texture = ExtResource("5_f6i20")
 region_enabled = true
-region_rect = Rect2(1.2, 1.5, 128, 64)
+region_rect = Rect2(194.726, 0.292259, 123.055, 63.7856)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform7"]
 light_mask = 3
