@@ -1,9 +1,40 @@
-[gd_scene load_steps=9 format=4 uid="uid://cjxge2wb6xqgq"]
+[gd_scene load_steps=11 format=4 uid="uid://mins24ef53t6"]
 
 [ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_s0xyj"]
 [ext_resource type="Texture2D" uid="uid://c7204iulxqcsr" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_38glg"]
+[ext_resource type="Texture2D" uid="uid://du8dt47oqwjom" path="res://Assets/Art/pixilart-sprite.png" id="2_ccifb"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="3_ccifb"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="4_y5hg5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y5hg5"]
+texture = ExtResource("2_ccifb")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+10:0/0 = 0
+10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+11:0/0 = 0
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+12:0/0 = 0
+12:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cn1le"]
 texture = ExtResource("2_38glg")
@@ -73,6 +104,7 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/4 = SubResource("TileSetAtlasSource_cn1le")
+sources/0 = SubResource("TileSetAtlasSource_y5hg5")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q17kt"]
 size = Vector2(1631, 95)
@@ -83,7 +115,7 @@ size = Vector2(326, 68)
 [node name="Level_3" instance=ExtResource("1_s0xyj")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." index="1"]
-tile_map_data = PackedByteArray("AAAAAAkABAAAAAAAAAABAAkABAABAAAAAAACAAkABAACAAAAAAADAAkABAAAAAAAAAAEAAkABAABAAAAAAAFAAkABAACAAAAAAAGAAkABAAAAAAAAAAHAAkABAAAAAAAAAAKAAkABAAAAAAAAAALAAkABAAAAAAAAAAMAAkABAAAAAAAAAANAAkABAAAAAAAAAAOAAkABAAAAAAAAAAPAAUABAAAAAAAAAAQAAUABAAAAAAAAAARAAUABAAAAAAAAAASAAUABAAAAAAAAAATAAUABAAAAAAAAAAUAAkABAAAAAAAAAAVAAkABAAAAAAAAAAWAAkABAAAAAAAAAAXAAkABAAAAAAAAAAYAAkABAAAAAAAAAAZAAkABAAAAAAAAAAaAAkABAAAAAAAAAAbAAkABAAAAAAAAAAcAAkABAAAAAAAAAAdAAkABAAAAAAAAAAeAAkABAAAAAAAAAAfAAkABAAAAAAAAAAgAAkABAAAAAAAAAAhAAkABAAAAAAAAAD//wkABAAAAAAAAAD//wgABAAAAAAAAAD//wcABAAAAAAAAAD//wYABAAAAAAAAAD//wUABAAAAAAAAAD//wQABAAAAAAAAAD//wMABAAAAAAAAAD//wIABAAAAAAAAAD//wEABAAAAAAAAAAiAAkABAAAAAAAAAAiAAgABAAAAAAAAAAiAAcABAAAAAAAAAAiAAYABAAAAAAAAAAiAAUABAAAAAAAAAAiAAQABAAAAAAAAAAiAAMABAAAAAAAAAAiAAIABAAAAAAAAAAiAAEABAAAAAAAAAAiAAAABAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAkAAAABAAAAAAABAAkAAAABAAAAAAACAAkAAAABAAAAAAADAAkAAAABAAAAAAAEAAkAAAABAAAAAAAFAAkAAAABAAAAAAAGAAkAAAABAAAAAAAHAAkAAAAEAAAAAAAKAAkAAAADAAAAAAALAAkAAAABAAAAAAAMAAkAAAABAAAAAAANAAkAAAABAAAAAAAOAAkAAAAEAAAAAAAPAAUAAAAKAAAAAAAQAAUAAAALAAAAAAARAAUAAAALAAAAAAASAAUAAAALAAAAAAATAAUAAAAMAAAAAAAUAAkAAAADAAAAAAAVAAkAAAABAAAAAAAWAAkAAAABAAAAAAAXAAkAAAABAAAAAAAYAAkAAAABAAAAAAAZAAkAAAABAAAAAAAaAAkAAAABAAAAAAAbAAkAAAABAAAAAAAcAAkAAAABAAAAAAAdAAkAAAABAAAAAAAeAAkAAAABAAAAAAAfAAkAAAABAAAAAAAgAAkAAAABAAAAAAAhAAkAAAABAAAAAAD//wkAAAAGAAAAAAD//wgAAAAGAAAAAAD//wcAAAAGAAAAAAD//wYAAAAGAAAAAAD//wUAAAAGAAAAAAD//wQAAAAGAAAAAAD//wMAAAAGAAAAAAD//wIAAAAGAAAAAAD//wEAAAAGAAAAAAAiAAkAAAAFAAAAAAAiAAgAAAAFAAAAAAAiAAcAAAAFAAAAAAAiAAYAAAAFAAAAAAAiAAUAAAAFAAAAAAAiAAQAAAAFAAAAAAAiAAMAAAAFAAAAAAAiAAIAAAAFAAAAAAAiAAEAAAAFAAAAAAAiAAAAAAAFAAAAAAA=")
 tile_set = SubResource("TileSet_xmx8b")
 
 [node name="CharacterBody2D" parent="." index="2" node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("3_ccifb")]
