@@ -50,6 +50,8 @@ var _confused := false       # Se è attiva randomizza i comandi
 @export var _jump_charging_bar : ProgressBar
 @onready var _animated_sprite := $AnimatedSprite2D as AnimatedSprite2D
 
+## COSTANTS =============================================================
+const tag_nemici := "lickable" #Tag degli oggetti feribili con la funzione API get_licked()
 
 func _ready() -> void:
 	#Debug per development
@@ -194,6 +196,10 @@ func _handle_tongue_physics(delta):
 					_tongue_initial_distance_target = global_position.distance_to(_tongue_hit_point)
 					_tongue_state = TongueState.ATTACHED
 				else:
+					var e = _tongue_hit_target.name
+					if tag_nemici in _tongue_hit_target.get_groups():
+						assert(_tongue_hit_target.has_method("get_licked"), "Target leccato ha il tag "+ tag_nemici + " ma non ha il metodo obbligatorio API get_licked()!")
+						_tongue_hit_target.get_licked()
 					_tongue_state = TongueState.RETRACTING
 			
 			if _current_tongue_length >=  MAX_TONGUE_LENGTH:
