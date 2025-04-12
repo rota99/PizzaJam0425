@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn7vbi5bj56ux"]
+[gd_scene load_steps=5 format=3 uid="uid://bn7vbi5bj56ux"]
 
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="1_r6w77"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="2_vid4w"]
 [ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="3_xetxb"]
-[ext_resource type="Curve2D" uid="uid://rau62bqp17l3" path="res://Entities/Enemies/EnemiesPaths/up_down_stationary.tres" id="4_wq6it"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6w77"]
 size = Vector2(313, 27)
@@ -109,6 +108,8 @@ offset_top = 496.0
 offset_right = 646.0
 offset_bottom = 506.0
 
-[node name="Fly" parent="." instance=ExtResource("3_xetxb")]
-position = Vector2(447, 225)
-PATH = ExtResource("4_wq6it")
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(388, 211)
+scale = Vector2(3, 3)
+
+[node name="Fly" parent="Node2D" instance=ExtResource("3_xetxb")]

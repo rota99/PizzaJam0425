@@ -24,6 +24,7 @@ mouse_cursor/custom_image="uid://cfmildh65hl4t"
 [global_group]
 
 linguabili="Oggetti con possibilità di collisione a cui la lingua si può attaccare"
+lickable="Per nemici che devono essere leccati"
 
 [input]
 
