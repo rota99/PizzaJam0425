@@ -34,6 +34,7 @@ extends CharacterBody2D
 var _is_charging_jump := false
 var _jump_charge_time := 0.0
 var _has_control := true #In caso ci serva
+var _is_jumping := false
 
 var _tongue_hit_point := Vector2.ZERO
 enum TongueState {RETRACTED, EXTENDING, ATTACHED, RETRACTING}
@@ -81,13 +82,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_fall_zone_body_entered(body: Node2D) -> void:
-	if body == self: 
+	if body == self:
 		set_physics_process(false)
 		visible=false
 		$FallingSound.play()
 		await get_tree().create_timer(1).timeout
 		get_tree().reload_current_scene()
-	
+
 func _on_fish_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		set_physics_process(false)
@@ -100,7 +101,7 @@ func _on_fish_body_entered(body: Node2D) -> void:
 
 func _handle_movement_input() -> void:
 	if _tongue_state == TongueState.ATTACHED:  return # Disabilita movimento normale quando penzola
-		
+	
 	var direction = Input.get_axis(move_left_action, move_right_action)
 	velocity.x = direction * SPEED if direction else lerp(velocity.x, 0.0, FRICTION)
 
@@ -135,6 +136,8 @@ func _apply_gravity(delta: float) -> void:
 
 func _handle_jump_charging(delta: float) -> void:
 	if is_on_floor():
+		if _is_jumping:
+			_is_jumping = false
 		  # Start charging
 		if Input.is_action_just_pressed(jump_action):
 			_is_charging_jump = true
@@ -158,6 +161,8 @@ func _handle_jump_charging(delta: float) -> void:
 		_is_charging_jump = false
 
 func _execute_jump() -> void:
+	_is_jumping = true
+	$AnimatedSprite2D.play("jump")
 	var charge_ratio = _jump_charge_time / MAX_JUMP_CHARGE_TIME
 	velocity.y = lerp(MIN_JUMP_FORCE, MAX_JUMP_FORCE, charge_ratio)
 	_reset_jump_state()
@@ -178,7 +183,6 @@ func _handle_toungue_shooting():
 		_tongue_state = TongueState.RETRACTING
 
 func _shoot_tongue():
-	
 	_tongue_state = TongueState.EXTENDING
 	$RayCast2D.target_position = global_position.direction_to(get_global_mouse_position()) * (MAX_TONGUE_LENGTH + 1.0)
 	$RayCast2D.force_raycast_update()
@@ -196,6 +200,7 @@ func _shoot_tongue():
 		_tongue_hit_point = get_global_mouse_position()
 	
 	# Animazione iniziale
+	$AnimatedSprite2D.play("open")
 	$TongueTip.position = Vector2.ZERO
 	$Tongue.width = TONGUE_WIDTH
 
@@ -291,10 +296,21 @@ func _update_character_direction() -> void:
 		return
 	 
 	var direction = Input.get_axis(move_left_action, move_right_action)
-	if direction != 0:
-			# La scala del collison shape del personaggio DEVE essere sempre (1,1)
-		$CollisionPolygon2D.scale.x = sign(direction) * -1
-		_animated_sprite.flip_h = direction > 0
+	
+	if direction > 0:
+		$AnimatedSprite2D.rotation_degrees = 26.4
+		$AnimatedSprite2D.flip_v = false
+	elif direction < 0:
+		$AnimatedSprite2D.rotation_degrees = 150.4
+		$AnimatedSprite2D.flip_v = true
+		
+	if ! _is_jumping and _tongue_state == TongueState.RETRACTED:
+		if direction != 0:
+				# La scala del collison shape del personaggio DEVE essere sempre (1,1)
+			$CollisionShape2D.scale.x = sign(direction) * 1
+			$AnimatedSprite2D.play("move")
+		else:
+			$AnimatedSprite2D.play("idle")
 
 func _update_charging_jump_bar() -> void:
 	if not _has_control:

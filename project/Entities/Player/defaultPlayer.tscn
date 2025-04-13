@@ -1,35 +1,87 @@
-[gd_scene load_steps=8 format=3 uid="uid://mmnjki8ajgjp"]
+[gd_scene load_steps=16 format=3 uid="uid://mmnjki8ajgjp"]
 
-[ext_resource type="Texture2D" uid="uid://c2tm836batany" path="res://Test/test_toad.png" id="1_3ikt3"]
 [ext_resource type="Script" uid="uid://dgkeuy42spmha" path="res://Scripts/CharacterMovement.gd" id="1_vom0u"]
+[ext_resource type="Texture2D" uid="uid://cr6thfkg1l8uk" path="res://Assets/Art/Rana-close.png" id="2_np3t2"]
 [ext_resource type="Texture2D" uid="uid://d2ugkqhimkd8m" path="res://icon.svg" id="3_k67vw"]
+[ext_resource type="Texture2D" uid="uid://d0mrb6kn505dn" path="res://Assets/Art/Rana-open.png" id="3_w4nli"]
 [ext_resource type="AudioStream" uid="uid://smfta25isbtp" path="res://Assets/Sound/sfx_jump_07-80241.mp3" id="4_jrfqc"]
+[ext_resource type="Texture2D" uid="uid://y15si213b2gd" path="res://Assets/Art/Rana1-salto.png" id="4_r3a8w"]
 [ext_resource type="AudioStream" uid="uid://bn1c3diyfoga2" path="res://Assets/Sound/falling-bomb-41038.mp3" id="5_3scws"]
-[ext_resource type="AudioStream" uid="uid://b14y58ysm4apb" path="res://Assets/Sound/bubble-pop-4-323580.mp3" id="6_3scws"]
+[ext_resource type="Texture2D" uid="uid://iaqpos1rwym0" path="res://Assets/Art/Rana2-salto.png" id="5_u8uo3"]
+[ext_resource type="Texture2D" uid="uid://bvqxsdlak6at7" path="res://Assets/Art/Rana3-salto.png" id="6_u6ef0"]
+[ext_resource type="Texture2D" uid="uid://ce05quuajnejd" path="res://Assets/Art/Rana4-salto.png" id="7_420ys"]
+[ext_resource type="Texture2D" uid="uid://b2ymc43prpgm7" path="res://Assets/Art/Rana5-salto.png" id="8_plcen"]
+[ext_resource type="Texture2D" uid="uid://cuxvqw2giv30q" path="res://Assets/Art/Rana6-salto.png" id="9_4xkc8"]
+[ext_resource type="Texture2D" uid="uid://dnryvinrdnwbk" path="res://Assets/Art/Rana-move.png" id="10_eleya"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5w4xs"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_3ikt3")
+"texture": ExtResource("2_np3t2")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_r3a8w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_u8uo3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_u6ef0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_420ys")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_plcen")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4xkc8")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_np3t2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_eleya")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_w4nli")
+}],
+"loop": false,
+"name": &"open",
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bji2c"]
+radius = 58.0809
+height = 192.635
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 position = Vector2(3, 0)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_vom0u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.494186, 0.5)
+z_index = 1
+rotation = 0.453786
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_5w4xs")
-animation = &"new_animation"
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-97, -112, -39, -110, -23, -93, 74, -64, 96, -46, 135, -7, 143, 13, 150, 42, 65, 108, 20, 100, -44, 112, -77, 106, -131, 74, -143, 59, -92, 44, -79, 12, -104, -26, -132, -36, -147, -54, -149, -62, -141, -79, -113, -95)
+animation = &"idle"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 200)
@@ -54,4 +106,8 @@ stream = ExtResource("4_jrfqc")
 stream = ExtResource("5_3scws")
 
 [node name="EatenSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_3scws")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -18)
+rotation = 1.59542
+shape = SubResource("CapsuleShape2D_bji2c")

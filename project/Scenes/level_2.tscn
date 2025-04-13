@@ -146,7 +146,6 @@ script = ExtResource("1_uhnj4")
 
 [node name="CharacterBody2D" parent="." node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("2_n7ypv")]
 position = Vector2(60.0002, 544)
-scale = Vector2(0.2, 0.2)
 TONGUE_EXTEND_SPEED = 3000.0
 TONGUE_RETRACT_SPEED = 3500.0
 _jump_charging_bar = NodePath("HealthBar")

@@ -9,9 +9,9 @@ var door : Area2D
 
 func _ready() -> void:
 	
-	assert(find_child("Door", true, true) != null, "NO Door trovata in livello! :(")
+	#assert(find_child("Door", true, false) != null, "NO Door trovata in livello! :(")
 
-	door = find_child("Door", true, true)
+	door = find_child("Door", true, false)
 	
 	assert(find_child("FliesCounter", true, true) != null, "NO Flies counter trovato in livello! :(")
 	fliesCounterNode = find_child("FliesCounter")

@@ -239,7 +239,6 @@ position = Vector2(1604, 463)
 
 [node name="CharacterBody2D" parent="." index="2" node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("3_ccifb")]
 position = Vector2(63, 538)
-scale = Vector2(0.3, 0.3)
 TONGUE_EXTEND_SPEED = 3000.0
 TONGUE_RETRACT_SPEED = 3500.0
 _jump_charging_bar = NodePath("HealthBar")
@@ -279,24 +278,17 @@ shape = SubResource("RectangleShape2D_q17kt")
 position = Vector2(1120, 354)
 shape = SubResource("RectangleShape2D_cn1le")
 
-[node name="TextEdit" type="TextEdit" parent="." index="5"]
-offset_left = 345.0
-offset_top = 152.0
-offset_right = 670.0
-offset_bottom = 225.0
-text = "Stesso livello del tutorial ma con i tasti cambiati (random KeyMap)"
-wrap_mode = 1
-
-[node name="Door" parent="." index="6" instance=ExtResource("8_k6xtq")]
+[node name="Door" parent="." index="5" instance=ExtResource("8_k6xtq")]
 position = Vector2(2062, 522)
 next_scene = ExtResource("9_dvi3f")
 
-[node name="CanvasLayer" parent="." index="7" instance=ExtResource("9_k6xtq")]
+[node name="CanvasLayer" parent="." index="6" instance=ExtResource("9_k6xtq")]
 
-[node name="Bg_Music" type="AudioStreamPlayer2D" parent="." index="8"]
+[node name="Bg_Music" type="AudioStreamPlayer2D" parent="." index="7"]
 stream = ExtResource("11_151xs")
+autoplay = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." index="9"]
+[node name="HBoxContainer" type="HBoxContainer" parent="." index="8"]
 offset_left = 63.0
 offset_top = 384.0
 offset_right = 428.0
@@ -339,7 +331,7 @@ layout_mode = 2
 theme = ExtResource("14_a1204")
 text = "to move left and right"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="." index="10"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="." index="9"]
 offset_left = 411.0
 offset_top = 469.0
 offset_right = 732.0
@@ -366,7 +358,7 @@ layout_mode = 2
 theme = ExtResource("14_a1204")
 text = "to do a charged jump"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="." index="11"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="." index="10"]
 offset_left = 933.0
 offset_top = 494.0
 offset_right = 1298.0
@@ -395,7 +387,7 @@ layout_mode = 2
 theme = ExtResource("14_a1204")
 text = "to hang from lianas and swing"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="." index="12"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="." index="11"]
 offset_left = 1440.0
 offset_top = 389.0
 offset_right = 1818.0

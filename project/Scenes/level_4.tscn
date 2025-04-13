@@ -182,7 +182,6 @@ scale = Vector2(0.5, 0.5)
 
 [node name="Player" parent="." node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("2_f6i20")]
 position = Vector2(83, 546)
-scale = Vector2(0.2, 0.2)
 TONGUE_EXTEND_SPEED = 3500.0
 TONGUE_RETRACT_SPEED = 3500.0
 _jump_charging_bar = NodePath("HealthBar")
@@ -352,5 +351,6 @@ next_scene = ExtResource("9_3ntyy")
 
 [node name="Bg_music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_7huqf")
+autoplay = true
 
 [connection signal="body_entered" from="Fall_zone" to="Player" method="_on_fall_zone_body_entered"]
