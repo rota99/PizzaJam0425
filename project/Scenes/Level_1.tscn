@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=4 uid="uid://c3nd6svvcve80"]
+[gd_scene load_steps=21 format=4 uid="uid://c3nd6svvcve80"]
 
 [ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_nw7js"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_nh7xm"]
 [ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="2_nw7js"]
+[ext_resource type="Script" uid="uid://cs1c5drhe84lu" path="res://Scripts/level_manager.gd" id="2_pdmgb"]
 [ext_resource type="PackedScene" uid="uid://440tdqj5o1an" path="res://Scenes/top_bar.tscn" id="2_ptpgp"]
 [ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="3_2uqsa"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="3_j0k67"]
@@ -134,6 +135,7 @@ size = Vector2(1631, 95)
 size = Vector2(326, 68)
 
 [node name="Level_1" instance=ExtResource("1_nw7js")]
+script = ExtResource("2_pdmgb")
 
 [node name="TopBar" parent="Control/ParallaxBackground" index="3" instance=ExtResource("2_ptpgp")]
 
