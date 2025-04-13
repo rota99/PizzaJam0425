@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=4 uid="uid://c3nd6svvcve80"]
 
-[ext_resource type="PackedScene" uid="uid://b8gm3667d4eoy" path="res://Scenes/background.tscn" id="1_nw7js"]
+[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_nw7js"]
 [ext_resource type="PackedScene" uid="uid://bb0ncclj0xjj8" path="res://UI_Components/fliesCounter.tscn" id="2_j0k67"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_nh7xm"]
 [ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="2_nw7js"]

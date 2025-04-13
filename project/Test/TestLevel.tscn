@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="3_xetxb"]
 [ext_resource type="PackedScene" uid="uid://bb0ncclj0xjj8" path="res://UI_Components/fliesCounter.tscn" id="5_jrogq"]
 [ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="6_mbotg"]
-[ext_resource type="PackedScene" uid="uid://c3nd6svvcve80" path="res://Scenes/Level_1.tscn" id="7_mbotg"]
+[ext_resource type="PackedScene" uid="uid://ll6nkiw7h0lb" path="res://Scenes/level_2.tscn" id="7_mbotg"]
 [ext_resource type="Texture2D" uid="uid://c2tm836batany" path="res://Test/test_toad.png" id="8_mbotg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6w77"]

@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://48ju82qcb7b2" path="res://Assets/UI/defaultButton.png" id="3_m8r5b"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m8r5b"]
+content_margin_left = 20.0
+content_margin_top = 16.0
+content_margin_right = 20.0
+content_margin_bottom = 16.0
 texture = ExtResource("2_m8r5b")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
@@ -13,6 +17,10 @@ texture_margin_right = 10.0
 texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_poi7d"]
+content_margin_left = 20.0
+content_margin_top = 16.0
+content_margin_right = 20.0
+content_margin_bottom = 16.0
 texture = ExtResource("2_akos5")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
@@ -20,6 +28,10 @@ texture_margin_right = 10.0
 texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_akos5"]
+content_margin_left = 20.0
+content_margin_top = 16.0
+content_margin_right = 20.0
+content_margin_bottom = 16.0
 texture = ExtResource("3_m8r5b")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
@@ -27,6 +39,10 @@ texture_margin_right = 10.0
 texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l56b2"]
+content_margin_left = 20.0
+content_margin_top = 16.0
+content_margin_right = 20.0
+content_margin_bottom = 16.0
 texture = ExtResource("3_m8r5b")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
