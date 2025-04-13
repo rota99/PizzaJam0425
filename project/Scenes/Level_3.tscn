@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://dawkpj0d7o7er"]
+[gd_scene load_steps=12 format=4 uid="uid://cv0myv16c83lx"]
 
-[ext_resource type="PackedScene" uid="uid://b8gm3667d4eoy" path="res://Scenes/background.tscn" id="1_s0xyj"]
+[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_s0xyj"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_38glg"]
 [ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="2_ccifb"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="3_ccifb"]
+[ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="4_ccifb"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="4_y5hg5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y5hg5"]
@@ -117,6 +118,9 @@ size = Vector2(326, 68)
 [node name="TileMapLayer" type="TileMapLayer" parent="." index="1"]
 tile_map_data = PackedByteArray("AAAAAAkAAAABAAAAAAABAAkAAAABAAAAAAACAAkAAAABAAAAAAADAAkAAAABAAAAAAAEAAkAAAABAAAAAAAFAAkAAAABAAAAAAAGAAkAAAABAAAAAAAHAAkAAAAEAAAAAAAKAAkAAAADAAAAAAALAAkAAAABAAAAAAAMAAkAAAABAAAAAAANAAkAAAABAAAAAAAOAAkAAAAEAAAAAAAPAAUAAAAKAAAAAAAQAAUAAAALAAAAAAARAAUAAAALAAAAAAASAAUAAAALAAAAAAATAAUAAAAMAAAAAAAUAAkAAAADAAAAAAAVAAkAAAABAAAAAAAWAAkAAAABAAAAAAAXAAkAAAABAAAAAAAYAAkAAAABAAAAAAAZAAkAAAABAAAAAAAaAAkAAAABAAAAAAAbAAkAAAABAAAAAAAcAAkAAAABAAAAAAAdAAkAAAABAAAAAAAeAAkAAAABAAAAAAAfAAkAAAABAAAAAAAgAAkAAAABAAAAAAAhAAkAAAABAAAAAAD//wkAAAAGAAAAAAD//wgAAAAGAAAAAAD//wcAAAAGAAAAAAD//wYAAAAGAAAAAAD//wUAAAAGAAAAAAD//wQAAAAGAAAAAAD//wMAAAAGAAAAAAD//wIAAAAGAAAAAAD//wEAAAAGAAAAAAAiAAkAAAAFAAAAAAAiAAgAAAAFAAAAAAAiAAcAAAAFAAAAAAAiAAYAAAAFAAAAAAAiAAUAAAAFAAAAAAAiAAQAAAAFAAAAAAAiAAMAAAAFAAAAAAAiAAIAAAAFAAAAAAAiAAEAAAAFAAAAAAAiAAAAAAAFAAAAAAA=")
 tile_set = SubResource("TileSet_xmx8b")
+
+[node name="Fly" parent="TileMapLayer" index="0" instance=ExtResource("4_ccifb")]
+position = Vector2(1604, 463)
 
 [node name="CharacterBody2D" parent="." index="2" node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("3_ccifb")]
 position = Vector2(63, 538)

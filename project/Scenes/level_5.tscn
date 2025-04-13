@@ -1,13 +1,14 @@
-[gd_scene load_steps=20 format=4 uid="uid://5vqyhkxrk38w"]
+[gd_scene load_steps=21 format=4 uid="uid://1sdwll06de4c"]
 
-[ext_resource type="Script" uid="uid://cs1c5drhe84lu" path="res://Scripts/level_manager.gd" id="1_02esc"]
-[ext_resource type="PackedScene" uid="uid://b8gm3667d4eoy" path="res://Scenes/background.tscn" id="1_ihmlp"]
+[ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_02esc"]
+[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_ihmlp"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="2_ip5ew"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="3_hproo"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="4_ip5ew"]
 [ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="5_mb3x2"]
 [ext_resource type="Script" uid="uid://dxayshrw8tbc5" path="res://Scripts/fish.gd" id="6_mb3x2"]
 [ext_resource type="Texture2D" uid="uid://djo36123bt0yg" path="res://Entities/Enemies/Pesce.png" id="7_02esc"]
+[ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="9_gfyxx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hproo"]
 texture = ExtResource("4_ip5ew")
@@ -1022,7 +1023,7 @@ position = Vector2(3, 0)
 scale = Vector2(0.5, 0.5)
 
 [node name="Player" parent="." node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("2_ip5ew")]
-position = Vector2(272, 546)
+position = Vector2(63, 547)
 scale = Vector2(0.2, 0.2)
 TONGUE_EXTEND_SPEED = 3500.0
 TONGUE_RETRACT_SPEED = 3500.0
@@ -1220,6 +1221,12 @@ shape = SubResource("RectangleShape2D_mb3x2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fall_zone"]
 position = Vector2(2439, 703.5)
 shape = SubResource("RectangleShape2D_26dk1")
+
+[node name="Fly" parent="." instance=ExtResource("9_gfyxx")]
+position = Vector2(2949, 301)
+
+[node name="Fly2" parent="." instance=ExtResource("9_gfyxx")]
+position = Vector2(4758, 500)
 
 [connection signal="body_entered" from="Fish" to="Player" method="_on_fish_body_entered"]
 [connection signal="body_entered" from="Fish2" to="Player" method="_on_fish_body_entered"]

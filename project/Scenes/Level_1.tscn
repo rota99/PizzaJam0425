@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=4 uid="uid://v27i4olipua8"]
+[gd_scene load_steps=13 format=4 uid="uid://c3nd6svvcve80"]
 
-[ext_resource type="PackedScene" uid="uid://b8gm3667d4eoy" path="res://Scenes/background.tscn" id="1_nw7js"]
-[ext_resource type="PackedScene" uid="uid://bb0ncclj0xjj8" path="res://UI_Components/fliesCounter.tscn" id="2_j0k67"]
+[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_nw7js"]
+[ext_resource type="PackedScene" path="res://UI_Components/fliesCounter.tscn" id="2_j0k67"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_nh7xm"]
 [ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="2_nw7js"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="3_j0k67"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="4_5r5j8"]
+[ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="5_5r5j8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nh7xm"]
 texture = ExtResource("2_nw7js")
@@ -140,6 +141,9 @@ size_flags_horizontal = 3
 tile_map_data = PackedByteArray("AAALAAkAAgABAAAAAAAMAAkAAgABAAAAAAANAAkAAgABAAAAAAAPAAUAAgAKAAAAAAAQAAUAAgALAAAAAAARAAUAAgALAAAAAAASAAUAAgALAAAAAAATAAUAAgAMAAAAAAAVAAkAAgABAAAAAAAWAAkAAgABAAAAAAAXAAkAAgABAAAAAAAYAAkAAgABAAAAAAAZAAkAAgABAAAAAAAaAAkAAgABAAAAAAAbAAkAAgABAAAAAAAcAAkAAgABAAAAAAAdAAkAAgABAAAAAAAeAAkAAgABAAAAAAAfAAkAAgABAAAAAAAgAAkAAgABAAAAAAAhAAkAAgABAAAAAAD//wEAAgAGAAAAAAD//wIAAgAGAAAAAAD//wMAAgAGAAAAAAD//wQAAgAGAAAAAAD//wUAAgAGAAAAAAD//wYAAgAGAAAAAAD//wcAAgAGAAAAAAD//wgAAgAGAAAAAAD//wkAAgAGAAAAAAAHAAkAAgACAAAAAAAOAAkAAgAEAAAAAAAiAAkAAgAFAAAAAAAiAAgAAgAFAAAAAAAiAAcAAgAFAAAAAAAiAAYAAgAFAAAAAAAiAAUAAgAFAAAAAAAiAAQAAgAFAAAAAAAiAAMAAgAFAAAAAAAiAAIAAgAFAAAAAAAiAAEAAgAFAAAAAAAiAAAAAgAFAAAAAAAUAAkAAgADAAAAAAAKAAkAAgADAAAAAAAAAAkAAgABAAAAAAABAAkAAgABAAAAAAACAAkAAgABAAAAAAADAAkAAgABAAAAAAAEAAkAAgABAAAAAAAFAAkAAgABAAAAAAAGAAkAAgABAAAAAAA=")
 tile_set = SubResource("TileSet_xmx8b")
 
+[node name="Fly" parent="TileMapLayer" index="0" instance=ExtResource("5_5r5j8")]
+position = Vector2(1636, 481)
+
 [node name="Player" parent="." index="3" node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("3_j0k67")]
 position = Vector2(63, 538)
 scale = Vector2(0.2, 0.2)
@@ -169,6 +173,7 @@ position = Vector2(817, 748)
 shape = SubResource("RectangleShape2D_q17kt")
 
 [node name="Area_linguabile" type="Area2D" parent="." index="5" groups=["linguabili"]]
+position = Vector2(0, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_linguabile" index="0"]
 position = Vector2(1120, 354)

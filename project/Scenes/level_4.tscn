@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=4 uid="uid://b4hjxs20jh64m"]
+[gd_scene load_steps=19 format=4 uid="uid://dr446e57nqaps"]
 
 [ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_wi344"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="2_f6i20"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="3_dvrgg"]
-[ext_resource type="Texture2D" uid="uid://c5ltn5s6fexrg" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="4_wk15n"]
-[ext_resource type="Texture2D" uid="uid://cv2hbweytwmlu" path="res://Assets/Art/pixilart-sprite.png" id="5_f6i20"]
+[ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="4_wk15n"]
+[ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="5_f6i20"]
+[ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="6_dvrgg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5a8oa"]
 texture = ExtResource("4_wk15n")
@@ -1210,5 +1211,11 @@ shape = SubResource("RectangleShape2D_7huqf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fall_zone"]
 position = Vector2(2034.63, 739)
 shape = SubResource("RectangleShape2D_wk15n")
+
+[node name="Fly" parent="." instance=ExtResource("6_dvrgg")]
+position = Vector2(306, -265)
+
+[node name="Fly2" parent="." instance=ExtResource("6_dvrgg")]
+position = Vector2(2620, -421)
 
 [connection signal="body_entered" from="Fall_zone" to="Player" method="_on_fall_zone_body_entered"]
