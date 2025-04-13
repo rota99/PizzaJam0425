@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djo36123bt0yg"
-path="res://.godot/imported/Pesce.png-954b6e2305ffed9540318ce9b91be547.ctex"
+uid="uid://bt10dbprnfrmo"
+path="res://.godot/imported/door_temp.png-215dc07177bb73e837ffb75c4ec2b565.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemy/Pesce.png"
-dest_files=["res://.godot/imported/Pesce.png-954b6e2305ffed9540318ce9b91be547.ctex"]
+source_file="res://Test/door_temp.png"
+dest_files=["res://.godot/imported/door_temp.png-215dc07177bb73e837ffb75c4ec2b565.ctex"]
 
 [params]
 

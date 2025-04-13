@@ -25,6 +25,8 @@ mouse_cursor/custom_image="uid://cfmildh65hl4t"
 
 linguabili="Oggetti con possibilità di collisione a cui la lingua si può attaccare"
 lickable="Per nemici che devono essere leccati"
+enemy="Se in questo gr il livello ne tiene conto per l'eliminazione"
+player=""
 
 [input]
 
@@ -45,7 +47,7 @@ jump={
 }
 tongue={
 "deadzone": 0.2,
-"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(381, 6),"global_position":Vector2(390, 54),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(398, 14),"global_position":Vector2(407, 62),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 

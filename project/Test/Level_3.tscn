@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn7vbi5bj56ux"]
+[gd_scene load_steps=10 format=3 uid="uid://2sc6rib1h6w"]
 
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="1_r6w77"]
+[ext_resource type="Script" uid="uid://cs1c5drhe84lu" path="res://Scripts/level_manager.gd" id="1_wq6it"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="2_vid4w"]
 [ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="3_xetxb"]
+[ext_resource type="PackedScene" uid="uid://bb0ncclj0xjj8" path="res://UI_Components/fliesCounter.tscn" id="5_jrogq"]
+[ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="6_mbotg"]
+[ext_resource type="PackedScene" uid="uid://bkgtcr3bqmyb4" path="res://Scenes/mainPage.tscn" id="7_l77ox"]
+[ext_resource type="Texture2D" uid="uid://c2tm836batany" path="res://Test/test_toad.png" id="8_mbotg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6w77"]
 size = Vector2(313, 27)
 
-[node name="Level_1" type="Node2D"]
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_wq6it")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 489.0
@@ -113,3 +119,11 @@ position = Vector2(388, 211)
 scale = Vector2(3, 3)
 
 [node name="Fly" parent="Node2D" instance=ExtResource("3_xetxb")]
+
+[node name="FliesCounter" parent="." instance=ExtResource("5_jrogq")]
+position = Vector2(1, 0)
+
+[node name="Door" parent="." instance=ExtResource("6_mbotg")]
+position = Vector2(571, 323)
+next_scene = ExtResource("7_l77ox")
+opened_texture = ExtResource("8_mbotg")

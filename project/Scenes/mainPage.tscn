@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7ms5ajj2p268" path="res://Scripts/SceneChanger.gd" id="1_86gft"]
 [ext_resource type="Theme" uid="uid://dn2l0jekt5sq8" path="res://Themes/Button.tres" id="1_h1kuq"]
-[ext_resource type="PackedScene" uid="uid://bn7vbi5bj56ux" path="res://Test/Level_3.tscn" id="2_0gkkh"]
+[ext_resource type="PackedScene" uid="uid://2sc6rib1h6w" path="res://Test/TestLevel.tscn" id="2_rk7d6"]
 [ext_resource type="PackedScene" uid="uid://b8gm3667d4eoy" path="res://Scenes/background.tscn" id="3_rk7d6"]
 [ext_resource type="FontFile" uid="uid://ycdwyforo1hq" path="res://Assets/Fonts/GrapeSoda.ttf" id="4_rk7d6"]
 
@@ -12,7 +12,7 @@ Label/fonts/font = ExtResource("4_rk7d6")
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_86gft")
-cinematicScene = ExtResource("2_0gkkh")
+cinematicScene = ExtResource("2_rk7d6")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

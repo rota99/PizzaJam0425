@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ieeu3dwalw61"
-path="res://.godot/imported/Giant Fly Sprite Sheet.png-45efa02e77ae4c502e10e21bf1035fef.ctex"
+uid="uid://ml1vrru06ha0"
+path="res://.godot/imported/05xtileset_ground.png-b552c65e871593e75c85bf8724d01b7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Test/Giant Fly Sprite Sheet.png"
-dest_files=["res://.godot/imported/Giant Fly Sprite Sheet.png-45efa02e77ae4c502e10e21bf1035fef.ctex"]
+source_file="res://Assets/Art/05xtileset_ground.png"
+dest_files=["res://.godot/imported/05xtileset_ground.png-b552c65e871593e75c85bf8724d01b7b.ctex"]
 
 [params]
 
