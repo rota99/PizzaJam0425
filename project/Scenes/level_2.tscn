@@ -1,11 +1,15 @@
-[gd_scene load_steps=14 format=4 uid="uid://ll6nkiw7h0lb"]
+[gd_scene load_steps=18 format=4 uid="uid://ll6nkiw7h0lb"]
 
 [ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_1y8me"]
+[ext_resource type="Script" uid="uid://cs1c5drhe84lu" path="res://Scripts/level_manager.gd" id="1_uhnj4"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="2_n7ypv"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="3_0s5r2"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="4_7j8ne"]
 [ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="5_v36qu"]
 [ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="6_cggpd"]
+[ext_resource type="PackedScene" uid="uid://440tdqj5o1an" path="res://Scenes/top_bar.tscn" id="8_42uki"]
+[ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="9_t7v2y"]
+[ext_resource type="PackedScene" uid="uid://cv0myv16c83lx" path="res://Scenes/Level_3.tscn" id="10_42uki"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7dov7"]
 texture = ExtResource("4_7j8ne")
@@ -119,6 +123,7 @@ size = Vector2(393, 66)
 size = Vector2(520.5, 69)
 
 [node name="Level_2" type="Node2D"]
+script = ExtResource("1_uhnj4")
 
 [node name="Background" parent="." instance=ExtResource("1_1y8me")]
 
@@ -169,5 +174,11 @@ shape = SubResource("RectangleShape2D_0s5r2")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area_Linguabile"]
 position = Vector2(2558.75, 225.5)
 shape = SubResource("RectangleShape2D_7j8ne")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("8_42uki")]
+
+[node name="Door" parent="." instance=ExtResource("9_t7v2y")]
+position = Vector2(3107, 172)
+next_scene = ExtResource("10_42uki")
 
 [connection signal="body_entered" from="FallZone" to="CharacterBody2D" method="_on_fall_zone_body_entered"]
