@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://1sdwll06de4c"]
+[gd_scene load_steps=21 format=4 uid="uid://1sdwll06de4c"]
 
 [ext_resource type="Script" uid="uid://cs1c5drhe84lu" path="res://Scripts/level_manager.gd" id="1_02esc"]
 [ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_ihmlp"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://dxayshrw8tbc5" path="res://Scripts/fish.gd" id="6_mb3x2"]
 [ext_resource type="Texture2D" uid="uid://djo36123bt0yg" path="res://Entities/Enemies/Pesce.png" id="7_02esc"]
 [ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="9_gfyxx"]
+[ext_resource type="PackedScene" uid="uid://440tdqj5o1an" path="res://Scenes/top_bar.tscn" id="9_xfwg7"]
+[ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="10_xfwg7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mb3x2"]
 texture = ExtResource("5_mb3x2")
@@ -322,6 +324,11 @@ position = Vector2(2949, 301)
 
 [node name="Fly2" parent="." instance=ExtResource("9_gfyxx")]
 position = Vector2(4758, 500)
+
+[node name="TopBar" parent="." instance=ExtResource("9_xfwg7")]
+
+[node name="Door" parent="." instance=ExtResource("10_xfwg7")]
+position = Vector2(4977, 447)
 
 [connection signal="body_entered" from="Fish" to="Player" method="_on_fish_body_entered"]
 [connection signal="body_entered" from="Fish2" to="Player" method="_on_fish_body_entered"]
