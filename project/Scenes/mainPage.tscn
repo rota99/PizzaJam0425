@@ -59,7 +59,7 @@ layout_mode = 2
 layout_mode = 2
 theme = SubResource("Theme_br3h6")
 theme_override_colors/font_color = Color(0.184314, 0.0980392, 0.054902, 1)
-text = "Cool Game Name"
+text = "Frogotten Controls"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Control/VBoxContainer"]
 layout_mode = 2
