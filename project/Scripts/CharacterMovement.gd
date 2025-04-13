@@ -82,6 +82,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_fall_zone_body_entered(body: Node2D) -> void:
 	if body == self: 
+		set_physics_process(false)
+		visible=false
 		$FallingSound.play()
 		await get_tree().create_timer(1).timeout
 		get_tree().reload_current_scene()
