@@ -1,12 +1,16 @@
-[gd_scene load_steps=13 format=4 uid="uid://c3nd6svvcve80"]
+[gd_scene load_steps=19 format=4 uid="uid://c3nd6svvcve80"]
 
-[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_nw7js"]
-[ext_resource type="PackedScene" path="res://UI_Components/fliesCounter.tscn" id="2_j0k67"]
+[ext_resource type="PackedScene" uid="uid://b8gm3667d4eoy" path="res://Scenes/background.tscn" id="1_nw7js"]
+[ext_resource type="PackedScene" uid="uid://bb0ncclj0xjj8" path="res://UI_Components/fliesCounter.tscn" id="2_j0k67"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_nh7xm"]
 [ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="2_nw7js"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="3_j0k67"]
+[ext_resource type="PackedScene" uid="uid://dp7xqjifxodfs" path="res://Scenes/restartLevelButton.tscn" id="3_ptpgp"]
+[ext_resource type="PackedScene" uid="uid://cdlpahubyn0p2" path="res://Scenes/homeButton.tscn" id="4_2uqsa"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="4_5r5j8"]
 [ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="5_5r5j8"]
+[ext_resource type="Texture2D" uid="uid://ud08rinlct82" path="res://Assets/UI/sliderBg.png" id="8_aur7v"]
+[ext_resource type="Texture2D" uid="uid://bmbeubcypcpub" path="res://Assets/UI/slider.png" id="9_ptpgp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nh7xm"]
 texture = ExtResource("2_nw7js")
@@ -108,6 +112,20 @@ physics_layer_0/collision_layer = 1
 sources/4 = SubResource("TileSetAtlasSource_cn1le")
 sources/2 = SubResource("TileSetAtlasSource_nh7xm")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2uqsa"]
+texture = ExtResource("8_aur7v")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lp2uw"]
+texture = ExtResource("9_ptpgp")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q17kt"]
 size = Vector2(1631, 95)
 
@@ -124,8 +142,9 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="spacer" type="Control" parent="TopBar" index="0"]
+custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 
 [node name="fliesCounter Container" type="Control" parent="TopBar" index="1"]
 custom_minimum_size = Vector2(150, 0)
@@ -136,6 +155,28 @@ layout_mode = 2
 [node name="spacer2" type="Control" parent="TopBar" index="2"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="restart level button Container" type="Control" parent="TopBar" index="3"]
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+
+[node name="RestartLevel" parent="TopBar/restart level button Container" index="0" instance=ExtResource("3_ptpgp")]
+
+[node name="spacer3" type="Control" parent="TopBar" index="4"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="home button Container" type="Control" parent="TopBar" index="5"]
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+
+[node name="homeButton" parent="TopBar/home button Container" index="0" instance=ExtResource("4_2uqsa")]
+
+[node name="spacer4" type="Control" parent="TopBar" index="6"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 8
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." index="2"]
 tile_map_data = PackedByteArray("AAALAAkAAgABAAAAAAAMAAkAAgABAAAAAAANAAkAAgABAAAAAAAPAAUAAgAKAAAAAAAQAAUAAgALAAAAAAARAAUAAgALAAAAAAASAAUAAgALAAAAAAATAAUAAgAMAAAAAAAVAAkAAgABAAAAAAAWAAkAAgABAAAAAAAXAAkAAgABAAAAAAAYAAkAAgABAAAAAAAZAAkAAgABAAAAAAAaAAkAAgABAAAAAAAbAAkAAgABAAAAAAAcAAkAAgABAAAAAAAdAAkAAgABAAAAAAAeAAkAAgABAAAAAAAfAAkAAgABAAAAAAAgAAkAAgABAAAAAAAhAAkAAgABAAAAAAD//wEAAgAGAAAAAAD//wIAAgAGAAAAAAD//wMAAgAGAAAAAAD//wQAAgAGAAAAAAD//wUAAgAGAAAAAAD//wYAAgAGAAAAAAD//wcAAgAGAAAAAAD//wgAAgAGAAAAAAD//wkAAgAGAAAAAAAHAAkAAgACAAAAAAAOAAkAAgAEAAAAAAAiAAkAAgAFAAAAAAAiAAgAAgAFAAAAAAAiAAcAAgAFAAAAAAAiAAYAAgAFAAAAAAAiAAUAAgAFAAAAAAAiAAQAAgAFAAAAAAAiAAMAAgAFAAAAAAAiAAIAAgAFAAAAAAAiAAEAAgAFAAAAAAAiAAAAAgAFAAAAAAAUAAkAAgADAAAAAAAKAAkAAgADAAAAAAAAAAkAAgABAAAAAAABAAkAAgABAAAAAAACAAkAAgABAAAAAAADAAkAAgABAAAAAAAEAAkAAgABAAAAAAAFAAkAAgABAAAAAAAGAAkAAgABAAAAAAA=")
@@ -153,10 +194,18 @@ _jump_charging_bar = NodePath("HealthBar")
 
 [node name="HealthBar" parent="Player" index="5" instance=ExtResource("4_5r5j8")]
 visible = false
-offset_left = -106.667
-offset_top = -240.0
-offset_right = -6.66667
-offset_bottom = -230.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_top = -250.0
+offset_right = 121.0
+offset_bottom = -218.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxTexture_2uqsa")
+theme_override_styles/fill = SubResource("StyleBoxTexture_lp2uw")
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="6"]
 limit_left = 0
