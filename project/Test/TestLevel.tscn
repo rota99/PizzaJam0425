@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://ddhqukiq8iwew"]
+
+[ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="1_r6w77"]
+[ext_resource type="Script" uid="uid://cs1c5drhe84lu" path="res://Scripts/level_manager.gd" id="1_wq6it"]
+[ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="2_vid4w"]
+[ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="3_xetxb"]
+[ext_resource type="PackedScene" uid="uid://bb0ncclj0xjj8" path="res://UI_Components/fliesCounter.tscn" id="5_jrogq"]
+[ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="6_mbotg"]
+[ext_resource type="PackedScene" uid="uid://bkgtcr3bqmyb4" path="res://Scenes/mainPage.tscn" id="7_l77ox"]
+[ext_resource type="Texture2D" uid="uid://c2tm836batany" path="res://Test/test_toad.png" id="8_mbotg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6w77"]
+size = Vector2(313, 27)
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_wq6it")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 489.0
+offset_top = 55.0
+offset_right = 566.0
+offset_bottom = 78.0
+text = "Test Level"
+
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("1_r6w77")]
+position = Vector2(86, 81)
+TONGUE_EXTEND_SPEED = 2200.0
+TONGUE_RETRACT_SPEED = 3000.0
+_jump_charging_bar = NodePath("../HealthBar")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(69, 336)
+
+[node name="ColorRect4" type="ColorRect" parent="StaticBody2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.5
+offset_top = -25.0
+offset_right = 156.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, -13.5)
+shape = SubResource("RectangleShape2D_r6w77")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." groups=["linguabili"]]
+position = Vector2(523, 134)
+scale = Vector2(1, 2.6)
+
+[node name="ColorRect4" type="ColorRect" parent="StaticBody2D4"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.5
+offset_top = -25.0
+offset_right = 156.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-2, -10)
+shape = SubResource("RectangleShape2D_r6w77")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(1014, 435)
+scale = Vector2(1.30625, 1.08048)
+
+[node name="ColorRect4" type="ColorRect" parent="StaticBody2D3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.5
+offset_top = -25.0
+offset_right = 156.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(0.5, -13.5)
+shape = SubResource("RectangleShape2D_r6w77")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(479, 490)
+metadata/_edit_lock_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="StaticBody2D2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.5
+offset_top = -25.0
+offset_right = 156.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0.5, -13.5)
+shape = SubResource("RectangleShape2D_r6w77")
+
+[node name="HealthBar" parent="." instance=ExtResource("2_vid4w")]
+visible = false
+offset_left = 546.0
+offset_top = 496.0
+offset_right = 646.0
+offset_bottom = 506.0
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(388, 211)
+scale = Vector2(3, 3)
+
+[node name="Fly" parent="Node2D" instance=ExtResource("3_xetxb")]
+
+[node name="FliesCounter" parent="." instance=ExtResource("5_jrogq")]
+position = Vector2(1, 0)
+
+[node name="Door" parent="." instance=ExtResource("6_mbotg")]
+position = Vector2(571, 323)
+next_scene = ExtResource("7_l77ox")
+opened_texture = ExtResource("8_mbotg")
