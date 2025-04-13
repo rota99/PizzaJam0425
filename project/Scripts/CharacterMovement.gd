@@ -99,10 +99,6 @@ func _handle_movement_input() -> void:
 		
 	var direction = Input.get_axis(move_left_action, move_right_action)
 	velocity.x = direction * SPEED if direction else lerp(velocity.x, 0.0, FRICTION)
-	if direction != 0:
-		$AnimatedSprite2D.play("move")
-	else:
-		$AnimatedSprite2D.play("idle")
 
 func _confuse_controls() -> void: #funzione per mescolare i comandi
 	if _confused:
@@ -291,10 +287,20 @@ func _update_character_direction() -> void:
 		return
 	 
 	var direction = Input.get_axis(move_left_action, move_right_action)
+	
+	if direction > 0:
+		$AnimatedSprite2D.rotation_degrees = 26.4
+		$AnimatedSprite2D.flip_v = false
+	elif direction < 0:
+		$AnimatedSprite2D.rotation_degrees = 150.4
+		$AnimatedSprite2D.flip_v = true
+
 	if direction != 0:
 			# La scala del collison shape del personaggio DEVE essere sempre (1,1)
-		$CollisionShape2D.scale.x = sign(direction) * 1
-		_animated_sprite.flip_h = direction < 0
+		$CollisionShape2D.scale.x = sign(direction) * 1 
+		$AnimatedSprite2D.play("move")
+	else:
+		$AnimatedSprite2D.play("idle")
 
 func _update_charging_jump_bar() -> void:
 	if not _has_control:
