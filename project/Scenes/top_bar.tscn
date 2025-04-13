@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://440tdqj5o1an"]
+
+[ext_resource type="PackedScene" uid="uid://bb0ncclj0xjj8" path="res://UI_Components/fliesCounter.tscn" id="1_t3rmf"]
+[ext_resource type="PackedScene" uid="uid://dp7xqjifxodfs" path="res://Scenes/restartLevelButton.tscn" id="2_jit6v"]
+[ext_resource type="PackedScene" uid="uid://cdlpahubyn0p2" path="res://Scenes/homeButton.tscn" id="3_uhww6"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(1280, 68)
+offset_right = 1280.0
+offset_bottom = 68.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="spacer" type="Control" parent="TopBar"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="fliesCounter Container" type="Control" parent="TopBar"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="FliesCounter" parent="TopBar/fliesCounter Container" instance=ExtResource("1_t3rmf")]
+
+[node name="spacer2" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="restart level button Container" type="Control" parent="TopBar"]
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="RestartLevel" parent="TopBar/restart level button Container" instance=ExtResource("2_jit6v")]
+
+[node name="spacer3" type="Control" parent="TopBar"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="home button Container" type="Control" parent="TopBar"]
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="homeButton" parent="TopBar/home button Container" instance=ExtResource("3_uhww6")]
+
+[node name="spacer4" type="Control" parent="TopBar"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 8
