@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ieeu3dwalw61"
-path="res://.godot/imported/Giant Fly Sprite Sheet.png-45efa02e77ae4c502e10e21bf1035fef.ctex"
+uid="uid://bt10dbprnfrmo"
+path="res://.godot/imported/door_temp.png-215dc07177bb73e837ffb75c4ec2b565.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Test/Giant Fly Sprite Sheet.png"
-dest_files=["res://.godot/imported/Giant Fly Sprite Sheet.png-45efa02e77ae4c502e10e21bf1035fef.ctex"]
+source_file="res://Test/door_temp.png"
+dest_files=["res://.godot/imported/door_temp.png-215dc07177bb73e837ffb75c4ec2b565.ctex"]
 
 [params]
 
