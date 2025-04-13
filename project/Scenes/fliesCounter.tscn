@@ -1,16 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://jcr1uudc5ye6"]
+[gd_scene load_steps=5 format=3 uid="uid://b2ntnbldxbpd"]
 
-[ext_resource type="Script" uid="uid://dmrt4n87ssh1b" path="res://Scripts/flies_counter.gd" id="1_08blv"]
+[ext_resource type="Script" uid="uid://b18b1bbq64pke" path="res://Scripts/flies_counter.gd" id="1_08blv"]
 [ext_resource type="Texture2D" uid="uid://48ju82qcb7b2" path="res://Assets/UI/defaultButton.png" id="1_sgxw0"]
 [ext_resource type="Texture2D" uid="uid://tcoogsn40trt" path="res://Assets/Art/Mosca1.png" id="2_08blv"]
-[ext_resource type="Theme" uid="uid://bak802w384h00" path="res://Themes/LabelFlies.tres" id="3_oqj77"]
+[ext_resource type="Theme" uid="uid://dtwrhd8ha3cqe" path="res://Themes/LabelFlies.tres" id="3_oqj77"]
 
-[node name="FliesCounter" type="Node2D" node_paths=PackedStringArray("gatheredLabel", "totLabel")]
+[node name="FliesCounter" type="Node2D"]
 script = ExtResource("1_08blv")
-gatheredFlies = "0"
-totFlies = "0"
-gatheredLabel = NodePath("HBoxContainer/HBoxContainer/Gathered")
-totLabel = NodePath("HBoxContainer/HBoxContainer/Tot")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://ll6nkiw7h0lb"]
 
-[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_1y8me"]
+[ext_resource type="PackedScene" uid="uid://b8gm3667d4eoy" path="res://Scenes/background.tscn" id="1_1y8me"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="2_n7ypv"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="3_0s5r2"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="4_7j8ne"]
