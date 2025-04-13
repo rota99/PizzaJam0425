@@ -1,11 +1,15 @@
-[gd_scene load_steps=12 format=4 uid="uid://cv0myv16c83lx"]
+[gd_scene load_steps=16 format=4 uid="uid://cv0myv16c83lx"]
 
 [ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_s0xyj"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_38glg"]
+[ext_resource type="Script" uid="uid://cs1c5drhe84lu" path="res://Scripts/level_manager.gd" id="2_ale0u"]
 [ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="2_ccifb"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="3_ccifb"]
 [ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="4_ccifb"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="4_y5hg5"]
+[ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="8_k6xtq"]
+[ext_resource type="PackedScene" uid="uid://dr446e57nqaps" path="res://Scenes/level_4.tscn" id="9_dvi3f"]
+[ext_resource type="PackedScene" uid="uid://440tdqj5o1an" path="res://Scenes/top_bar.tscn" id="9_k6xtq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y5hg5"]
 texture = ExtResource("2_ccifb")
@@ -114,6 +118,7 @@ size = Vector2(1631, 95)
 size = Vector2(326, 68)
 
 [node name="Level_3" instance=ExtResource("1_s0xyj")]
+script = ExtResource("2_ale0u")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." index="1"]
 tile_map_data = PackedByteArray("AAAAAAkAAAABAAAAAAABAAkAAAABAAAAAAACAAkAAAABAAAAAAADAAkAAAABAAAAAAAEAAkAAAABAAAAAAAFAAkAAAABAAAAAAAGAAkAAAABAAAAAAAHAAkAAAAEAAAAAAAKAAkAAAADAAAAAAALAAkAAAABAAAAAAAMAAkAAAABAAAAAAANAAkAAAABAAAAAAAOAAkAAAAEAAAAAAAPAAUAAAAKAAAAAAAQAAUAAAALAAAAAAARAAUAAAALAAAAAAASAAUAAAALAAAAAAATAAUAAAAMAAAAAAAUAAkAAAADAAAAAAAVAAkAAAABAAAAAAAWAAkAAAABAAAAAAAXAAkAAAABAAAAAAAYAAkAAAABAAAAAAAZAAkAAAABAAAAAAAaAAkAAAABAAAAAAAbAAkAAAABAAAAAAAcAAkAAAABAAAAAAAdAAkAAAABAAAAAAAeAAkAAAABAAAAAAAfAAkAAAABAAAAAAAgAAkAAAABAAAAAAAhAAkAAAABAAAAAAD//wkAAAAGAAAAAAD//wgAAAAGAAAAAAD//wcAAAAGAAAAAAD//wYAAAAGAAAAAAD//wUAAAAGAAAAAAD//wQAAAAGAAAAAAD//wMAAAAGAAAAAAD//wIAAAAGAAAAAAD//wEAAAAGAAAAAAAiAAkAAAAFAAAAAAAiAAgAAAAFAAAAAAAiAAcAAAAFAAAAAAAiAAYAAAAFAAAAAAAiAAUAAAAFAAAAAAAiAAQAAAAFAAAAAAAiAAMAAAAFAAAAAAAiAAIAAAAFAAAAAAAiAAEAAAAFAAAAAAAiAAAAAAAFAAAAAAA=")
@@ -163,5 +168,11 @@ offset_right = 670.0
 offset_bottom = 225.0
 text = "Stesso livello del tutorial ma con i tasti cambiati (random KeyMap)"
 wrap_mode = 1
+
+[node name="Door" parent="." index="6" instance=ExtResource("8_k6xtq")]
+position = Vector2(2031, 440)
+next_scene = ExtResource("9_dvi3f")
+
+[node name="CanvasLayer" parent="." index="7" instance=ExtResource("9_k6xtq")]
 
 [connection signal="body_entered" from="FallZone" to="CharacterBody2D" method="_on_fall_zone_body_entered"]
