@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="6_cggpd"]
 [ext_resource type="PackedScene" uid="uid://440tdqj5o1an" path="res://Scenes/top_bar.tscn" id="8_42uki"]
 [ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="9_t7v2y"]
-[ext_resource type="PackedScene" uid="uid://cv0myv16c83lx" path="res://Scenes/Level_3.tscn" id="10_42uki"]
 [ext_resource type="AudioStream" uid="uid://bid2ckfllciwq" path="res://Assets/Sound/frog-loop.mp3" id="11_t7v2y"]
+[ext_resource type="PackedScene" uid="uid://ce1ahkta7cw81" path="res://Scenes/wizard_scene.tscn" id="12_vcilj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0ycs"]
 texture = ExtResource("5_vcilj")
@@ -204,7 +204,7 @@ shape = SubResource("RectangleShape2D_7j8ne")
 
 [node name="Door" parent="." instance=ExtResource("9_t7v2y")]
 position = Vector2(3142, 266)
-next_scene = ExtResource("10_42uki")
+next_scene = ExtResource("12_vcilj")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_t7v2y")

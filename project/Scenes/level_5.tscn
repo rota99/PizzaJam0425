@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://1sdwll06de4c"]
+[gd_scene load_steps=29 format=4 uid="uid://1sdwll06de4c"]
 
 [ext_resource type="Script" uid="uid://cs1c5drhe84lu" path="res://Scripts/level_manager.gd" id="1_02esc"]
 [ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_ihmlp"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://440tdqj5o1an" path="res://Scenes/top_bar.tscn" id="9_xfwg7"]
 [ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="10_xfwg7"]
 [ext_resource type="AudioStream" uid="uid://bid2ckfllciwq" path="res://Assets/Sound/frog-loop.mp3" id="11_r8l1h"]
+[ext_resource type="PackedScene" uid="uid://cth6ao14r17qx" path="res://Scenes/Final_scene.tscn" id="14_fckru"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fckru"]
 texture = ExtResource("5_acvgl")
@@ -362,6 +363,7 @@ position = Vector2(4758, 500)
 
 [node name="Door" parent="." instance=ExtResource("10_xfwg7")]
 position = Vector2(5022, 518)
+next_scene = ExtResource("14_fckru")
 
 [node name="Bg_Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_r8l1h")
