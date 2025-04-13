@@ -26,6 +26,7 @@ mouse_cursor/custom_image="uid://cfmildh65hl4t"
 linguabili="Oggetti con possibilità di collisione a cui la lingua si può attaccare"
 lickable="Per nemici che devono essere leccati"
 enemy="Se in questo gr il livello ne tiene conto per l'eliminazione"
+player=""
 
 [input]
 
