@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://ll6nkiw7h0lb"]
+[gd_scene load_steps=23 format=4 uid="uid://ll6nkiw7h0lb"]
 
 [ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_1y8me"]
 [ext_resource type="Script" uid="uid://cs1c5drhe84lu" path="res://Scripts/level_manager.gd" id="1_uhnj4"]
@@ -6,10 +6,27 @@
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="3_0s5r2"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="4_7j8ne"]
 [ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="5_v36qu"]
+[ext_resource type="Texture2D" uid="uid://ud08rinlct82" path="res://Assets/UI/sliderBg.png" id="5_vcilj"]
+[ext_resource type="Texture2D" uid="uid://bmbeubcypcpub" path="res://Assets/UI/slider.png" id="6_bl0du"]
 [ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="6_cggpd"]
 [ext_resource type="PackedScene" uid="uid://440tdqj5o1an" path="res://Scenes/top_bar.tscn" id="8_42uki"]
 [ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="9_t7v2y"]
 [ext_resource type="PackedScene" uid="uid://cv0myv16c83lx" path="res://Scenes/Level_3.tscn" id="10_42uki"]
+[ext_resource type="AudioStream" uid="uid://bid2ckfllciwq" path="res://Assets/Sound/frog-loop.mp3" id="11_t7v2y"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q0ycs"]
+texture = ExtResource("5_vcilj")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hj5x7"]
+texture = ExtResource("6_bl0du")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7dov7"]
 texture = ExtResource("4_7j8ne")
@@ -134,12 +151,6 @@ TONGUE_EXTEND_SPEED = 3000.0
 TONGUE_RETRACT_SPEED = 3500.0
 _jump_charging_bar = NodePath("HealthBar")
 
-[node name="HealthBar" parent="CharacterBody2D" instance=ExtResource("3_0s5r2")]
-offset_left = -23.3333
-offset_top = 166.667
-offset_right = 76.6667
-offset_bottom = 167.667
-
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 limit_left = 0
 limit_top = -900
@@ -147,6 +158,21 @@ limit_right = 3200
 limit_bottom = 640
 limit_smoothed = true
 editor_draw_limits = true
+
+[node name="HealthBar" parent="CharacterBody2D" instance=ExtResource("3_0s5r2")]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = -285.0
+offset_right = 272.0
+offset_bottom = -221.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxTexture_q0ycs")
+theme_override_styles/fill = SubResource("StyleBoxTexture_hj5x7")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAkAAQABAAAAAAABAAkAAQABAAAAAAACAAkAAQABAAAAAAAEAAkAAQABAAAAAAAFAAkAAQAEAAAAAAADAAkAAQABAAAAAAAHAAcAAQADAAAAAAAIAAcAAQABAAAAAAAJAAcAAQAEAAAAAAAMAAQAAQADAAAAAAANAAQAAQABAAAAAAAOAAQAAQAEAAAAAAASAAkAAQAFAAAAAAASAAgAAQAFAAAAAAASAAcAAQAFAAAAAAASAAYAAQAFAAAAAAASAAUAAQAFAAAAAAASAAQAAQADAAAAAAATAAQAAQABAAAAAAATAAUAAQAJAAAAAAATAAYAAQAJAAAAAAATAAcAAQAJAAAAAAATAAgAAQAJAAAAAAATAAkAAQAJAAAAAAAUAAkAAQAJAAAAAAAUAAgAAQAJAAAAAAAUAAcAAQAJAAAAAAAUAAYAAQAJAAAAAAAUAAUAAQAJAAAAAAAUAAQAAQABAAAAAAAVAAQAAQAEAAAAAAAVAAUAAQAGAAAAAAAVAAYAAQAGAAAAAAAVAAcAAQAHAAAAAAAVAAgAAQAJAAAAAAAVAAkAAQAJAAAAAAAXAAcAAQABAAAAAAAYAAcAAQABAAAAAAAZAAcAAQABAAAAAAAaAAcAAQABAAAAAAAbAAcAAQABAAAAAAAcAAcAAQABAAAAAAAdAAcAAQABAAAAAAAeAAcAAQABAAAAAAAfAAcAAQABAAAAAAAgAAcAAQABAAAAAAAhAAcAAQABAAAAAAAiAAcAAQABAAAAAAAjAAcAAQAEAAAAAAAjAAgAAQAGAAAAAAAjAAkAAQAGAAAAAAAiAAkAAQAJAAAAAAAhAAkAAQAJAAAAAAAgAAkAAQAJAAAAAAAbAAkAAQAJAAAAAAAaAAkAAQAJAAAAAAAZAAkAAQAJAAAAAAAYAAkAAQAJAAAAAAAXAAkAAQAJAAAAAAAWAAkAAQAJAAAAAAAWAAgAAQAJAAAAAAAXAAgAAQAJAAAAAAAYAAgAAQAJAAAAAAAZAAgAAQAJAAAAAAAaAAgAAQAJAAAAAAAbAAgAAQAJAAAAAAAcAAgAAQAJAAAAAAAdAAgAAQAJAAAAAAAeAAgAAQAJAAAAAAAfAAgAAQAJAAAAAAAgAAgAAQAJAAAAAAAhAAgAAQAJAAAAAAAiAAgAAQAJAAAAAAAfAAkAAQAJAAAAAAAeAAkAAQAJAAAAAAAdAAkAAQAJAAAAAAAcAAkAAQAJAAAAAAAZAAIAAQADAAAAAAAaAAIAAQABAAAAAAAbAAIAAQAEAAAAAAAVAP//AQAEAAAAAAAUAP//AQABAAAAAAATAP//AQADAAAAAAD/////AQAGAAAAAAD//wAAAQAGAAAAAAD//wEAAQAGAAAAAAD//wIAAQAGAAAAAAD//wMAAQAGAAAAAAD//wQAAQAGAAAAAAD//wUAAQAGAAAAAAD//wYAAQAGAAAAAAD//wcAAQAGAAAAAAD//wgAAQAGAAAAAAD//wkAAQAGAAAAAAD///7/AQAGAAAAAAD///3/AQAGAAAAAAD///z/AQAGAAAAAAD///v/AQAGAAAAAAD///r/AQAGAAAAAAD///n/AQAGAAAAAAD///j/AQAGAAAAAAD///f/AQAGAAAAAAD///b/AQAGAAAAAAD///X/AQAGAAAAAAAbAAUAAQADAAAAAAAcAAUAAQABAAAAAAAdAAUAAQAEAAAAAAASAPr/AQAMAAAAAAARAPr/AQALAAAAAAAQAPr/AQALAAAAAAAPAPr/AQALAAAAAAAOAPr/AQAKAAAAAAAKAP//AQADAAAAAAALAP//AQABAAAAAAAMAP//AQAEAAAAAAAGAP3/AQADAAAAAAAHAP3/AQABAAAAAAAIAP3/AQAEAAAAAAAKAPr/AQADAAAAAAALAPr/AQABAAAAAAAMAPr/AQAEAAAAAAAUAPb/AQAKAAAAAAAVAPb/AQALAAAAAAAWAPb/AQALAAAAAAAXAPb/AQALAAAAAAAYAPb/AQALAAAAAAAZAPb/AQAMAAAAAAAbAPr/AQADAAAAAAAcAPr/AQABAAAAAAAdAPr/AQABAAAAAAAeAPr/AQABAAAAAAAfAPr/AQAEAAAAAAAsAAcAAQADAAAAAAAsAAgAAQAFAAAAAAAsAAkAAQAFAAAAAAAtAAcAAQABAAAAAAAtAAgAAQAJAAAAAAAtAAkAAQAJAAAAAAAuAAcAAQABAAAAAAAuAAgAAQAJAAAAAAAuAAkAAQAJAAAAAAAvAAUAAQADAAAAAAAvAAYAAQAFAAAAAAAvAAcAAQAIAAAAAAAvAAgAAQAJAAAAAAAvAAkAAQAJAAAAAAAwAAUAAQABAAAAAAAwAAYAAQAJAAAAAAAwAAcAAQAJAAAAAAAwAAgAAQAJAAAAAAAwAAkAAQAJAAAAAAAxAAUAAQABAAAAAAAxAAYAAQAJAAAAAAAxAAcAAQAJAAAAAAAxAAgAAQAJAAAAAAAxAAkAAQAJAAAAAAAkAAMAAQAKAAAAAAAlAAMAAQALAAAAAAAmAAMAAQALAAAAAAAnAAMAAQALAAAAAAAoAAMAAQALAAAAAAApAAMAAQALAAAAAAAqAAMAAQALAAAAAAArAAMAAQAMAAAAAAAyAAkAAQAFAAAAAAAyAAgAAQAFAAAAAAAyAAcAAQAFAAAAAAAyAAYAAQAFAAAAAAAyAAUAAQAFAAAAAAAyAAQAAQAFAAAAAAAyAAMAAQAFAAAAAAAyAAIAAQAFAAAAAAAyAAEAAQAFAAAAAAAyAAAAAQAFAAAAAAAyAP//AQAFAAAAAAAyAP7/AQAFAAAAAAAyAP3/AQAFAAAAAAAyAPz/AQAFAAAAAAAyAPv/AQAFAAAAAAAyAPr/AQAFAAAAAAAWAAcAAQABAAAAAAA=")
@@ -180,5 +206,9 @@ shape = SubResource("RectangleShape2D_7j8ne")
 [node name="Door" parent="." instance=ExtResource("9_t7v2y")]
 position = Vector2(3107, 172)
 next_scene = ExtResource("10_42uki")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_t7v2y")
+autoplay = true
 
 [connection signal="body_entered" from="FallZone" to="CharacterBody2D" method="_on_fall_zone_body_entered"]

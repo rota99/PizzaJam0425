@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ky1eo6ya6b45"]
+
+[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_j8pgl"]
+[ext_resource type="AudioStream" uid="uid://bid2ckfllciwq" path="res://Assets/Sound/frog-loop.mp3" id="4_f5lcu"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node2D" parent="." instance=ExtResource("1_j8pgl")]
+
+[node name="Bg_music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_f5lcu")
+autoplay = true
