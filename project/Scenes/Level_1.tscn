@@ -1,18 +1,111 @@
-[gd_scene load_steps=21 format=4 uid="uid://c3nd6svvcve80"]
+[gd_scene load_steps=38 format=4 uid="uid://c3nd6svvcve80"]
 
 [ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_nw7js"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_nh7xm"]
 [ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="2_nw7js"]
 [ext_resource type="Script" uid="uid://cs1c5drhe84lu" path="res://Scripts/level_manager.gd" id="2_pdmgb"]
-[ext_resource type="PackedScene" uid="uid://440tdqj5o1an" path="res://Scenes/top_bar.tscn" id="2_ptpgp"]
 [ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="3_2uqsa"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="3_j0k67"]
+[ext_resource type="PackedScene" uid="uid://440tdqj5o1an" path="res://Scenes/top_bar.tscn" id="3_pdmgb"]
+[ext_resource type="Texture2D" uid="uid://bjfa0j6ksq3m2" path="res://Assets/UI/aKey_sprite.png" id="4_2jeek"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="4_5r5j8"]
+[ext_resource type="Theme" uid="uid://cvehbi58m6sn3" path="res://Themes/LabelTutorial.tres" id="4_neuul"]
 [ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="5_5r5j8"]
+[ext_resource type="Texture2D" uid="uid://c20tl3douh0wq" path="res://Assets/UI/dKey_sprite.png" id="5_yytvd"]
+[ext_resource type="Texture2D" uid="uid://ds2r5jb2bs1v4" path="res://Assets/UI/space_sprite.png" id="7_3b6ve"]
+[ext_resource type="Texture2D" uid="uid://c6cptqx11hrq4" path="res://Assets/UI/RC_sprite.png" id="7_m620h"]
 [ext_resource type="Texture2D" uid="uid://ud08rinlct82" path="res://Assets/UI/sliderBg.png" id="8_aur7v"]
 [ext_resource type="Texture2D" uid="uid://bmbeubcypcpub" path="res://Assets/UI/slider.png" id="9_ptpgp"]
 [ext_resource type="AudioStream" uid="uid://bid2ckfllciwq" path="res://Assets/Sound/frog-loop.mp3" id="12_lp2uw"]
 [ext_resource type="PackedScene" uid="uid://ll6nkiw7h0lb" path="res://Scenes/level_2.tscn" id="12_pdmgb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yytvd"]
+atlas = ExtResource("4_2jeek")
+region = Rect2(0, 0, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b6ve"]
+atlas = ExtResource("4_2jeek")
+region = Rect2(32, 0, 32, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m620h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yytvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3b6ve")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neuul"]
+atlas = ExtResource("5_yytvd")
+region = Rect2(0, 0, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m620h"]
+atlas = ExtResource("5_yytvd")
+region = Rect2(32, 0, 32, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3b6ve"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_neuul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m620h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkon5"]
+atlas = ExtResource("7_3b6ve")
+region = Rect2(0, 0, 64, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6kdx"]
+atlas = ExtResource("7_3b6ve")
+region = Rect2(64, 0, 64, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vty50"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkon5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6kdx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkrcq"]
+atlas = ExtResource("7_m620h")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_el8jc"]
+atlas = ExtResource("7_m620h")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qkon5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkrcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_el8jc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nh7xm"]
 texture = ExtResource("2_nw7js")
@@ -137,7 +230,139 @@ size = Vector2(326, 68)
 [node name="Level_1" instance=ExtResource("1_nw7js")]
 script = ExtResource("2_pdmgb")
 
-[node name="TopBar" parent="Control/ParallaxBackground" index="3" instance=ExtResource("2_ptpgp")]
+[node name="TopBar2" parent="Control/ParallaxBackground" index="3" instance=ExtResource("3_pdmgb")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" index="1"]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 384.0
+offset_right = 428.0
+offset_bottom = 419.0
+
+[node name="Use" type="Label" parent="Control/HBoxContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("4_neuul")
+text = "Use"
+
+[node name="Control" type="Control" parent="Control/HBoxContainer" index="1"]
+custom_minimum_size = Vector2(32, 35)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="A-Key" type="AnimatedSprite2D" parent="Control/HBoxContainer/Control" index="0"]
+sprite_frames = SubResource("SpriteFrames_m620h")
+autoplay = "default"
+centered = false
+
+[node name="and" type="Label" parent="Control/HBoxContainer" index="2"]
+layout_mode = 2
+theme = ExtResource("4_neuul")
+text = "and"
+
+[node name="Control2" type="Control" parent="Control/HBoxContainer" index="3"]
+custom_minimum_size = Vector2(32, 35)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="D-Key" type="AnimatedSprite2D" parent="Control/HBoxContainer/Control2" index="0"]
+sprite_frames = SubResource("SpriteFrames_3b6ve")
+autoplay = "default"
+centered = false
+
+[node name="to move left and right" type="Label" parent="Control/HBoxContainer" index="4"]
+layout_mode = 2
+theme = ExtResource("4_neuul")
+text = "to move left and right"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control" index="2"]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 469.0
+offset_right = 732.0
+offset_bottom = 504.0
+
+[node name="Use" type="Label" parent="Control/HBoxContainer3" index="0"]
+layout_mode = 2
+theme = ExtResource("4_neuul")
+text = "Hold"
+
+[node name="Control" type="Control" parent="Control/HBoxContainer3" index="1"]
+custom_minimum_size = Vector2(64, 35)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/HBoxContainer3/Control" index="0"]
+sprite_frames = SubResource("SpriteFrames_vty50")
+autoplay = "default"
+centered = false
+
+[node name="to do a charged jump" type="Label" parent="Control/HBoxContainer3" index="2"]
+layout_mode = 2
+theme = ExtResource("4_neuul")
+text = "to do a charged jump"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control" index="3"]
+layout_mode = 2
+offset_left = 933.0
+offset_top = 494.0
+offset_right = 1298.0
+offset_bottom = 529.0
+
+[node name="Hold" type="Label" parent="Control/HBoxContainer2" index="0"]
+layout_mode = 2
+theme = ExtResource("4_neuul")
+text = "Hold"
+
+[node name="Control" type="Control" parent="Control/HBoxContainer2" index="1"]
+custom_minimum_size = Vector2(32, 35)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/HBoxContainer2/Control" index="0"]
+position = Vector2(-9, -7)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qkon5")
+autoplay = "default"
+centered = false
+
+[node name="to hang from lianas and swing" type="Label" parent="Control/HBoxContainer2" index="2"]
+layout_mode = 2
+theme = ExtResource("4_neuul")
+text = "to hang from lianas and swing"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control" index="4"]
+layout_mode = 2
+offset_left = 1440.0
+offset_top = 389.0
+offset_right = 1818.0
+offset_bottom = 424.0
+
+[node name="Use your toungue with" type="Label" parent="Control/HBoxContainer4" index="0"]
+layout_mode = 2
+theme = ExtResource("4_neuul")
+text = "Use your toungue with"
+
+[node name="Control" type="Control" parent="Control/HBoxContainer4" index="1"]
+custom_minimum_size = Vector2(32, 35)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/HBoxContainer4/Control" index="0"]
+position = Vector2(-9, -7)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qkon5")
+autoplay = "default"
+centered = false
+
+[node name="to eat flies" type="Label" parent="Control/HBoxContainer4" index="2"]
+layout_mode = 2
+theme = ExtResource("4_neuul")
+text = "to eat flies"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." index="1"]
 tile_map_data = PackedByteArray("AAALAAkAAgABAAAAAAAMAAkAAgABAAAAAAANAAkAAgABAAAAAAAPAAUAAgAKAAAAAAAQAAUAAgALAAAAAAARAAUAAgALAAAAAAASAAUAAgALAAAAAAATAAUAAgAMAAAAAAAVAAkAAgABAAAAAAAWAAkAAgABAAAAAAAXAAkAAgABAAAAAAAYAAkAAgABAAAAAAAZAAkAAgABAAAAAAAaAAkAAgABAAAAAAAbAAkAAgABAAAAAAAcAAkAAgABAAAAAAAdAAkAAgABAAAAAAAeAAkAAgABAAAAAAAfAAkAAgABAAAAAAAgAAkAAgABAAAAAAAhAAkAAgABAAAAAAD//wEAAgAGAAAAAAD//wIAAgAGAAAAAAD//wMAAgAGAAAAAAD//wQAAgAGAAAAAAD//wUAAgAGAAAAAAD//wYAAgAGAAAAAAD//wcAAgAGAAAAAAD//wgAAgAGAAAAAAD//wkAAgAGAAAAAAAHAAkAAgACAAAAAAAOAAkAAgAEAAAAAAAiAAkAAgAFAAAAAAAiAAgAAgAFAAAAAAAiAAcAAgAFAAAAAAAiAAYAAgAFAAAAAAAiAAUAAgAFAAAAAAAiAAQAAgAFAAAAAAAiAAMAAgAFAAAAAAAiAAIAAgAFAAAAAAAiAAEAAgAFAAAAAAAiAAAAAgAFAAAAAAAUAAkAAgADAAAAAAAKAAkAAgADAAAAAAAAAAkAAgABAAAAAAABAAkAAgABAAAAAAACAAkAAgABAAAAAAADAAkAAgABAAAAAAAEAAkAAgABAAAAAAAFAAkAAgABAAAAAAAGAAkAAgABAAAAAAA=")
@@ -158,10 +383,10 @@ visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -135.0
-offset_top = -250.0
-offset_right = 121.0
-offset_bottom = -218.0
+offset_left = -240.0
+offset_top = -285.0
+offset_right = 272.0
+offset_bottom = -221.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

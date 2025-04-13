@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cdlpahubyn0p2" path="res://Scenes/homeButton.tscn" id="3_uhww6"]
 
 [node name="TopBar" type="CanvasLayer"]
+offset = Vector2(0, 8)
+transform = Transform2D(1, 0, 0, 1, 0, 8)
 
 [node name="e" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(1280, 68)
@@ -14,7 +16,7 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="spacer" type="Control" parent="e"]
-custom_minimum_size = Vector2(32, 0)
+custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 
@@ -48,6 +50,6 @@ size_flags_vertical = 0
 [node name="homeButton" parent="e/home button Container" instance=ExtResource("3_uhww6")]
 
 [node name="spacer4" type="Control" parent="e"]
-custom_minimum_size = Vector2(32, 0)
+custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 size_flags_horizontal = 8
