@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="8_k6xtq"]
 [ext_resource type="Texture2D" uid="uid://ud08rinlct82" path="res://Assets/UI/sliderBg.png" id="8_m08rq"]
 [ext_resource type="PackedScene" uid="uid://dr446e57nqaps" path="res://Scenes/level_4.tscn" id="9_dvi3f"]
-[ext_resource type="PackedScene" uid="uid://440tdqj5o1an" path="res://Scenes/top_bar.tscn" id="9_k6xtq"]
+[ext_resource type="PackedScene" uid="uid://cmimphe0urnop" path="res://Scenes/top_bar.tscn" id="9_k6xtq"]
 [ext_resource type="Texture2D" uid="uid://bmbeubcypcpub" path="res://Assets/UI/slider.png" id="9_kqn1a"]
 [ext_resource type="AudioStream" uid="uid://bid2ckfllciwq" path="res://Assets/Sound/frog-loop.mp3" id="11_151xs"]
 

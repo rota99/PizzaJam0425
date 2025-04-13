@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ud08rinlct82" path="res://Assets/UI/sliderBg.png" id="5_vcilj"]
 [ext_resource type="Texture2D" uid="uid://bmbeubcypcpub" path="res://Assets/UI/slider.png" id="6_bl0du"]
 [ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="6_cggpd"]
-[ext_resource type="PackedScene" uid="uid://440tdqj5o1an" path="res://Scenes/top_bar.tscn" id="8_42uki"]
+[ext_resource type="PackedScene" uid="uid://cmimphe0urnop" path="res://Scenes/top_bar.tscn" id="8_42uki"]
 [ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="9_t7v2y"]
 [ext_resource type="PackedScene" uid="uid://cv0myv16c83lx" path="res://Scenes/Level_3.tscn" id="10_42uki"]
 [ext_resource type="AudioStream" uid="uid://bid2ckfllciwq" path="res://Assets/Sound/frog-loop.mp3" id="11_t7v2y"]
@@ -201,7 +201,7 @@ shape = SubResource("RectangleShape2D_0s5r2")
 position = Vector2(2558.75, 225.5)
 shape = SubResource("RectangleShape2D_7j8ne")
 
-[node name="CanvasLayer" parent="." instance=ExtResource("8_42uki")]
+[node name="TopBar" parent="." instance=ExtResource("8_42uki")]
 
 [node name="Door" parent="." instance=ExtResource("9_t7v2y")]
 position = Vector2(3142, 266)

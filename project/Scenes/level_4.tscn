@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="5_f6i20"]
 [ext_resource type="Texture2D" uid="uid://bmbeubcypcpub" path="res://Assets/UI/slider.png" id="6_3v663"]
 [ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="6_dvrgg"]
-[ext_resource type="PackedScene" uid="uid://440tdqj5o1an" path="res://Scenes/top_bar.tscn" id="7_5a8oa"]
+[ext_resource type="PackedScene" uid="uid://cmimphe0urnop" path="res://Scenes/top_bar.tscn" id="7_5a8oa"]
 [ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="8_3ntyy"]
 [ext_resource type="PackedScene" uid="uid://1sdwll06de4c" path="res://Scenes/level_5.tscn" id="9_3ntyy"]
 [ext_resource type="AudioStream" uid="uid://bid2ckfllciwq" path="res://Assets/Sound/frog-loop.mp3" id="10_7huqf"]

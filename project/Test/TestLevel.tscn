@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddhqukiq8iwew"]
+[gd_scene load_steps=9 format=3 uid="uid://ddhqukiq8iwew"]
 
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="1_r6w77"]
 [ext_resource type="Script" uid="uid://cs1c5drhe84lu" path="res://Scripts/level_manager.gd" id="1_wq6it"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bb0ncclj0xjj8" path="res://UI_Components/fliesCounter.tscn" id="5_jrogq"]
 [ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="6_mbotg"]
 [ext_resource type="PackedScene" uid="uid://ll6nkiw7h0lb" path="res://Scenes/level_2.tscn" id="7_mbotg"]
-[ext_resource type="Texture2D" uid="uid://c2tm836batany" path="res://Test/test_toad.png" id="8_mbotg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6w77"]
 size = Vector2(313, 27)
@@ -126,4 +125,3 @@ position = Vector2(1, 0)
 [node name="Door" parent="." instance=ExtResource("6_mbotg")]
 position = Vector2(571, 323)
 next_scene = ExtResource("7_mbotg")
-opened_texture = ExtResource("8_mbotg")

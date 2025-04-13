@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://440tdqj5o1an"]
+[gd_scene load_steps=5 format=3 uid="uid://cmimphe0urnop"]
 
 [ext_resource type="PackedScene" uid="uid://bb0ncclj0xjj8" path="res://UI_Components/fliesCounter.tscn" id="1_t3rmf"]
 [ext_resource type="PackedScene" uid="uid://dp7xqjifxodfs" path="res://Scenes/restartLevelButton.tscn" id="2_jit6v"]
