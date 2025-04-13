@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp7xqjifxodfs"]
+
+[ext_resource type="Script" uid="uid://ykjb7fv1c1gd" path="res://Scripts/restart_level_button.gd" id="1_d647y"]
+[ext_resource type="Theme" uid="uid://dn2l0jekt5sq8" path="res://Themes/Button.tres" id="1_u5n51"]
+[ext_resource type="Texture2D" uid="uid://dvbknjih4ebei" path="res://Assets/Icons/reload_icon.png" id="2_d647y"]
+
+[node name="RestartLevel" type="Node2D"]
+script = ExtResource("1_d647y")
+
+[node name="restartButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 68)
+offset_right = 72.0
+offset_bottom = 68.0
+theme = ExtResource("1_u5n51")
+icon = ExtResource("2_d647y")
+icon_alignment = 1
+
+[connection signal="pressed" from="restartButton" to="." method="_on_restart_button_pressed"]
