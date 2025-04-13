@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="3_hproo"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="4_ip5ew"]
 [ext_resource type="Texture2D" uid="uid://c76u0kblhv1oq" path="res://Assets/Art/pixilart-sprite.png" id="5_mb3x2"]
-[ext_resource type="Script" path="res://Scripts/fish.gd" id="6_mb3x2"]
+[ext_resource type="Script" uid="uid://dxayshrw8tbc5" path="res://Scripts/fish.gd" id="6_mb3x2"]
 [ext_resource type="Texture2D" uid="uid://djo36123bt0yg" path="res://Enemy/Pesce.png" id="7_02esc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hproo"]
