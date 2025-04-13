@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://cth6ao14r17qx"]
+
+[ext_resource type="Script" uid="uid://bmmy0nge8nwl5" path="res://Scripts/final_scene.gd" id="1_a03to"]
+[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_j8pgl"]
+[ext_resource type="PackedScene" uid="uid://bkgtcr3bqmyb4" path="res://Scenes/mainPage.tscn" id="2_1paco"]
+[ext_resource type="Texture2D" uid="uid://48ju82qcb7b2" path="res://Assets/UI/defaultButton.png" id="3_smg6b"]
+[ext_resource type="FontFile" uid="uid://ycdwyforo1hq" path="res://Assets/Fonts/GrapeSoda.ttf" id="4_crsqm"]
+[ext_resource type="AudioStream" uid="uid://bid2ckfllciwq" path="res://Assets/Sound/frog-loop.mp3" id="4_f5lcu"]
+[ext_resource type="Theme" uid="uid://dn2l0jekt5sq8" path="res://Themes/Button.tres" id="5_a03to"]
+
+[node name="Final Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a03to")
+mainScene = ExtResource("2_1paco")
+
+[node name="Node2D" parent="." instance=ExtResource("1_j8pgl")]
+
+[node name="Bg_music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_f5lcu")
+autoplay = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.5
+offset_top = -177.0
+offset_right = 270.5
+offset_bottom = 177.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_smg6b")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.184314, 0.0980392, 0.054902, 1)
+theme_override_fonts/normal_font = ExtResource("4_crsqm")
+theme_override_font_sizes/normal_font_size = 35
+text = "Despite the curse of the wizard, 
+Froggy managed to make it 
+back home!!
+
+Thank you for playing!!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="main menu button" type="Button" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("5_a03to")
+text = "Back to main menu"
+
+[node name="Control3" type="Control" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/main menu button" to="." method="_on_main_menu_button_pressed"]

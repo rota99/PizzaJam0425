@@ -1,11 +1,18 @@
-[gd_scene load_steps=12 format=4 uid="uid://cv0myv16c83lx"]
+[gd_scene load_steps=21 format=4 uid="uid://cv0myv16c83lx"]
 
 [ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_s0xyj"]
 [ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_38glg"]
+[ext_resource type="Script" uid="uid://cs1c5drhe84lu" path="res://Scripts/level_manager.gd" id="2_ale0u"]
 [ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="2_ccifb"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="3_ccifb"]
 [ext_resource type="PackedScene" uid="uid://c5tg8eaxgjbbd" path="res://Entities/Enemies/fly.tscn" id="4_ccifb"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="4_y5hg5"]
+[ext_resource type="PackedScene" uid="uid://c6gfcxbxwr4cb" path="res://Scenes/door.tscn" id="8_k6xtq"]
+[ext_resource type="Texture2D" uid="uid://ud08rinlct82" path="res://Assets/UI/sliderBg.png" id="8_m08rq"]
+[ext_resource type="PackedScene" uid="uid://dr446e57nqaps" path="res://Scenes/level_4.tscn" id="9_dvi3f"]
+[ext_resource type="PackedScene" uid="uid://440tdqj5o1an" path="res://Scenes/top_bar.tscn" id="9_k6xtq"]
+[ext_resource type="Texture2D" uid="uid://bmbeubcypcpub" path="res://Assets/UI/slider.png" id="9_kqn1a"]
+[ext_resource type="AudioStream" uid="uid://bid2ckfllciwq" path="res://Assets/Sound/frog-loop.mp3" id="11_151xs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y5hg5"]
 texture = ExtResource("2_ccifb")
@@ -107,6 +114,20 @@ physics_layer_0/collision_layer = 1
 sources/4 = SubResource("TileSetAtlasSource_cn1le")
 sources/0 = SubResource("TileSetAtlasSource_y5hg5")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ope7d"]
+texture = ExtResource("8_m08rq")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qe2l3"]
+texture = ExtResource("9_kqn1a")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q17kt"]
 size = Vector2(1631, 95)
 
@@ -114,6 +135,7 @@ size = Vector2(1631, 95)
 size = Vector2(326, 68)
 
 [node name="Level_3" instance=ExtResource("1_s0xyj")]
+script = ExtResource("2_ale0u")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." index="1"]
 tile_map_data = PackedByteArray("AAAAAAkAAAABAAAAAAABAAkAAAABAAAAAAACAAkAAAABAAAAAAADAAkAAAABAAAAAAAEAAkAAAABAAAAAAAFAAkAAAABAAAAAAAGAAkAAAABAAAAAAAHAAkAAAAEAAAAAAAKAAkAAAADAAAAAAALAAkAAAABAAAAAAAMAAkAAAABAAAAAAANAAkAAAABAAAAAAAOAAkAAAAEAAAAAAAPAAUAAAAKAAAAAAAQAAUAAAALAAAAAAARAAUAAAALAAAAAAASAAUAAAALAAAAAAATAAUAAAAMAAAAAAAUAAkAAAADAAAAAAAVAAkAAAABAAAAAAAWAAkAAAABAAAAAAAXAAkAAAABAAAAAAAYAAkAAAABAAAAAAAZAAkAAAABAAAAAAAaAAkAAAABAAAAAAAbAAkAAAABAAAAAAAcAAkAAAABAAAAAAAdAAkAAAABAAAAAAAeAAkAAAABAAAAAAAfAAkAAAABAAAAAAAgAAkAAAABAAAAAAAhAAkAAAABAAAAAAD//wkAAAAGAAAAAAD//wgAAAAGAAAAAAD//wcAAAAGAAAAAAD//wYAAAAGAAAAAAD//wUAAAAGAAAAAAD//wQAAAAGAAAAAAD//wMAAAAGAAAAAAD//wIAAAAGAAAAAAD//wEAAAAGAAAAAAAiAAkAAAAFAAAAAAAiAAgAAAAFAAAAAAAiAAcAAAAFAAAAAAAiAAYAAAAFAAAAAAAiAAUAAAAFAAAAAAAiAAQAAAAFAAAAAAAiAAMAAAAFAAAAAAAiAAIAAAAFAAAAAAAiAAEAAAAFAAAAAAAiAAAAAAAFAAAAAAA=")
@@ -129,20 +151,28 @@ TONGUE_EXTEND_SPEED = 3000.0
 TONGUE_RETRACT_SPEED = 3500.0
 _jump_charging_bar = NodePath("HealthBar")
 
-[node name="HealthBar" parent="CharacterBody2D" index="5" instance=ExtResource("4_y5hg5")]
-visible = false
-offset_left = -106.667
-offset_top = -240.0
-offset_right = -6.66667
-offset_bottom = -230.0
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" index="6"]
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" index="5"]
 limit_left = 0
 limit_top = -1000
 limit_right = 2177
 limit_bottom = 640
 limit_smoothed = true
 editor_draw_limits = true
+
+[node name="HealthBar" parent="CharacterBody2D" index="9" instance=ExtResource("4_y5hg5")]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = -285.0
+offset_right = 272.0
+offset_bottom = -221.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxTexture_ope7d")
+theme_override_styles/fill = SubResource("StyleBoxTexture_qe2l3")
 
 [node name="FallZone" type="Area2D" parent="." index="3"]
 
@@ -163,5 +193,14 @@ offset_right = 670.0
 offset_bottom = 225.0
 text = "Stesso livello del tutorial ma con i tasti cambiati (random KeyMap)"
 wrap_mode = 1
+
+[node name="Door" parent="." index="6" instance=ExtResource("8_k6xtq")]
+position = Vector2(2062, 522)
+next_scene = ExtResource("9_dvi3f")
+
+[node name="CanvasLayer" parent="." index="7" instance=ExtResource("9_k6xtq")]
+
+[node name="Bg_Music" type="AudioStreamPlayer2D" parent="." index="8"]
+stream = ExtResource("11_151xs")
 
 [connection signal="body_entered" from="FallZone" to="CharacterBody2D" method="_on_fall_zone_body_entered"]
