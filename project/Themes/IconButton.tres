@@ -1,33 +1,33 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dn2l0jekt5sq8"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://ds1jrijc6hhqw"]
 
-[ext_resource type="FontFile" uid="uid://ycdwyforo1hq" path="res://Assets/Fonts/GrapeSoda.ttf" id="1_3uj03"]
-[ext_resource type="Texture2D" uid="uid://dwkbotowaknwa" path="res://Assets/UI/hoverButton.png" id="2_akos5"]
-[ext_resource type="Texture2D" uid="uid://frk8jja54viy" path="res://Assets/UI/focusButton.png" id="2_m8r5b"]
-[ext_resource type="Texture2D" uid="uid://48ju82qcb7b2" path="res://Assets/UI/defaultButton.png" id="3_m8r5b"]
+[ext_resource type="FontFile" uid="uid://ycdwyforo1hq" path="res://Assets/Fonts/GrapeSoda.ttf" id="1_r3w7l"]
+[ext_resource type="Texture2D" uid="uid://frk8jja54viy" path="res://Assets/UI/focusButton.png" id="2_cl8dg"]
+[ext_resource type="Texture2D" uid="uid://dwkbotowaknwa" path="res://Assets/UI/hoverButton.png" id="3_2dato"]
+[ext_resource type="Texture2D" uid="uid://48ju82qcb7b2" path="res://Assets/UI/defaultButton.png" id="4_cdqc5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m8r5b"]
-texture = ExtResource("2_m8r5b")
+texture = ExtResource("2_cl8dg")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
 texture_margin_right = 10.0
 texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_poi7d"]
-texture = ExtResource("2_akos5")
+texture = ExtResource("3_2dato")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
 texture_margin_right = 10.0
 texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_akos5"]
-texture = ExtResource("3_m8r5b")
+texture = ExtResource("4_cdqc5")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
 texture_margin_right = 10.0
 texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l56b2"]
-texture = ExtResource("3_m8r5b")
+texture = ExtResource("4_cdqc5")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
 texture_margin_right = 10.0
@@ -41,7 +41,7 @@ Button/colors/font_hover_pressed_color = Color(0.184314, 0.0980392, 0.054902, 1)
 Button/colors/font_outline_color = Color(1, 1, 1, 0)
 Button/colors/font_pressed_color = Color(0.184314, 0.0980392, 0.054902, 1)
 Button/font_sizes/font_size = 35
-Button/fonts/font = ExtResource("1_3uj03")
+Button/fonts/font = ExtResource("1_r3w7l")
 Button/styles/focus = SubResource("StyleBoxTexture_m8r5b")
 Button/styles/hover = SubResource("StyleBoxTexture_poi7d")
 Button/styles/normal = SubResource("StyleBoxTexture_akos5")
