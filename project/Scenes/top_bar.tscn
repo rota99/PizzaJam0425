@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://440tdqj5o1an"]
+[gd_scene load_steps=5 format=3 uid="uid://440tdqj5o1an"]
 
 [ext_resource type="PackedScene" uid="uid://bb0ncclj0xjj8" path="res://UI_Components/fliesCounter.tscn" id="1_t3rmf"]
 [ext_resource type="PackedScene" uid="uid://dp7xqjifxodfs" path="res://Scenes/restartLevelButton.tscn" id="2_jit6v"]
 [ext_resource type="PackedScene" uid="uid://cdlpahubyn0p2" path="res://Scenes/homeButton.tscn" id="3_uhww6"]
+[ext_resource type="PackedScene" uid="uid://bkgtcr3bqmyb4" path="res://Scenes/mainPage.tscn" id="4_jit6v"]
 
 [node name="TopBar" type="CanvasLayer"]
 offset = Vector2(0, 8)
@@ -48,6 +49,7 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="homeButton" parent="e/home button Container" instance=ExtResource("3_uhww6")]
+mainPageScene = ExtResource("4_jit6v")
 
 [node name="spacer4" type="Control" parent="e"]
 custom_minimum_size = Vector2(8, 0)
