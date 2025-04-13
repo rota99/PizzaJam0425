@@ -187,7 +187,7 @@ tile_set = SubResource("TileSet_xmx8b")
 position = Vector2(1636, 481)
 
 [node name="Player" parent="." index="2" node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("3_j0k67")]
-position = Vector2(63, 538)
+position = Vector2(53, 572)
 scale = Vector2(0.2, 0.2)
 TONGUE_EXTEND_SPEED = 3500.0
 TONGUE_RETRACT_SPEED = 3500.0
@@ -198,11 +198,12 @@ visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -135.0
-offset_top = -250.0
-offset_right = 121.0
-offset_bottom = -218.0
+offset_left = -189.515
+offset_top = -133.169
+offset_right = 66.4847
+offset_bottom = -101.169
 grow_horizontal = 2
+rotation = -0.409845
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxTexture_2uqsa")
