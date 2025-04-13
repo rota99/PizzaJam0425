@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ce1ahkta7cw81"]
+[gd_scene load_steps=10 format=3 uid="uid://dme0h1ucii2v3"]
 
 [ext_resource type="Texture2D" uid="uid://48ju82qcb7b2" path="res://Assets/UI/defaultButton.png" id="1_2fjng"]
 [ext_resource type="Script" uid="uid://niqjghhe1pt0" path="res://Scripts/wizard_scene.gd" id="1_omx5t"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://dtwrhd8ha3cqe" path="res://Themes/LabelFlies.tres" id="2_omx5t"]
 [ext_resource type="FontFile" uid="uid://ycdwyforo1hq" path="res://Assets/Fonts/GrapeSoda.ttf" id="3_k4f54"]
 [ext_resource type="Theme" uid="uid://dn2l0jekt5sq8" path="res://Themes/Button.tres" id="4_daa6b"]
+[ext_resource type="AudioStream" uid="uid://c84as275a56m4" path="res://Assets/Sound/frog kin mage.mp3" id="7_daa6b"]
 
 [sub_resource type="Gradient" id="Gradient_bot3d"]
 colors = PackedColorArray(0, 0, 0, 1, 0.0243567, 0.0758661, 0.177678, 1)
@@ -128,5 +129,9 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("4_daa6b")
 text = "Next"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_daa6b")
+autoplay = true
 
 [connection signal="pressed" from="Control/Next button" to="." method="_on_next_button_pressed"]

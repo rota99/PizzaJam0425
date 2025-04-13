@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://mmnjki8ajgjp"]
+[gd_scene load_steps=8 format=3 uid="uid://mmnjki8ajgjp"]
 
 [ext_resource type="Texture2D" uid="uid://c2tm836batany" path="res://Test/test_toad.png" id="1_3ikt3"]
 [ext_resource type="Script" uid="uid://dgkeuy42spmha" path="res://Scripts/CharacterMovement.gd" id="1_vom0u"]
 [ext_resource type="Texture2D" uid="uid://d2ugkqhimkd8m" path="res://icon.svg" id="3_k67vw"]
 [ext_resource type="AudioStream" uid="uid://smfta25isbtp" path="res://Assets/Sound/sfx_jump_07-80241.mp3" id="4_jrfqc"]
 [ext_resource type="AudioStream" uid="uid://bn1c3diyfoga2" path="res://Assets/Sound/falling-bomb-41038.mp3" id="5_3scws"]
+[ext_resource type="AudioStream" uid="uid://b14y58ysm4apb" path="res://Assets/Sound/bubble-pop-4-323580.mp3" id="6_3scws"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5w4xs"]
 animations = [{
@@ -53,3 +54,4 @@ stream = ExtResource("4_jrfqc")
 stream = ExtResource("5_3scws")
 
 [node name="EatenSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_3scws")
