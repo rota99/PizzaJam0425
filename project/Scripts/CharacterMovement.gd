@@ -82,8 +82,16 @@ func _physics_process(delta: float) -> void:
 
 func _on_fall_zone_body_entered(body: Node2D) -> void:
 	if body == self: 
+		$FallingSound.play()
+		await get_tree().create_timer(1).timeout
 		get_tree().reload_current_scene()
 	
+func _on_fish_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		$EatenSound.play()
+		await get_tree().create_timer(1).timeout
+		get_tree().reload_current_scene()
+
 ## INPUT HANDLING ==============================================================
 
 func _handle_movement_input() -> void:
@@ -139,6 +147,7 @@ func _handle_jump_charging(delta: float) -> void:
 		if Input.is_action_just_released(jump_action):
 			_jump_charging_bar.hide()
 			_execute_jump()
+			$JumpSound.play()
 			
 		_update_charging_jump_bar()
 	else:
@@ -321,10 +330,5 @@ func set_character_control(enabled: bool) -> void:
 	if not enabled:
 		_reset_jump_state()
 
-
-func _on_fish_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		get_tree().reload_current_scene()
-		
 func confuse_control() -> void:
 	_confuse_controls()

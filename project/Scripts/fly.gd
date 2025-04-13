@@ -38,6 +38,7 @@ func _process(delta: float) -> void:
 func _die() -> void:
 	emit_signal("enemy_died")
 	animated_sprite.play("fly_dies")
+	$DieSound.play()
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if condammed:

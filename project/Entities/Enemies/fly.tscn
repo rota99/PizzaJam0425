@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5tg8eaxgjbbd"]
+[gd_scene load_steps=6 format=3 uid="uid://c5tg8eaxgjbbd"]
 
 [ext_resource type="Script" uid="uid://cbtrnxodmvqv0" path="res://Scripts/fly.gd" id="1_qno0w"]
 [ext_resource type="SpriteFrames" uid="uid://1y0mlm1duqu4" path="res://Entities/Enemies/EnemiesAnimations/fly_animations.tres" id="3_8wikd"]
+[ext_resource type="AudioStream" uid="uid://cv7mi5s507nnq" path="res://Assets/Sound/cartoon-splat-6086.mp3" id="3_j500f"]
 
 [sub_resource type="GDScript" id="GDScript_qno0w"]
 script/source = "extends RigidBody2D
@@ -41,5 +42,8 @@ position = Vector2(1, -1)
 rotation = 1.5708
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_iihxi")
+
+[node name="DieSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_j500f")
 
 [connection signal="animation_looped" from="Path2D/PathFollow2D/RigidBody2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

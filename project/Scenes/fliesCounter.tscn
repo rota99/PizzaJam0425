@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2ntnbldxbpd"]
+[gd_scene load_steps=5 format=3 uid="uid://jcr1uudc5ye6"]
 
 [ext_resource type="Script" uid="uid://b18b1bbq64pke" path="res://Scripts/flies_counter.gd" id="1_08blv"]
 [ext_resource type="Texture2D" uid="uid://48ju82qcb7b2" path="res://Assets/UI/defaultButton.png" id="1_sgxw0"]
