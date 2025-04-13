@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://mmnjki8ajgjp"]
+[gd_scene load_steps=16 format=3 uid="uid://mmnjki8ajgjp"]
 
 [ext_resource type="Script" uid="uid://dgkeuy42spmha" path="res://Scripts/CharacterMovement.gd" id="1_vom0u"]
 [ext_resource type="Texture2D" uid="uid://cr6thfkg1l8uk" path="res://Assets/Art/Rana-close.png" id="2_np3t2"]
+[ext_resource type="Texture2D" uid="uid://d2ugkqhimkd8m" path="res://icon.svg" id="3_k67vw"]
 [ext_resource type="Texture2D" uid="uid://d0mrb6kn505dn" path="res://Assets/Art/Rana-open.png" id="3_w4nli"]
 [ext_resource type="AudioStream" uid="uid://smfta25isbtp" path="res://Assets/Sound/sfx_jump_07-80241.mp3" id="4_jrfqc"]
 [ext_resource type="Texture2D" uid="uid://y15si213b2gd" path="res://Assets/Art/Rana1-salto.png" id="4_r3a8w"]
@@ -82,7 +83,7 @@ script = ExtResource("1_vom0u")
 rotation = 0.453786
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_5w4xs")
-animation = &"idle"
+animation = &"jump"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 200)
@@ -92,9 +93,13 @@ collide_with_areas = true
 visible = false
 width = 40.0
 default_color = Color(0.922933, 0.267786, 0, 1)
-texture_mode = 2
 
 [node name="TongueTip" type="Marker2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="TongueTip"]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_k67vw")
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_jrfqc")
