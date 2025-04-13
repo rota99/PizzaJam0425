@@ -30,8 +30,14 @@ extends CharacterBody2D
 @export var move_right_action := "move_right"
 @export var tongue_action := "tongue"
 
+##VISUAL PARAMETERS ============================================================
+var tongue_texture_low: Texture2D = load("res://Assets/Art/Lingua1.png")
+var tongue_texture_mid: Texture2D = load("res://Assets/Art/Lingua2.png")
+var tongue_texture_high: Texture2D = load("res://Assets/Art/Lingua3.png")
+
 ## STATE VARIABLES =============================================================
 var _is_charging_jump := false
+var _is_jumping := false
 var _jump_charge_time := 0.0
 var _has_control := true #In caso ci serva
 
@@ -81,7 +87,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_fall_zone_body_entered(body: Node2D) -> void:
-	if body == self: 
+	if body == self:
 		$FallingSound.play()
 		await get_tree().create_timer(1).timeout
 		get_tree().reload_current_scene()
@@ -131,6 +137,8 @@ func _apply_gravity(delta: float) -> void:
 
 func _handle_jump_charging(delta: float) -> void:
 	if is_on_floor():
+		if _is_jumping:
+			_is_jumping = false
 		  # Start charging
 		if Input.is_action_just_pressed(jump_action):
 			_is_charging_jump = true
@@ -154,6 +162,8 @@ func _handle_jump_charging(delta: float) -> void:
 		_is_charging_jump = false
 
 func _execute_jump() -> void:
+	_is_jumping = true
+	$AnimatedSprite2D.play("jump")
 	var charge_ratio = _jump_charge_time / MAX_JUMP_CHARGE_TIME
 	velocity.y = lerp(MIN_JUMP_FORCE, MAX_JUMP_FORCE, charge_ratio)
 	_reset_jump_state()
@@ -294,13 +304,14 @@ func _update_character_direction() -> void:
 	elif direction < 0:
 		$AnimatedSprite2D.rotation_degrees = 150.4
 		$AnimatedSprite2D.flip_v = true
-
-	if direction != 0:
-			# La scala del collison shape del personaggio DEVE essere sempre (1,1)
-		$CollisionShape2D.scale.x = sign(direction) * 1 
-		$AnimatedSprite2D.play("move")
-	else:
-		$AnimatedSprite2D.play("idle")
+	
+	if ! _is_jumping:
+		if direction != 0:
+				# La scala del collison shape del personaggio DEVE essere sempre (1,1)
+			$CollisionShape2D.scale.x = sign(direction) * 1
+			$AnimatedSprite2D.play("move")
+		else:
+			$AnimatedSprite2D.play("idle")
 
 func _update_charging_jump_bar() -> void:
 	if not _has_control:
@@ -313,6 +324,15 @@ func _show_tongue():
 	
 func _update_tongue_visual():
 	if _tongue_state == TongueState.RETRACTED: return
+	
+	# Aggiorna la texture della lingua in base alla lunghezza corrente
+	var third = _tongue_initial_distance_target / 3.0
+	if _current_tongue_length < third:
+		$Tongue.texture = tongue_texture_low
+	elif _current_tongue_length < 2 * third:
+		$Tongue.texture = tongue_texture_mid
+	else:
+		$Tongue.texture = tongue_texture_high
 	
 	match _tongue_state:
 		TongueState.EXTENDING:
@@ -331,7 +351,7 @@ func _update_tongue_visual():
 		TongueState.ATTACHED:
 			$Tongue.set_point_position(1, to_local(_tongue_hit_point))
 			$TongueTip.position = to_local(_tongue_hit_point)
-	
+			
 	$Tongue.width = lerp(TONGUE_WIDTH, MIN_TONGUE_WIDTH, _current_tongue_length/MAX_TONGUE_LENGTH)
 
 ## PUBLIC API ==================================================================
