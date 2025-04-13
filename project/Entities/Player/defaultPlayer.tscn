@@ -19,17 +19,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_np3t2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_w4nli")
-}],
-"loop": true,
-"name": &"Action",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_np3t2")
 }],
 "loop": true,
 "name": &"idle",
@@ -68,11 +57,19 @@ animations = [{
 "loop": true,
 "name": &"move",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_w4nli")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bji2c"]
-radius = 68.0462
-height = 218.527
+radius = 58.0809
+height = 192.635
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 position = Vector2(3, 0)
@@ -83,7 +80,7 @@ script = ExtResource("1_vom0u")
 rotation = 0.453786
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_5w4xs")
-animation = &"jump"
+animation = &"open"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 200)
@@ -110,6 +107,6 @@ stream = ExtResource("5_3scws")
 [node name="EatenSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-6, -6)
-rotation = 0.914312
+position = Vector2(0, -18)
+rotation = 1.59542
 shape = SubResource("CapsuleShape2D_bji2c")
