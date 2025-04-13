@@ -160,6 +160,7 @@ size_flags_horizontal = 3
 [node name="restart level button Container" type="Control" parent="Control/ParallaxBackground/TopBar" index="3"]
 custom_minimum_size = Vector2(52, 52)
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="RestartLevel" parent="Control/ParallaxBackground/TopBar/restart level button Container" index="0" instance=ExtResource("3_ptpgp")]
 
@@ -171,6 +172,7 @@ size_flags_horizontal = 8
 [node name="home button Container" type="Control" parent="Control/ParallaxBackground/TopBar" index="5"]
 custom_minimum_size = Vector2(52, 52)
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="homeButton" parent="Control/ParallaxBackground/TopBar/home button Container" index="0" instance=ExtResource("4_2uqsa")]
 
