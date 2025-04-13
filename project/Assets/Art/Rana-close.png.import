@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbj1t1ur4h0ke"
-path="res://.godot/imported/pixilart-sprite.png-de66a0b8033e2929cdbdb7627521b798.ctex"
+uid="uid://cr6thfkg1l8uk"
+path="res://.godot/imported/Rana-close.png-d796d354acbf69dbdb19897d841f8998.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/pixilart-sprite.png"
-dest_files=["res://.godot/imported/pixilart-sprite.png-de66a0b8033e2929cdbdb7627521b798.ctex"]
+source_file="res://Assets/Art/Rana-close.png"
+dest_files=["res://.godot/imported/Rana-close.png-d796d354acbf69dbdb19897d841f8998.ctex"]
 
 [params]
 

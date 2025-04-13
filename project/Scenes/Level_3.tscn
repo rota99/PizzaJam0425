@@ -1,0 +1,163 @@
+[gd_scene load_steps=11 format=4 uid="uid://mins24ef53t6"]
+
+[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_s0xyj"]
+[ext_resource type="Texture2D" uid="uid://c7204iulxqcsr" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_38glg"]
+[ext_resource type="Texture2D" uid="uid://du8dt47oqwjom" path="res://Assets/Art/pixilart-sprite.png" id="2_ccifb"]
+[ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="3_ccifb"]
+[ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="4_y5hg5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y5hg5"]
+texture = ExtResource("2_ccifb")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+10:0/0 = 0
+10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+11:0/0 = 0
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+12:0/0 = 0
+12:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cn1le"]
+texture = ExtResource("2_38glg")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xmx8b"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/4 = SubResource("TileSetAtlasSource_cn1le")
+sources/0 = SubResource("TileSetAtlasSource_y5hg5")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q17kt"]
+size = Vector2(1631, 95)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cn1le"]
+size = Vector2(326, 68)
+
+[node name="Level_3" instance=ExtResource("1_s0xyj")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="1"]
+tile_map_data = PackedByteArray("AAAAAAkAAAABAAAAAAABAAkAAAABAAAAAAACAAkAAAABAAAAAAADAAkAAAABAAAAAAAEAAkAAAABAAAAAAAFAAkAAAABAAAAAAAGAAkAAAABAAAAAAAHAAkAAAAEAAAAAAAKAAkAAAADAAAAAAALAAkAAAABAAAAAAAMAAkAAAABAAAAAAANAAkAAAABAAAAAAAOAAkAAAAEAAAAAAAPAAUAAAAKAAAAAAAQAAUAAAALAAAAAAARAAUAAAALAAAAAAASAAUAAAALAAAAAAATAAUAAAAMAAAAAAAUAAkAAAADAAAAAAAVAAkAAAABAAAAAAAWAAkAAAABAAAAAAAXAAkAAAABAAAAAAAYAAkAAAABAAAAAAAZAAkAAAABAAAAAAAaAAkAAAABAAAAAAAbAAkAAAABAAAAAAAcAAkAAAABAAAAAAAdAAkAAAABAAAAAAAeAAkAAAABAAAAAAAfAAkAAAABAAAAAAAgAAkAAAABAAAAAAAhAAkAAAABAAAAAAD//wkAAAAGAAAAAAD//wgAAAAGAAAAAAD//wcAAAAGAAAAAAD//wYAAAAGAAAAAAD//wUAAAAGAAAAAAD//wQAAAAGAAAAAAD//wMAAAAGAAAAAAD//wIAAAAGAAAAAAD//wEAAAAGAAAAAAAiAAkAAAAFAAAAAAAiAAgAAAAFAAAAAAAiAAcAAAAFAAAAAAAiAAYAAAAFAAAAAAAiAAUAAAAFAAAAAAAiAAQAAAAFAAAAAAAiAAMAAAAFAAAAAAAiAAIAAAAFAAAAAAAiAAEAAAAFAAAAAAAiAAAAAAAFAAAAAAA=")
+tile_set = SubResource("TileSet_xmx8b")
+
+[node name="CharacterBody2D" parent="." index="2" node_paths=PackedStringArray("_jump_charging_bar") instance=ExtResource("3_ccifb")]
+position = Vector2(63, 538)
+scale = Vector2(0.3, 0.3)
+TONGUE_EXTEND_SPEED = 3000.0
+TONGUE_RETRACT_SPEED = 3500.0
+_jump_charging_bar = NodePath("HealthBar")
+
+[node name="HealthBar" parent="CharacterBody2D" index="5" instance=ExtResource("4_y5hg5")]
+visible = false
+offset_left = -106.667
+offset_top = -240.0
+offset_right = -6.66667
+offset_bottom = -230.0
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" index="6"]
+limit_left = 0
+limit_top = -1000
+limit_right = 2177
+limit_bottom = 640
+limit_smoothed = true
+editor_draw_limits = true
+
+[node name="FallZone" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallZone" index="0"]
+position = Vector2(817, 748)
+shape = SubResource("RectangleShape2D_q17kt")
+
+[node name="Area_linguabile" type="Area2D" parent="." index="4" groups=["linguabili"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_linguabile" index="0"]
+position = Vector2(1120, 354)
+shape = SubResource("RectangleShape2D_cn1le")
+
+[node name="TextEdit" type="TextEdit" parent="." index="5"]
+offset_left = 345.0
+offset_top = 152.0
+offset_right = 670.0
+offset_bottom = 225.0
+text = "Stesso livello del tutorial ma con i tasti cambiati (random KeyMap)"
+wrap_mode = 1
+
+[connection signal="body_entered" from="FallZone" to="CharacterBody2D" method="_on_fall_zone_body_entered"]

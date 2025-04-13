@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="project"
-run/main_scene="uid://bkgtcr3bqmyb4"
+run/main_scene="res://Scenes/mainPage.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,9 @@ mouse_cursor/custom_image="uid://cfmildh65hl4t"
 [global_group]
 
 linguabili="Oggetti con possibilità di collisione a cui la lingua si può attaccare"
+lickable="Per nemici che devono essere leccati"
+enemy="Se in questo gr il livello ne tiene conto per l'eliminazione"
+player=""
 
 [input]
 
@@ -44,6 +47,10 @@ jump={
 }
 tongue={
 "deadzone": 0.2,
-"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(519, 19),"global_position":Vector2(528, 67),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(398, 14),"global_position":Vector2(407, 62),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
