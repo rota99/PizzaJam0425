@@ -354,7 +354,7 @@ position = Vector2(4758, 500)
 [node name="TopBar" parent="." instance=ExtResource("9_xfwg7")]
 
 [node name="Door" parent="." instance=ExtResource("10_xfwg7")]
-position = Vector2(4977, 447)
+position = Vector2(5022, 518)
 
 [node name="Bg_Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_r8l1h")

@@ -419,7 +419,7 @@ stream = ExtResource("12_lp2uw")
 autoplay = true
 
 [node name="Door" parent="." index="6" instance=ExtResource("3_2uqsa")]
-position = Vector2(2022, 435)
+position = Vector2(2018, 520)
 next_scene = ExtResource("12_pdmgb")
 
 [connection signal="body_entered" from="FallZone" to="Player" method="_on_fall_zone_body_entered"]

@@ -204,7 +204,7 @@ shape = SubResource("RectangleShape2D_7j8ne")
 [node name="CanvasLayer" parent="." instance=ExtResource("8_42uki")]
 
 [node name="Door" parent="." instance=ExtResource("9_t7v2y")]
-position = Vector2(3107, 172)
+position = Vector2(3142, 266)
 next_scene = ExtResource("10_42uki")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

@@ -347,7 +347,7 @@ position = Vector2(2620, -421)
 [node name="CanvasLayer" parent="." instance=ExtResource("7_5a8oa")]
 
 [node name="Door" parent="." instance=ExtResource("8_3ntyy")]
-position = Vector2(3914, 240)
+position = Vector2(3959, 332)
 next_scene = ExtResource("9_3ntyy")
 
 [node name="Bg_music" type="AudioStreamPlayer2D" parent="."]

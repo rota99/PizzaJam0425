@@ -195,7 +195,7 @@ text = "Stesso livello del tutorial ma con i tasti cambiati (random KeyMap)"
 wrap_mode = 1
 
 [node name="Door" parent="." index="6" instance=ExtResource("8_k6xtq")]
-position = Vector2(2031, 440)
+position = Vector2(2062, 522)
 next_scene = ExtResource("9_dvi3f")
 
 [node name="CanvasLayer" parent="." index="7" instance=ExtResource("9_k6xtq")]
