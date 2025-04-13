@@ -7,7 +7,7 @@ var _open := false
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		_player_entered()
-# :)
+		
 func _player_entered() -> void:
 	if _open and next_scene:
 		get_tree().change_scene_to_packed(next_scene)

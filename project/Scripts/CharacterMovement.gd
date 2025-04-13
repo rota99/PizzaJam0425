@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_fall_zone_body_entered(body: Node2D) -> void:
-	if body.name == "Player": 
+	if body == self: 
 		get_tree().reload_current_scene()
 	
 ## INPUT HANDLING ==============================================================

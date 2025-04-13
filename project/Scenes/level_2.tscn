@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://c5nmer3plqb4u"]
+[gd_scene load_steps=13 format=4 uid="uid://b6obixi32suqn"]
 
-[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_1y8me"]
+[ext_resource type="PackedScene" uid="uid://b8gm3667d4eoy" path="res://Scenes/background.tscn" id="1_1y8me"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="2_n7ypv"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="3_0s5r2"]
-[ext_resource type="Texture2D" uid="uid://ca4xbmwuwbw5v" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="4_7j8ne"]
-[ext_resource type="Texture2D" uid="uid://br2o4bx1yo0tj" path="res://Assets/Art/pixilart-sprite.png" id="5_v36qu"]
+[ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="4_7j8ne"]
+[ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="5_v36qu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7dov7"]
 texture = ExtResource("4_7j8ne")

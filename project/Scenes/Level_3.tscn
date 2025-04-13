@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://mins24ef53t6"]
+[gd_scene load_steps=11 format=4 uid="uid://dawkpj0d7o7er"]
 
-[ext_resource type="PackedScene" uid="uid://d2vlwp7cag57p" path="res://Scenes/background.tscn" id="1_s0xyj"]
-[ext_resource type="Texture2D" uid="uid://c7204iulxqcsr" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_38glg"]
-[ext_resource type="Texture2D" uid="uid://du8dt47oqwjom" path="res://Assets/Art/pixilart-sprite.png" id="2_ccifb"]
+[ext_resource type="PackedScene" uid="uid://b8gm3667d4eoy" path="res://Scenes/background.tscn" id="1_s0xyj"]
+[ext_resource type="Texture2D" uid="uid://dcwiamt8tocjv" path="res://Assets/Art/[64x64] Dungeon Bricks Plain.png" id="2_38glg"]
+[ext_resource type="Texture2D" uid="uid://bbj1t1ur4h0ke" path="res://Assets/Art/pixilart-sprite.png" id="2_ccifb"]
 [ext_resource type="PackedScene" uid="uid://mmnjki8ajgjp" path="res://Entities/Player/defaultPlayer.tscn" id="3_ccifb"]
 [ext_resource type="PackedScene" uid="uid://drvgkns1v81b2" path="res://addons/simple_health_bar/health_bar.tscn" id="4_y5hg5"]
 
