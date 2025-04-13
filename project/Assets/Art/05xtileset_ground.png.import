@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbj1t1ur4h0ke"
-path="res://.godot/imported/pixilart-sprite.png-de66a0b8033e2929cdbdb7627521b798.ctex"
+uid="uid://ml1vrru06ha0"
+path="res://.godot/imported/05xtileset_ground.png-b552c65e871593e75c85bf8724d01b7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/pixilart-sprite.png"
-dest_files=["res://.godot/imported/pixilart-sprite.png-de66a0b8033e2929cdbdb7627521b798.ctex"]
+source_file="res://Assets/Art/05xtileset_ground.png"
+dest_files=["res://.godot/imported/05xtileset_ground.png-b552c65e871593e75c85bf8724d01b7b.ctex"]
 
 [params]
 
